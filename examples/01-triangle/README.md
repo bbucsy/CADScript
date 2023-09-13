@@ -196,8 +196,8 @@ Something similar to HTMl or XML
     <Line p1=A p2=C ref=l_B>
 
     // put additional constraints to sketch
-    <Constrain l_A l_B angle=30° >
-
+    <Constrain e1= l_A e2=l_B angle=30° >
+    <Constrain p1= A p2= B vertical_distance= 20mm>
 >
 ```
 
@@ -223,5 +223,6 @@ define Sketch(
     add Line from C to A as l_B
 
     constrain 30° angle to l_A and l_B 
+    constrain 20mm vertical distance to A and B
 )
  ```
