@@ -1,6 +1,6 @@
 # Triangle example
 
-Our task is given in the drawing below. Our task is to calculate to positions of each point in a millimetre based grid system, given that the left point is  at (0,0)
+Our task is given in the drawing below. We have to calculate the positions of each point in a millimetre based grid system, given that the left point is  at (0,0)
 
 ![](./Assets/task.png)
 
