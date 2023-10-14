@@ -1,17 +1,28 @@
 grammar CadScript
 
-entry Model:
-    (persons+=Person | greetings+=Greeting)*;
+entry Model: (sketch=SketchDefinition)?;
 
-Person:
-    'person' name=ID;
+SketchDefinition:
+    'define' 'Sketch' '(' (statements+=AbstractStatement)* ')';
 
-Greeting:
-    'Hello' person=[Person:ID] '!';
+
+AbstractStatement: Entity | Constraint | LengthMeasurement;
+
+Entity: 'add' name=ID;
+
+Constraint: 'constrain' e1=[Entity:ID];
+
+LengthMeasurement: value=NUMBER LengthUnit;
+
+LengthUnit returns string: MetricUnit | ImperialUnit;
+
+MetricUnit returns string: 'mm' | 'cm' | 'dm' | 'm';
+ImperialUnit returns string: 'th'  | 'in' | 'ft' | 'yd';
+
 
 hidden terminal WS: /\s+/;
 terminal ID: /[_a-zA-Z][\w_]*/;
-terminal INT returns number: /[0-9]+/;
+terminal NUMBER returns number: /[0-9]+(\.[0-9]*)?/;
 terminal STRING: /"(\\.|[^"\\])*"|'(\\.|[^'\\])*'/;
 
 hidden terminal ML_COMMENT: /\/\*[\s\S]*?\*\//;

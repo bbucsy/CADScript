@@ -1,5 +1,5 @@
-import type { ValidationAcceptor, ValidationChecks } from 'langium';
-import type { CadScriptAstType, Person } from './generated/ast.js';
+import type { ValidationChecks } from 'langium';
+import type { CadScriptAstType } from './generated/ast.js';
 import type { CadScriptServices } from './cad-script-module.js';
 
 /**
@@ -9,7 +9,7 @@ export function registerValidationChecks(services: CadScriptServices) {
     const registry = services.validation.ValidationRegistry;
     const validator = services.validation.CadScriptValidator;
     const checks: ValidationChecks<CadScriptAstType> = {
-        Person: validator.checkPersonStartsWithCapital
+        
     };
     registry.register(checks, validator);
 }
@@ -19,7 +19,7 @@ export function registerValidationChecks(services: CadScriptServices) {
  */
 export class CadScriptValidator {
 
-    checkPersonStartsWithCapital(person: Person, accept: ValidationAcceptor): void {
+    /*checkPersonStartsWithCapital(person: Person, accept: ValidationAcceptor): void {
         if (person.name) {
             const firstChar = person.name.substring(0, 1);
             if (firstChar.toUpperCase() !== firstChar) {
@@ -27,5 +27,5 @@ export class CadScriptValidator {
             }
         }
     }
-
+*/
 }
