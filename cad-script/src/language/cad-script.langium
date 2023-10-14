@@ -11,8 +11,9 @@ AbstractStatement:
     Entity | Constraint;
 
 Entity:
-    Point;
+    Point | Line;
 
+// Point entity
 Point:
     'add' 'Point' ('as'name=ID)? (place=PointPlace)?;
 
@@ -22,9 +23,17 @@ PointPlace:
 PointPlaceTerminal returns string:
     'at' | 'around';
 
+// Line entity
+
+Line:
+    'add' (length=LengthMeasurement)? 'Line' 'from' p1=[Point:ID] 'to' p2=[Point:ID] ('as' name=ID)?;
+
+// Constraint Entity
 Constraint:
     'constrain' e1=[Entity:ID];
 
+
+// MEasurement Units
 LengthMeasurement:
     value=NUMBER (unit=LengthUnit)?;
 

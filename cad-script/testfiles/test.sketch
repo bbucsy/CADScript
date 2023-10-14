@@ -4,6 +4,12 @@ define Sketch (
     add Point as B around Y = 20 in
     add Point as C at X = 10 Y = 20 yd 
 
+    add 5cm Line from A to B as BaseLine 
+
+    add Line from B to C as SecondLine
+
+    add 1 dm Line from C to A
+
     add Point as D at
 
     add Point

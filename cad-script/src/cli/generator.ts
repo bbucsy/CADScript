@@ -1,4 +1,4 @@
-import { isPoint, Point, type Model, LengthMeasurement } from '../language/generated/ast.js'
+import { isPoint, Point, type Model, LengthMeasurement, Line, isLine } from '../language/generated/ast.js'
 import * as path from 'node:path'
 import * as fs from 'node:fs'
 import { extractDestinationAndName } from './cli-util.js'
@@ -21,6 +21,9 @@ export function expandSketch(model: Model, filePath: string, destination: string
 			fileNode.indent(sketchNode => {
 				if (isPoint(stmt)) {
 					generatePoint(stmt, sketchNode)
+					sketchNode.append(NL)
+				} else if (isLine(stmt)) {
+					generateLine(stmt, sketchNode)
 					sketchNode.append(NL)
 				} else {
 					sketchNode.append('// Unknown statement ', NL)
@@ -58,6 +61,22 @@ const generatePoint = (point: Point, node: CompositeGeneratorNode) => {
 			node.append(' Y = ', expandLengthMeasurement(point.place.yBase))
 		}
 	}
+	node.append(NL)
+}
+
+const generateLine = (line: Line, node: CompositeGeneratorNode) => {
+	node.append('add')
+
+	if (typeof line.length !== 'undefined') {
+		node.append(' ', expandLengthMeasurement(line.length))
+	}
+
+	node.append(' Line from ', line.p1.ref?.name, ' to ', line.p2.ref?.name)
+
+	if (typeof line.name !== 'undefined') {
+		node.append(' as ', line.name)
+	}
+
 	node.append(NL)
 }
 
