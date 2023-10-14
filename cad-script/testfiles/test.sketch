@@ -1,0 +1,12 @@
+define Sketch (
+
+    add Point as A at X = 10 mm
+    add Point as B around Y = 20 in
+    add Point as C at X = 10 Y = 20 yd 
+
+    add Point as D at
+
+    add Point
+
+    constrain D
+)

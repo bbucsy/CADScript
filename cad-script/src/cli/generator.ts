@@ -1,43 +1,87 @@
-import { isPoint, type Model } from '../language/generated/ast.js';
-import * as path from 'node:path';
-import * as fs from 'node:fs';
-import { extractDestinationAndName } from './cli-util.js';
-import { CompositeGeneratorNode, NL, toString } from 'langium';
+import { isPoint, Point, type Model, LengthMeasurement } from '../language/generated/ast.js'
+import * as path from 'node:path'
+import * as fs from 'node:fs'
+import { extractDestinationAndName } from './cli-util.js'
+import { CompositeGeneratorNode, NL, toString } from 'langium'
 
-export function generateJavaScript(model: Model, filePath: string, destination: string | undefined): string {
-    const data = extractDestinationAndName(filePath, destination);
-    const generatedFilePath = `${path.join(data.destination, data.name)}.gen`;
+export function expandSketch(model: Model, filePath: string, destination: string | undefined): string {
+	const data = extractDestinationAndName(filePath, destination)
+	const generatedFilePath = `${path.join(data.destination, data.name)}.e.sketch`
 
-    const fileNode = new CompositeGeneratorNode();
-    fileNode.append('"Generation:";', NL, NL);
+	const fileNode = new CompositeGeneratorNode()
+	fileNode.append('// Sketch expansion', NL)
+	fileNode.append('// Base unit of length measurement: mm', NL)
+	fileNode.append(`// Source file: ${filePath}`, NL, NL)
 
-    model.sketch?.statements.forEach((stmt) =>{
-        fileNode.append('Statement: ', NL)
+	if (typeof model.sketch !== 'undefined') {
+		fileNode.append('define Sketch (', NL)
+		// expand current model
 
-        if(isPoint(stmt)){
+		model.sketch.statements.forEach(stmt => {
+			fileNode.indent(sketchNode => {
+				if (isPoint(stmt)) {
+					generatePoint(stmt, sketchNode)
+					sketchNode.append(NL)
+				} else {
+					sketchNode.append('// Unknown statement ', NL)
+				}
+			})
+		})
+		fileNode.append(')', NL)
+	}
 
-            fileNode.indent(indent =>{
+	if (!fs.existsSync(data.destination)) {
+		fs.mkdirSync(data.destination, { recursive: true })
+	}
+	fs.writeFileSync(generatedFilePath, toString(fileNode))
+	return generatedFilePath
+}
 
-                indent.append(stmt.name, NL)
-                
-                indent.append(stmt.place?.placeType, NL )
+const generatePoint = (point: Point, node: CompositeGeneratorNode) => {
+	node.append('add Point')
 
-                if(stmt.place?.xBase){
-                    indent.append(stmt.place.xBase.value.toString(), ' ' ,stmt.place.xBase.unit, NL)
-                }
+	if (typeof point.name !== 'undefined') {
+		node.append(' as ', point.name)
+	}
 
-            })
+	if (
+		typeof point.place !== 'undefined' &&
+		(typeof point.place.xBase !== 'undefined' || typeof point.place.yBase !== 'undefined')
+	) {
+		node.append(' ', point.place.placeType, ' ')
 
+		if (typeof point.place.xBase !== 'undefined') {
+			node.append(' X = ', expandLengthMeasurement(point.place.xBase))
+		}
 
-        }
+		if (typeof point.place.yBase !== 'undefined') {
+			node.append(' Y = ', expandLengthMeasurement(point.place.yBase))
+		}
+	}
+	node.append(NL)
+}
 
+// returns milimeter representation of measurement
+const expandLengthMeasurement = (length: LengthMeasurement): string => {
+	if (typeof length.unit === 'undefined') return `${length.value} mm`
+	//ft' | 'in' | 'th' | 'yd'
+	const UNIT_CONVERSION_TABLE: Map<string, number> = new Map([
+		['mm', 1],
+		['cm', 10],
+		['dm', 100],
+		['m', 1000],
+		// imperial units
+		['th', 0.0254],
+		['in', 25.4],
+		['ft', 304.8],
+		['yd', 914.4]
+	])
 
-    })
+	const conversionValue = UNIT_CONVERSION_TABLE.get(length.unit)
 
-
-    if (!fs.existsSync(data.destination)) {
-        fs.mkdirSync(data.destination, { recursive: true });
-    }
-    fs.writeFileSync(generatedFilePath, toString(fileNode));
-    return generatedFilePath;
+	if (typeof conversionValue === 'undefined') {
+		return `$UnitError(${length.value} ${length.unit})`
+	} else {
+		return `${length.value * conversionValue} mm`
+	}
 }

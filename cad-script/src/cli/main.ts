@@ -4,14 +4,14 @@ import { Command } from 'commander';
 import { CadScriptLanguageMetaData } from '../language/generated/module.js';
 import { createCadScriptServices } from '../language/cad-script-module.js';
 import { extractAstNode } from './cli-util.js';
-import { generateJavaScript } from './generator.js';
+import { expandSketch } from './generator.js';
 import { NodeFileSystem } from 'langium/node';
 
-export const generateAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
+export const expandAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
     const services = createCadScriptServices(NodeFileSystem).CadScript;
     const model = await extractAstNode<Model>(fileName, services);
-    const generatedFilePath = generateJavaScript(model, fileName, opts.destination);
-    console.log(chalk.green(`JavaScript code generated successfully: ${generatedFilePath}`));
+    const generatedFilePath = expandSketch(model, fileName, opts.destination);
+    console.log(chalk.green(`Expanded sketch generated successfully: ${generatedFilePath}`));
 };
 
 export type GenerateOptions = {
@@ -26,11 +26,11 @@ program
 
 const fileExtensions = CadScriptLanguageMetaData.fileExtensions.join(', ');
 program
-    .command('generate')
+    .command('expand')
     .argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
     .option('-d, --destination <dir>', 'destination directory of generating')
-    .description('generates JavaScript code that prints "Hello, {name}!" for each greeting in a source file')
-    .action(generateAction);
+    .description('Generates an expanded version of the input Sketch file.')
+    .action(expandAction);
 
 program.parse(process.argv);
 
