@@ -6,13 +6,17 @@ SketchDefinition:
     'define' 'Sketch' '(' (statements+=AbstractStatement)* ')';
 
 
-AbstractStatement: Entity | Constraint | LengthMeasurement;
+AbstractStatement: Entity | Constraint;
 
-Entity: 'add' name=ID;
+Entity: Point;
+
+Point: 'add' 'Point' ('as'name=ID)? (('at' | 'around') ('X' '=' xBase=LengthMeasurement)? ('Y' '=' yBase=LengthMeasurement)? )?;
+
+
 
 Constraint: 'constrain' e1=[Entity:ID];
 
-LengthMeasurement: value=NUMBER LengthUnit;
+LengthMeasurement: value=NUMBER (LengthUnit)?;
 
 LengthUnit returns string: MetricUnit | ImperialUnit;
 
