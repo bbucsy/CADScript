@@ -10,13 +10,15 @@ AbstractStatement: Entity | Constraint;
 
 Entity: Point;
 
-Point: 'add' 'Point' ('as'name=ID)? (('at' | 'around') ('X' '=' xBase=LengthMeasurement)? ('Y' '=' yBase=LengthMeasurement)? )?;
+Point: 'add' 'Point' ('as'name=ID)? (place=PointPlace)?;
 
+PointPlace: placeType=PointPlaceTerminal ('X' '=' xBase=LengthMeasurement)? ('Y' '=' yBase=LengthMeasurement)? ;
 
+PointPlaceTerminal returns string: 'at' | 'around';
 
 Constraint: 'constrain' e1=[Entity:ID];
 
-LengthMeasurement: value=NUMBER (LengthUnit)?;
+LengthMeasurement: value=NUMBER (unit=LengthUnit)?;
 
 LengthUnit returns string: MetricUnit | ImperialUnit;
 
