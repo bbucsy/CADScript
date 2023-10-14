@@ -16,5 +16,9 @@ define Sketch (
 
     add horizontal Line from D to E
 
+    add 5 cm Circle at A as Cricle1 
+
+    add 1in Arc D A C as Arc1
+
     constrain D
 )

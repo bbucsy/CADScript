@@ -11,7 +11,7 @@ AbstractStatement:
     Entity | Constraint;
 
 Entity:
-    Point | Line;
+    Point | Line | Circle | Arc;
 
 // Point entity
 Point:
@@ -31,7 +31,17 @@ Line:
 BaseLineConstraint returns string:
     'horizontal' | 'vertical';
 
-// Constraint Entity
+// Circle
+
+Circle:
+    'add' (radius=LengthMeasurement)? 'Circle' ( 'at' center=[Point:ID])? ('as' name=ID)?;
+
+// Arc
+
+Arc:
+    'add' (radius=LengthMeasurement)? 'Arc' p1=[Point:ID] center=[Point:ID] p2=[Point:ID] ('as' name=ID)?;
+
+// Constraints
 Constraint:
     'constrain' e1=[Entity:ID];
 

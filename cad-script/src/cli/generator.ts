@@ -1,4 +1,15 @@
-import { isPoint, Point, type Model, LengthMeasurement, Line, isLine } from '../language/generated/ast.js'
+import {
+	isPoint,
+	Point,
+	type Model,
+	LengthMeasurement,
+	Line,
+	isLine,
+	Circle,
+	isCircle,
+	Arc,
+	isArc
+} from '../language/generated/ast.js'
 import * as path from 'node:path'
 import * as fs from 'node:fs'
 import { extractDestinationAndName } from './cli-util.js'
@@ -24,6 +35,12 @@ export function expandSketch(model: Model, filePath: string, destination: string
 					sketchNode.append(NL)
 				} else if (isLine(stmt)) {
 					generateLine(stmt, sketchNode)
+					sketchNode.append(NL)
+				} else if (isCircle(stmt)) {
+					generateCircle(stmt, sketchNode)
+					sketchNode.append(NL)
+				} else if (isArc(stmt)) {
+					generateArc(stmt, sketchNode)
 					sketchNode.append(NL)
 				} else {
 					sketchNode.append('// Unknown statement ', NL)
@@ -79,6 +96,38 @@ const generateLine = (line: Line, node: CompositeGeneratorNode) => {
 
 	if (typeof line.name !== 'undefined') {
 		node.append(' as ', line.name)
+	}
+
+	node.append(NL)
+}
+
+const generateCircle = (circle: Circle, node: CompositeGeneratorNode) => {
+	node.append('add')
+
+	if (typeof circle.radius !== 'undefined') {
+		node.append(' ', expandLengthMeasurement(circle.radius))
+	}
+
+	node.append(' Circle')
+
+	if (typeof circle.center !== 'undefined') {
+		node.append(' at ', circle.center.ref?.name)
+	}
+
+	node.append(NL)
+}
+
+const generateArc = (arc: Arc, node: CompositeGeneratorNode) => {
+	node.append('add')
+
+	if (typeof arc.radius !== 'undefined') {
+		node.append(' ', expandLengthMeasurement(arc.radius))
+	}
+
+	node.append(' Arc ', arc.p1.ref?.name, ' ', arc.center.ref?.name, ' ', arc.p2.ref?.name)
+
+	if (typeof arc.name !== 'undefined') {
+		node.append(' as ', arc.name)
 	}
 
 	node.append(NL)
