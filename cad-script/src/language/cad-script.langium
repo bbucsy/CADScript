@@ -1,29 +1,40 @@
 grammar CadScript
 
-entry Model: (sketch=SketchDefinition)?;
+entry Model:
+    (sketch=SketchDefinition)?;
 
 SketchDefinition:
     'define' 'Sketch' '(' (statements+=AbstractStatement)* ')';
 
 
-AbstractStatement: Entity | Constraint;
+AbstractStatement:
+    Entity | Constraint;
 
-Entity: Point;
+Entity:
+    Point;
 
-Point: 'add' 'Point' ('as'name=ID)? (place=PointPlace)?;
+Point:
+    'add' 'Point' ('as'name=ID)? (place=PointPlace)?;
 
-PointPlace: placeType=PointPlaceTerminal ('X' '=' xBase=LengthMeasurement)? ('Y' '=' yBase=LengthMeasurement)? ;
+PointPlace:
+    placeType=PointPlaceTerminal ('X' '=' xBase=LengthMeasurement)? ('Y' '=' yBase=LengthMeasurement)?;
 
-PointPlaceTerminal returns string: 'at' | 'around';
+PointPlaceTerminal returns string:
+    'at' | 'around';
 
-Constraint: 'constrain' e1=[Entity:ID];
+Constraint:
+    'constrain' e1=[Entity:ID];
 
-LengthMeasurement: value=NUMBER (unit=LengthUnit)?;
+LengthMeasurement:
+    value=NUMBER (unit=LengthUnit)?;
 
-LengthUnit returns string: MetricUnit | ImperialUnit;
+LengthUnit returns string:
+    MetricUnit | ImperialUnit;
 
-MetricUnit returns string: 'mm' | 'cm' | 'dm' | 'm';
-ImperialUnit returns string: 'th'  | 'in' | 'ft' | 'yd';
+MetricUnit returns string:
+    'mm' | 'cm' | 'dm' | 'm';
+ImperialUnit returns string:
+    'th'  | 'in' | 'ft' | 'yd';
 
 
 hidden terminal WS: /\s+/;

@@ -1,15 +1,21 @@
-import type { DefaultSharedModuleContext, LangiumServices, LangiumSharedServices, Module, PartialLangiumServices } from 'langium';
-import { createDefaultModule, createDefaultSharedModule, inject } from 'langium';
-import { CadScriptGeneratedModule, CadScriptGeneratedSharedModule } from './generated/module.js';
-import { CadScriptValidator, registerValidationChecks } from './cad-script-validator.js';
+import type {
+	DefaultSharedModuleContext,
+	LangiumServices,
+	LangiumSharedServices,
+	Module,
+	PartialLangiumServices
+} from 'langium'
+import { createDefaultModule, createDefaultSharedModule, inject } from 'langium'
+import { CadScriptGeneratedModule, CadScriptGeneratedSharedModule } from './generated/module.js'
+import { CadScriptValidator, registerValidationChecks } from './cad-script-validator.js'
 
 /**
  * Declaration of custom services - add your own service classes here.
  */
 export type CadScriptAddedServices = {
-    validation: {
-        CadScriptValidator: CadScriptValidator
-    }
+	validation: {
+		CadScriptValidator: CadScriptValidator
+	}
 }
 
 /**
@@ -24,10 +30,10 @@ export type CadScriptServices = LangiumServices & CadScriptAddedServices
  * selected services, while the custom services must be fully specified.
  */
 export const CadScriptModule: Module<CadScriptServices, PartialLangiumServices & CadScriptAddedServices> = {
-    validation: {
-        CadScriptValidator: () => new CadScriptValidator()
-    }
-};
+	validation: {
+		CadScriptValidator: () => new CadScriptValidator()
+	}
+}
 
 /**
  * Create the full set of services required by Langium.
@@ -45,19 +51,12 @@ export const CadScriptModule: Module<CadScriptServices, PartialLangiumServices &
  * @returns An object wrapping the shared services and the language-specific services
  */
 export function createCadScriptServices(context: DefaultSharedModuleContext): {
-    shared: LangiumSharedServices,
-    CadScript: CadScriptServices
+	shared: LangiumSharedServices
+	CadScript: CadScriptServices
 } {
-    const shared = inject(
-        createDefaultSharedModule(context),
-        CadScriptGeneratedSharedModule
-    );
-    const CadScript = inject(
-        createDefaultModule({ shared }),
-        CadScriptGeneratedModule,
-        CadScriptModule
-    );
-    shared.ServiceRegistry.register(CadScript);
-    registerValidationChecks(CadScript);
-    return { shared, CadScript };
+	const shared = inject(createDefaultSharedModule(context), CadScriptGeneratedSharedModule)
+	const CadScript = inject(createDefaultModule({ shared }), CadScriptGeneratedModule, CadScriptModule)
+	shared.ServiceRegistry.register(CadScript)
+	registerValidationChecks(CadScript)
+	return { shared, CadScript }
 }
