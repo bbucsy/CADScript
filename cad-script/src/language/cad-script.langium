@@ -8,7 +8,13 @@ SketchDefinition:
 
 
 AbstractStatement:
-    Entity | Constraint;
+    Entity | Constraint | StringID;
+
+StringID:
+    '"' (parts+=ID | parts+=InterpolatedExpression)+  '"';
+
+InterpolatedExpression:
+    '&{' exp=NUMBER '}';
 
 Entity:
     Point | Line | Circle | Arc;

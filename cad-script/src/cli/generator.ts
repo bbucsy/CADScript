@@ -18,7 +18,10 @@ import {
 	isAngleConstraint,
 	isDistanceConstraint,
 	isPerpendicularConstraint,
-	isSameLengthCosntraint
+	isSameLengthCosntraint,
+	StringID,
+	isInterpolatedExpression,
+	isStringID
 } from '../language/generated/ast.js'
 import * as path from 'node:path'
 import * as fs from 'node:fs'
@@ -56,6 +59,8 @@ export function expandSketch(model: Model, filePath: string, destination: string
 				} else if (isConstraint(stmt)) {
 					generateConstraint(stmt, sketchNode)
 					sketchNode.append(NL)
+				} else if (isStringID(stmt)) {
+					sketchNode.append(NL, 'interpolated_string: ', expandStringID(stmt), NL)
 				} else {
 					sketchNode.append('// Unknown statement ', NL)
 				}
@@ -145,6 +150,18 @@ const generateArc = (arc: Arc, node: CompositeGeneratorNode) => {
 	}
 
 	node.append(NL)
+}
+
+const expandStringID = (id: StringID): string => {
+	return id.parts
+		.map(part => {
+			if (isInterpolatedExpression(part)) {
+				return part.exp.toString()
+			} else {
+				return part
+			}
+		})
+		.join('')
 }
 
 const generateConstraint = (c: Constraint, node: CompositeGeneratorNode) => {
