@@ -71,6 +71,10 @@ const generateLine = (line: Line, node: CompositeGeneratorNode) => {
 		node.append(' ', expandLengthMeasurement(line.length))
 	}
 
+	if (typeof line.baseLineConstraint !== 'undefined') {
+		node.append(' ', line.baseLineConstraint)
+	}
+
 	node.append(' Line from ', line.p1.ref?.name, ' to ', line.p2.ref?.name)
 
 	if (typeof line.name !== 'undefined') {

@@ -6,13 +6,15 @@ define Sketch (
 
     add 5cm Line from A to B as BaseLine 
 
-    add Line from B to C as SecondLine
+    add vertical Line from B to C as SecondLine
 
     add 1 dm Line from C to A
 
     add Point as D at
 
-    add Point
+    add Point as E
+
+    add horizontal Line from D to E
 
     constrain D
 )

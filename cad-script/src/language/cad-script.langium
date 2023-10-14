@@ -26,7 +26,10 @@ PointPlaceTerminal returns string:
 // Line entity
 
 Line:
-    'add' (length=LengthMeasurement)? 'Line' 'from' p1=[Point:ID] 'to' p2=[Point:ID] ('as' name=ID)?;
+    'add' (length=LengthMeasurement)? (baseLineConstraint=BaseLineConstraint)? 'Line' 'from' p1=[Point:ID] 'to' p2=[Point:ID] ('as' name=ID)?;
+
+BaseLineConstraint returns string:
+    'horizontal' | 'vertical';
 
 // Constraint Entity
 Constraint:
