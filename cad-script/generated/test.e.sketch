@@ -1,0 +1,29 @@
+// Sketch expansion
+// Base unit of length measurement: mm
+// Source file: testfiles/test.sketch
+
+define Sketch (
+    add Point as A at  X = 10 mm
+
+    add Point as B around  Y = 508 mm
+
+    add Point as C at  X = 10 mm Y = 18288 mm
+
+    add 50 mm Line from A to B as BaseLine
+
+    add vertical Line from B to C as SecondLine
+
+    add 100 mm Line from C to A
+
+    add Point as D
+
+    add Point as E
+
+    add horizontal Line from D to E
+
+    add 50 mm Circle at A
+
+    add 25.4 mm Arc D A C as Arc1
+
+    // Unknown statement 
+)

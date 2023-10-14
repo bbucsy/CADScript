@@ -8,7 +8,17 @@ import {
 	Circle,
 	isCircle,
 	Arc,
-	isArc
+	isArc,
+	Constraint,
+	isConstraint,
+	AngleMeasurement,
+	isDegree,
+	isDegreeWithMinutes,
+	isRadian,
+	isAngleConstraint,
+	isDistanceConstraint,
+	isPerpendicularConstraint,
+	isSameLengthCosntraint
 } from '../language/generated/ast.js'
 import * as path from 'node:path'
 import * as fs from 'node:fs'
@@ -22,6 +32,7 @@ export function expandSketch(model: Model, filePath: string, destination: string
 	const fileNode = new CompositeGeneratorNode()
 	fileNode.append('// Sketch expansion', NL)
 	fileNode.append('// Base unit of length measurement: mm', NL)
+	fileNode.append('// Base unit of angles: degree', NL)
 	fileNode.append(`// Source file: ${filePath}`, NL, NL)
 
 	if (typeof model.sketch !== 'undefined') {
@@ -41,6 +52,9 @@ export function expandSketch(model: Model, filePath: string, destination: string
 					sketchNode.append(NL)
 				} else if (isArc(stmt)) {
 					generateArc(stmt, sketchNode)
+					sketchNode.append(NL)
+				} else if (isConstraint(stmt)) {
+					generateConstraint(stmt, sketchNode)
 					sketchNode.append(NL)
 				} else {
 					sketchNode.append('// Unknown statement ', NL)
@@ -131,6 +145,34 @@ const generateArc = (arc: Arc, node: CompositeGeneratorNode) => {
 	}
 
 	node.append(NL)
+}
+
+const generateConstraint = (c: Constraint, node: CompositeGeneratorNode) => {
+	if (isAngleConstraint(c)) {
+		node.append('constrain ', expandAngleMesurement(c.angle), ' angle to ', c.l1.ref?.name, ' and ', c.l2.ref?.name)
+	} else if (isDistanceConstraint(c)) {
+		node.append(
+			'constrain ',
+			expandLengthMeasurement(c.length),
+			' distance to ',
+			c.p1.ref?.name,
+			' and ',
+			c.p2.ref?.name
+		)
+	} else if (isPerpendicularConstraint(c)) {
+		node.append('constrain perpendicular ', c.l1.ref?.name, ' and ', c.l2.ref?.name)
+	} else if (isSameLengthCosntraint(c)) {
+		node.append('constrain samelength ', c.l1.ref?.name, ' and ', c.l2.ref?.name)
+	}
+
+	node.append(NL)
+}
+
+const expandAngleMesurement = (angle: AngleMeasurement): string => {
+	if (isDegree(angle)) return `${angle.value} °`
+	else if (isDegreeWithMinutes(angle)) return `${(1 / 60) * angle.minutes + angle.value} °`
+	else if (isRadian(angle)) return `${(angle.value * 180) / Math.PI} °`
+	else return `$UnitError`
 }
 
 // returns milimeter representation of measurement

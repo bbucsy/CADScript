@@ -43,10 +43,22 @@ Arc:
 
 // Constraints
 Constraint:
-    'constrain' e1=[Entity:ID];
+    AngleConstraint | DistanceConstraint | PerpendicularConstraint | SameLengthCosntraint;
+
+SameLengthCosntraint:
+    'constrain' 'samelength' l1=[Line:ID] 'and' l2=[Line:ID];
+
+PerpendicularConstraint:
+    'constrain' 'perpendicular' l1=[Line:ID] 'and' l2=[Line:ID];
+
+DistanceConstraint:
+    'constrain' length=LengthMeasurement 'distance' 'to' p1=[Point:ID] 'and' p2=[Point:ID];
+
+AngleConstraint:
+    'constrain' angle=AngleMeasurement 'angle' 'to' l1=[Line:ID] 'and' l2=[Line:ID];
 
 
-// MEasurement Units
+// Measurement Units
 LengthMeasurement:
     value=NUMBER (unit=LengthUnit)?;
 
@@ -58,11 +70,21 @@ MetricUnit returns string:
 ImperialUnit returns string:
     'th'  | 'in' | 'ft' | 'yd';
 
+// AngleUnits
+AngleMeasurement:
+    Degree | DegreeWithMinutes | Radian;
+
+Radian:
+    value=NUMBER 'rad';
+
+Degree:
+    value=NUMBER ('°')?;
+
+DegreeWithMinutes:
+    value=NUMBER '°' minutes=NUMBER "'";
 
 hidden terminal WS: /\s+/;
 terminal ID: /[_a-zA-Z][\w_]*/;
 terminal NUMBER returns number: /[0-9]+(\.[0-9]*)?/;
-terminal STRING: /"(\\.|[^"\\])*"|'(\\.|[^'\\])*'/;
 
-hidden terminal ML_COMMENT: /\/\*[\s\S]*?\*\//;
 hidden terminal SL_COMMENT: /\/\/[^\n\r]*/;

@@ -20,5 +20,9 @@ define Sketch (
 
     add 1in Arc D A C as Arc1
 
-    constrain D
+    constrain 30°60' angle to BaseLine and SecondLine
+
+    constrain  samelength BaseLine and SecondLine
+
+    constrain 20 mm distance to A and B
 )
