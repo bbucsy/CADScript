@@ -3,7 +3,7 @@ define Sketch Test (
 
     add Point as A at X = 10 mm
     add Point as B around Y = 20 in
-    add Point as C at X = 10 Y = 20 yd 
+    add Point as C at X = 10 Y = 20 + 1 yd 
 
     add 5cm Line from A to B as BaseLine 
 

@@ -1,30 +1,30 @@
 grammar CadScript
 
 entry Model:
-    (partials=PartialDefinition)*
-    (sketch=SketchDefinition)?;
+    (sketches+=SketchDefinition)*;
 
-PartialDefinition:
-    'define' 'Partial' name=ID '(' (parameters+=ParameterDefinition)* (statements+=AbstractStatement)* ')';
+SketchDefinition:
+    'define' (partial?='partial')? 'Sketch' name=ID '(' (parameters+=ParameterDefinition)* (statements+=AbstractStatement)* ')';
+
+// Parameters
 
 ParameterDefinition:
     LenghtParameter | AnglePArameter;
 
 AnglePArameter:
-    'angle' name=ID ',' 'defaults' 'to' value=LengthMeasurement {infer AnglePArameter};
+    'angle' name=ID ',' 'defaults' 'to' value=AngleMeasurement;
 
 LenghtParameter:
-    'length' name=ID ',' 'defaults' 'to' value=AngleMeasurement {infer LenghtParameter};
+    'length' name=ID ',' 'defaults' 'to' value=LengthMeasurement;
 
-SketchDefinition:
-    'define' 'Sketch' name=ID'(' (statements+=AbstractStatement)* ')';
 
+// Statements
 
 AbstractStatement:
     Entity | Constraint | LoopStatement;
 
 LoopStatement:
-    count=NUMBER 'times' 'do' '|' LoopVariable=ID '|' (statements+=AbstractStatement)* 'end';
+    count=NUMBER 'times' 'do' '|' loopParam=Param '|' (statements+=AbstractStatement)* 'end';
 
 
 // interpolated IDs. To-be used with loop statements
@@ -32,7 +32,7 @@ StringID:
     '"' (parts+=ID | parts+=InterpolatedExpression)+  '"';
 
 InterpolatedExpression:
-    '&{' exp=NUMBER '}';
+    '&{' exp=Expression '}';
 
 Entity:
     Point | Line | Circle | Arc;
@@ -84,7 +84,7 @@ AngleConstraint:
 
 // Measurement Units
 LengthMeasurement:
-    value=NUMBER (unit=LengthUnit)?;
+    value=Expression unit=LengthUnit;
 
 LengthUnit returns string:
     MetricUnit | ImperialUnit;
@@ -99,13 +99,45 @@ AngleMeasurement:
     Degree | DegreeWithMinutes | Radian;
 
 Radian:
-    value=NUMBER 'rad';
+    value=Expression 'rad';
 
 Degree:
-    value=NUMBER ('°')?;
+    value=Expression ('°' | 'deg');
 
 DegreeWithMinutes:
-    value=NUMBER '°' minutes=NUMBER "'";
+    value=Expression '°' minutes=Expression "'";
+
+
+// Expressions
+
+Param:
+    name=ID;
+
+Expression:
+    Add;
+
+Add infers Expr:
+    Mult ({infer BinExpr.e1=current} op=('+'|'-') e2=Mult)*;
+
+Mult infers Expr:
+    PrimExpr ({infer BinExpr.e1=current} op=('*'|'/') e2=PrimExpr)*;
+
+PrimExpr:
+    Lit | Ref | Group | NegExpr;
+
+// literal int
+Lit:
+    val=NUMBER;
+// cross-reference to a parameter
+Ref:
+    val=[Param:ID];
+// grouped expression with parentheses
+Group:
+    '(' ge=Expression ')';
+// negated expression
+NegExpr:
+    '-' ne=Expression;
+
 
 hidden terminal WS: /\s+/;
 terminal ID: /[_a-zA-Z][\w_]*/;

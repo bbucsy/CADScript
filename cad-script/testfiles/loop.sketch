@@ -3,7 +3,7 @@ define Sketch Loop (
     add Point as B at X = 33.5mm Y=1cm
 
     3.3 times do |iter|
-        add Point 
+        add Point as C at X= (( iter * 2) +3) yd
     end
    
 

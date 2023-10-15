@@ -1,28 +1,4 @@
-import {
-	isPoint,
-	Point,
-	type Model,
-	LengthMeasurement,
-	Line,
-	isLine,
-	Circle,
-	isCircle,
-	Arc,
-	isArc,
-	Constraint,
-	isConstraint,
-	AngleMeasurement,
-	isDegree,
-	isDegreeWithMinutes,
-	isRadian,
-	isAngleConstraint,
-	isDistanceConstraint,
-	isPerpendicularConstraint,
-	isSameLengthCosntraint,
-	StringID,
-	isInterpolatedExpression,
-	isStringID
-} from '../language/generated/ast.js'
+import { type Model } from '../language/generated/ast.js'
 import * as path from 'node:path'
 import * as fs from 'node:fs'
 import { extractDestinationAndName } from './cli-util.js'
@@ -38,7 +14,7 @@ export function expandSketch(model: Model, filePath: string, destination: string
 	fileNode.append('// Base unit of angles: degree', NL)
 	fileNode.append(`// Source file: ${filePath}`, NL, NL)
 
-	if (typeof model.sketch !== 'undefined') {
+	/*if (typeof model.sketch !== 'undefined') {
 		fileNode.append('define Sketch (', NL)
 		// expand current model
 
@@ -67,7 +43,7 @@ export function expandSketch(model: Model, filePath: string, destination: string
 			})
 		})
 		fileNode.append(')', NL)
-	}
+	}*/
 
 	if (!fs.existsSync(data.destination)) {
 		fs.mkdirSync(data.destination, { recursive: true })
@@ -75,7 +51,7 @@ export function expandSketch(model: Model, filePath: string, destination: string
 	fs.writeFileSync(generatedFilePath, toString(fileNode))
 	return generatedFilePath
 }
-
+/*
 const generatePoint = (point: Point, node: CompositeGeneratorNode) => {
 	node.append('add Point')
 
@@ -185,15 +161,15 @@ const generateConstraint = (c: Constraint, node: CompositeGeneratorNode) => {
 	node.append(NL)
 }
 
-const expandAngleMesurement = (angle: AngleMeasurement): string => {
+/*const expandAngleMesurement = (angle: AngleMeasurement): string => {
 	if (isDegree(angle)) return `${angle.value} °`
 	else if (isDegreeWithMinutes(angle)) return `${(1 / 60) * angle.minutes + angle.value} °`
 	else if (isRadian(angle)) return `${(angle.value * 180) / Math.PI} °`
 	else return `$UnitError`
-}
+}*/
 
 // returns milimeter representation of measurement
-const expandLengthMeasurement = (length: LengthMeasurement): string => {
+/*const expandLengthMeasurement = (length: LengthMeasurement): string => {
 	if (typeof length.unit === 'undefined') return `${length.value} mm`
 	//ft' | 'in' | 'th' | 'yd'
 	const UNIT_CONVERSION_TABLE: Map<string, number> = new Map([
@@ -215,4 +191,4 @@ const expandLengthMeasurement = (length: LengthMeasurement): string => {
 	} else {
 		return `${length.value * conversionValue} mm`
 	}
-}
+}*/

@@ -1,13 +1,18 @@
-define Partial P1(
 
-    parameter p1, defaults to 11°
 
-)
+define partial Sketch P2 (
+  
+    add Point as B 
+    add Point as A
 
-define Partial P2(
+    constrain 11 cm distance to B and A
 
 )
 
 define Sketch Test(
+    angle a1, defaults to 1.1 +2 °
+    length l1, defaults to 5 mm
 
+    
 )
+
