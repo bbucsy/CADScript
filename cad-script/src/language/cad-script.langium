@@ -1,10 +1,23 @@
 grammar CadScript
 
 entry Model:
+    (partials=PartialDefinition)*
     (sketch=SketchDefinition)?;
 
+PartialDefinition:
+    'define' 'Partial' name=ID '(' (parameters+=ParameterDefinition)* (statements+=AbstractStatement)* ')';
+
+ParameterDefinition:
+    LenghtParameter | AnglePArameter;
+
+AnglePArameter:
+    'angle' name=ID ',' 'defaults' 'to' value=LengthMeasurement {infer AnglePArameter};
+
+LenghtParameter:
+    'length' name=ID ',' 'defaults' 'to' value=AngleMeasurement {infer LenghtParameter};
+
 SketchDefinition:
-    'define' 'Sketch' '(' (statements+=AbstractStatement)* ')';
+    'define' 'Sketch' name=ID'(' (statements+=AbstractStatement)* ')';
 
 
 AbstractStatement:

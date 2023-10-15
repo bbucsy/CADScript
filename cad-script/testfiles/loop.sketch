@@ -1,4 +1,4 @@
-define Sketch (
+define Sketch Loop (
 
     add Point as B at X = 33.5mm Y=1cm
 

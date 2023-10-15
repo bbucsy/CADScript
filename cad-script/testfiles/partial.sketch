@@ -1,0 +1,13 @@
+define Partial P1(
+
+    parameter p1, defaults to 11°
+
+)
+
+define Partial P2(
+
+)
+
+define Sketch Test(
+
+)

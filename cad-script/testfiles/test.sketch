@@ -1,4 +1,4 @@
-define Sketch (
+define Sketch Test (
 
 
     add Point as A at X = 10 mm
