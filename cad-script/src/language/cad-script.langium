@@ -8,8 +8,13 @@ SketchDefinition:
 
 
 AbstractStatement:
-    Entity | Constraint | StringID;
+    Entity | Constraint | LoopStatement;
 
+LoopStatement:
+    count=NUMBER 'times' 'do' '|' LoopVariable=ID '|' (statements+=AbstractStatement)* 'end';
+
+
+// interpolated IDs. To-be used with loop statements
 StringID:
     '"' (parts+=ID | parts+=InterpolatedExpression)+  '"';
 
@@ -92,5 +97,6 @@ DegreeWithMinutes:
 hidden terminal WS: /\s+/;
 terminal ID: /[_a-zA-Z][\w_]*/;
 terminal NUMBER returns number: /[0-9]+(\.[0-9]*)?/;
+
 
 hidden terminal SL_COMMENT: /\/\/[^\n\r]*/;
