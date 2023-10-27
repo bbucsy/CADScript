@@ -8,8 +8,9 @@ import {
 	streamAllContents
 } from 'langium'
 import { CancellationToken } from 'vscode-languageclient'
-import { isPoint } from '../generated/ast.js'
+import { AbstractStatement, isLoopStatement, isPoint, isSketchDefinition } from '../generated/ast.js'
 import { interpolateIDString } from './cad-script-naming.js'
+import { CadScriptExpressionEnv } from './cad-script-expression.js'
 
 export class InterpolatedIdScopeComputation extends DefaultScopeComputation {
 	constructor(services: LangiumServices) {
@@ -30,16 +31,47 @@ export class InterpolatedIdScopeComputation extends DefaultScopeComputation {
 
 				if (isPoint(modelNode)) {
 					if (typeof modelNode.name !== 'undefined') {
-						const name = interpolateIDString(modelNode.name)
-						descriptor.push(this.descriptions.createDescription(modelNode, name, document))
+						const context = this.getStatementContext(modelNode)
+						const modelId = modelNode.name
+						context.forEach(ctx => {
+							const name = interpolateIDString(modelId, ctx)
+							descriptor.push(this.descriptions.createDescription(modelNode, name, document))
+						})
 					}
 				}
 			}
 		} catch (error) {
-			console.log('got error')
-			console.error(error)
+			// TODO: decide on error handling
+			//console.error(error)
 		}
 
 		return descriptor
+	}
+
+	// TODO: extend to other entities as well
+	private getStatementContext(stmt: AbstractStatement): CadScriptExpressionEnv[] {
+		const container = stmt.$container
+
+		if (isSketchDefinition(container)) {
+			// Statement is top level statent. Does not have expression context
+			return [new Map<string, number>()]
+		}
+		if (isLoopStatement(container)) {
+			// container is a loop statemnt
+			const parentContextList = this.getStatementContext(container)
+			const expandedContextList: CadScriptExpressionEnv[] = []
+
+			parentContextList.forEach(ctx => {
+				for (let i = 0; i < container.count; i++) {
+					const clonedContext = new Map(ctx)
+					clonedContext.set(container.loopParam.name, i)
+					expandedContextList.push(clonedContext)
+				}
+			})
+
+			return expandedContextList
+		}
+
+		throw new Error('Unexpected container type')
 	}
 }

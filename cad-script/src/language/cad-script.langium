@@ -12,7 +12,7 @@ InterpolatedId:
     parts+=(ID | ExpressionSubstitute)+;
 
 ExpressionSubstitute:
-    '&' '(' exp=NUMBER ')';
+    '&' '(' exp=Expression ')';
 
 // Parameters
 
