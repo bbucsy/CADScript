@@ -51,7 +51,7 @@ PointPlaceTerminal returns string:
 // Line entity
 
 Line:
-    'add' (length=LengthMeasurement)? (baseLineConstraint=BaseLineConstraint)? 'Line' 'from' p1=[Point:ID] 'to' p2=[Point:ID] ('as' name=ID)?;
+    'add' (length=LengthMeasurement)? (baseLineConstraint=BaseLineConstraint)? 'Line' 'from' p1=[Point:ID] 'to' p2=[Point:ID] ('as' name=InterpolatedId)?;
 
 BaseLineConstraint returns string:
     'horizontal' | 'vertical';
@@ -59,12 +59,12 @@ BaseLineConstraint returns string:
 // Circle
 
 Circle:
-    'add' (radius=LengthMeasurement)? 'Circle' ( 'at' center=[Point:ID])? ('as' name=ID)?;
+    'add' (radius=LengthMeasurement)? 'Circle' ( 'at' center=[Point:ID])? ('as' name=InterpolatedId)?;
 
 // Arc
 
 Arc:
-    'add' (radius=LengthMeasurement)? 'Arc' p1=[Point:ID] center=[Point:ID] p2=[Point:ID] ('as' name=ID)?;
+    'add' (radius=LengthMeasurement)? 'Arc' p1=[Point:ID] center=[Point:ID] p2=[Point:ID] ('as' name=InterpolatedId)?;
 
 // Constraints
 Constraint:

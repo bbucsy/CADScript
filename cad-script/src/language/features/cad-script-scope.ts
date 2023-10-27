@@ -8,7 +8,7 @@ import {
 	streamAllContents
 } from 'langium'
 import { CancellationToken } from 'vscode-languageclient'
-import { AbstractStatement, isLoopStatement, isPoint, isSketchDefinition } from '../generated/ast.js'
+import { AbstractStatement, isEntity, isLoopStatement, isSketchDefinition } from '../generated/ast.js'
 import { interpolateIDString } from './cad-script-naming.js'
 import { CadScriptExpressionEnv } from './cad-script-expression.js'
 
@@ -29,7 +29,7 @@ export class InterpolatedIdScopeComputation extends DefaultScopeComputation {
 					await interruptAndCheck(cancelToken)
 				}
 
-				if (isPoint(modelNode)) {
+				if (isEntity(modelNode)) {
 					if (typeof modelNode.name !== 'undefined') {
 						const context = this.getStatementContext(modelNode)
 						const modelId = modelNode.name
@@ -48,7 +48,6 @@ export class InterpolatedIdScopeComputation extends DefaultScopeComputation {
 		return descriptor
 	}
 
-	// TODO: extend to other entities as well
 	private getStatementContext(stmt: AbstractStatement): CadScriptExpressionEnv[] {
 		const container = stmt.$container
 

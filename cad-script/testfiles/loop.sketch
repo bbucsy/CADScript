@@ -8,6 +8,18 @@ define Sketch Loop (
    
   end
 
+
+
    add 2cm Line from i_0_1 to i_1_0
+
+
+    add Point as A
+
+    2 times do |l|
+        add Line from A to A as line&(l+1) 
+    end
+
+    constrain samelength line1 and line2
+
 
 )
