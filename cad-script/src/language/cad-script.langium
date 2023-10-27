@@ -6,6 +6,14 @@ entry Model:
 SketchDefinition:
     'define' (partial?='partial')? 'Sketch' name=ID '(' (parameters+=ParameterDefinition)* (statements+=AbstractStatement)* ')';
 
+// interpolated ids
+
+InterpolatedId:
+    parts+=(ID | ExpressionSubstitute)+;
+
+ExpressionSubstitute:
+    '&' '(' exp=NUMBER ')';
+
 // Parameters
 
 ParameterDefinition:
@@ -27,19 +35,12 @@ LoopStatement:
     count=NUMBER 'times' 'do' '|' loopParam=Param '|' (statements+=AbstractStatement)* 'end';
 
 
-// interpolated IDs. To-be used with loop statements
-StringID:
-    '"' (parts+=ID | parts+=InterpolatedExpression)+  '"';
-
-InterpolatedExpression:
-    '&{' exp=Expression '}';
-
 Entity:
     Point | Line | Circle | Arc;
 
 // Point entity
 Point:
-    'add' 'Point' ('as'name=ID)? (place=PointPlace)?;
+    'add' 'Point' ('as'name=InterpolatedId)? (place=PointPlace)?;
 
 PointPlace:
     placeType=PointPlaceTerminal ('X' '=' xBase=LengthMeasurement)? ('Y' '=' yBase=LengthMeasurement)?;

@@ -8,6 +8,7 @@ import type {
 import { createDefaultModule, createDefaultSharedModule, inject } from 'langium'
 import { CadScriptGeneratedModule, CadScriptGeneratedSharedModule } from './generated/module.js'
 import { CadScriptValidator, registerValidationChecks } from './cad-script-validator.js'
+import { InterpolatedIdScopeComputation } from './features/cad-script-scope.js'
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -32,6 +33,9 @@ export type CadScriptServices = LangiumServices & CadScriptAddedServices
 export const CadScriptModule: Module<CadScriptServices, PartialLangiumServices & CadScriptAddedServices> = {
 	validation: {
 		CadScriptValidator: () => new CadScriptValidator()
+	},
+	references: {
+		ScopeComputation: services => new InterpolatedIdScopeComputation(services)
 	}
 }
 
