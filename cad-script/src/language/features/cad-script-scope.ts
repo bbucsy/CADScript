@@ -4,11 +4,10 @@ import {
 	DefaultScopeComputation,
 	LangiumDocument,
 	LangiumServices,
-	interruptAndCheck,
-	streamAllContents
+	PrecomputedScopes
 } from 'langium'
 import { CancellationToken } from 'vscode-languageclient'
-import { AbstractStatement, isEntity, isLoopStatement, isSketchDefinition } from '../generated/ast.js'
+import { LoopStatement, Model, SketchDefinition, isEntity, isLoopStatement } from '../generated/ast.js'
 import { interpolateIDString } from './cad-script-naming.js'
 import { CadScriptExpressionEnv } from './cad-script-expression.js'
 
@@ -17,60 +16,46 @@ export class InterpolatedIdScopeComputation extends DefaultScopeComputation {
 		super(services)
 	}
 
-	override async computeExports(
+	override async computeLocalScopes(
 		document: LangiumDocument<AstNode>,
 		cancelToken?: CancellationToken | undefined
-	): Promise<AstNodeDescription[]> {
-		const descriptor = await super.computeExports(document, cancelToken)
+	): Promise<PrecomputedScopes> {
+		const scopes = await super.computeLocalScopes(document, cancelToken)
+		const model = document.parseResult.value as Model
 
-		try {
-			for (const modelNode of streamAllContents(document.parseResult.value)) {
-				if (typeof cancelToken !== 'undefined') {
-					await interruptAndCheck(cancelToken)
-				}
-
-				if (isEntity(modelNode)) {
-					if (typeof modelNode.name !== 'undefined') {
-						const context = this.getStatementContext(modelNode)
-						const modelId = modelNode.name
-						context.forEach(ctx => {
-							const name = interpolateIDString(modelId, ctx)
-							descriptor.push(this.descriptions.createDescription(modelNode, name, document))
-						})
-					}
-				}
-			}
-		} catch (error) {
-			// TODO: decide on error handling
-			//console.error(error)
+		for (const sketch of model.sketches) {
+			const emptyContext = new Map<string, number>()
+			const computedScopes = this.processContainer(sketch, emptyContext, document)
+			scopes.addAll(sketch, computedScopes)
 		}
 
-		return descriptor
+		return scopes
 	}
 
-	private getStatementContext(stmt: AbstractStatement): CadScriptExpressionEnv[] {
-		const container = stmt.$container
+	private processContainer(
+		container: SketchDefinition | LoopStatement,
+		ctx: CadScriptExpressionEnv,
+		document: LangiumDocument
+	): AstNodeDescription[] {
+		const descriptions: AstNodeDescription[] = []
 
-		if (isSketchDefinition(container)) {
-			// Statement is top level statent. Does not have expression context
-			return [new Map<string, number>()]
-		}
-		if (isLoopStatement(container)) {
-			// container is a loop statemnt
-			const parentContextList = this.getStatementContext(container)
-			const expandedContextList: CadScriptExpressionEnv[] = []
+		container.statements.forEach(stmt => {
+			if (isEntity(stmt) && typeof stmt.name !== 'undefined') {
+				const name = interpolateIDString(stmt.name, ctx)
+				descriptions.push(this.descriptions.createDescription(stmt, name, document))
+			}
 
-			parentContextList.forEach(ctx => {
-				for (let i = 0; i < container.count; i++) {
-					const clonedContext = new Map(ctx)
-					clonedContext.set(container.loopParam.name, i)
-					expandedContextList.push(clonedContext)
+			//on loop recursively call process container with different context
+			if (isLoopStatement(stmt)) {
+				for (let i = 0; i < stmt.count; i++) {
+					const clonedContext = new Map<string, number>(ctx)
+					clonedContext.set(stmt.loopParam.name, i)
+					const loopDescriptions = this.processContainer(stmt, clonedContext, document)
+					descriptions.push(...loopDescriptions)
 				}
-			})
+			}
+		})
 
-			return expandedContextList
-		}
-
-		throw new Error('Unexpected container type')
+		return descriptions
 	}
 }

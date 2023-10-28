@@ -9,7 +9,7 @@ define Sketch Test (
 
     add vertical Line from B to C as SecondLine
 
-    add 1 dm Line from C to A
+    add 1 dm Line from C to A_6
 
     add Point as D at
 
@@ -17,13 +17,13 @@ define Sketch Test (
 
     add horizontal Line from D to E
 
-    add 5 cm Circle at A as Cricle1 
+    add 5 cm Circle at A_6 as Cricle1 
 
-    add 1in Arc D A C as Arc1
+    add 1in Arc D A_6 C as Arc1
 
     constrain 30°60' angle to BaseLine and SecondLine
 
     constrain  samelength BaseLine and SecondLine
 
-    constrain 20 mm distance to A and B
+    constrain 20 mm distance to A_6 and B
 )
