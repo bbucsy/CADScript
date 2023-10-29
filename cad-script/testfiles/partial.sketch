@@ -9,10 +9,25 @@ define partial Sketch P2 (
 
 )
 
+define partial Sketch P3 (
+
+    add Point as C
+
+)
+
 define Sketch Test(
     angle a1, defaults to 1.1 +2 °
     length l1, defaults to 5 mm
 
-    
+    import P2 as p2
+    import P2 as p22
+
+    import P3 as p3
+
+    add Line from p2->A to p2->B
+
+
+    add Line from p22->A to p3->C
+
 )
 

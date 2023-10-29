@@ -29,7 +29,7 @@ LenghtParameter:
 // Statements
 
 AbstractStatement:
-    Entity | Constraint | LoopStatement;
+    Entity | Constraint | LoopStatement | PartialStatement;
 
 LoopStatement:
     count=NUMBER 'times' 'do' '|' loopParam=Param '|' (statements+=AbstractStatement)* 'end';
@@ -37,6 +37,9 @@ LoopStatement:
 
 Entity:
     Point | Line | Circle | Arc;
+
+PartialStatement:
+    'import' partial=[SketchDefinition:ID] 'as' name=ID;
 
 // Point entity
 Point:
@@ -51,7 +54,7 @@ PointPlaceTerminal returns string:
 // Line entity
 
 Line:
-    'add' (length=LengthMeasurement)? (baseLineConstraint=BaseLineConstraint)? 'Line' 'from' p1=[Point:ID] 'to' p2=[Point:ID] ('as' name=InterpolatedId)?;
+    'add' (length=LengthMeasurement)? (baseLineConstraint=BaseLineConstraint)? 'Line' 'from' p1=[Point:ReferencedName] 'to' p2=[Point:ReferencedName] ('as' name=InterpolatedId)?;
 
 BaseLineConstraint returns string:
     'horizontal' | 'vertical';
@@ -59,28 +62,28 @@ BaseLineConstraint returns string:
 // Circle
 
 Circle:
-    'add' (radius=LengthMeasurement)? 'Circle' ( 'at' center=[Point:ID])? ('as' name=InterpolatedId)?;
+    'add' (radius=LengthMeasurement)? 'Circle' ( 'at' center=[Point:ReferencedName])? ('as' name=InterpolatedId)?;
 
 // Arc
 
 Arc:
-    'add' (radius=LengthMeasurement)? 'Arc' p1=[Point:ID] center=[Point:ID] p2=[Point:ID] ('as' name=InterpolatedId)?;
+    'add' (radius=LengthMeasurement)? 'Arc' p1=[Point:ReferencedName] center=[Point:ReferencedName] p2=[Point:ReferencedName] ('as' name=InterpolatedId)?;
 
 // Constraints
 Constraint:
     AngleConstraint | DistanceConstraint | PerpendicularConstraint | SameLengthCosntraint;
 
 SameLengthCosntraint:
-    'constrain' 'samelength' l1=[Line:ID] 'and' l2=[Line:ID];
+    'constrain' 'samelength' l1=[Line:ReferencedName] 'and' l2=[Line:ReferencedName];
 
 PerpendicularConstraint:
-    'constrain' 'perpendicular' l1=[Line:ID] 'and' l2=[Line:ID];
+    'constrain' 'perpendicular' l1=[Line:ReferencedName] 'and' l2=[Line:ReferencedName];
 
 DistanceConstraint:
-    'constrain' length=LengthMeasurement 'distance' 'to' p1=[Point:ID] 'and' p2=[Point:ID];
+    'constrain' length=LengthMeasurement 'distance' 'to' p1=[Point:ReferencedName] 'and' p2=[Point:ReferencedName];
 
 AngleConstraint:
-    'constrain' angle=AngleMeasurement 'angle' 'to' l1=[Line:ID] 'and' l2=[Line:ID];
+    'constrain' angle=AngleMeasurement 'angle' 'to' l1=[Line:ReferencedName] 'and' l2=[Line:ReferencedName];
 
 
 // Measurement Units
@@ -139,6 +142,9 @@ Group:
 NegExpr:
     '-' ne=Expression;
 
+
+ReferencedName returns string:
+    ID ('->' ID)*;
 
 hidden terminal WS: /\s+/;
 terminal ID: /[_a-zA-Z][\w_]*/;
