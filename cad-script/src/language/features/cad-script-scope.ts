@@ -139,18 +139,22 @@ export class InterpolatedIdScopeComputation extends DefaultScopeComputation {
 		entities: EntityDictionary
 	) {
 		container.statements.forEach(stmt => {
-			if (isEntity(stmt) && typeof stmt.name !== 'undefined') {
-				const name = interpolateIDString(stmt.name, ctx)
-				entities.setName(stmt, name)
-			}
-
-			//on loop recursively call process container with different context
-			if (isLoopStatement(stmt)) {
-				for (let i = 0; i < stmt.count; i++) {
-					const clonedContext = new Map<string, number>(ctx)
-					clonedContext.set(stmt.loopParam.name, i)
-					this._getNamedEntities(stmt, clonedContext, entities)
+			try {
+				if (isEntity(stmt) && typeof stmt.name !== 'undefined') {
+					const name = interpolateIDString(stmt.name, ctx)
+					entities.setName(stmt, name)
 				}
+
+				//on loop recursively call process container with different context
+				if (isLoopStatement(stmt)) {
+					for (let i = 0; i < stmt.count; i++) {
+						const clonedContext = new Map<string, number>(ctx)
+						clonedContext.set(stmt.loopParam.name, i)
+						this._getNamedEntities(stmt, clonedContext, entities)
+					}
+				}
+			} catch (error) {
+				console.log(error)
 			}
 		})
 	}

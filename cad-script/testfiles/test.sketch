@@ -11,7 +11,7 @@ define Sketch Test (
 
     add 1 dm Line from C to A_6
 
-    add Point as D at
+    add Point as D around
 
     add Point as E
 
