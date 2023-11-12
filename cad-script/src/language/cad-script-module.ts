@@ -7,7 +7,7 @@ import type {
 } from 'langium'
 import { createDefaultModule, createDefaultSharedModule, inject } from 'langium'
 import { CadScriptGeneratedModule, CadScriptGeneratedSharedModule } from './generated/module.js'
-import { CadScriptValidator, registerValidationChecks } from './cad-script-validator.js'
+import { CadScriptValidator, registerValidationChecks } from './features/cad-script-validator.js'
 import { InterpolatedIdScopeComputation } from './features/cad-script-scope.js'
 
 /**

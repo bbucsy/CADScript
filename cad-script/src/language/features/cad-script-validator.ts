@@ -11,12 +11,13 @@ import {
 	isArc,
 	isEntity,
 	isLine,
-	isLoopStatement
-} from './generated/ast.js'
-import type { CadScriptServices } from './cad-script-module.js'
-import { CadScriptExpressionEnv } from './features/cad-script-expression.js'
-import { interpolateIDString } from './features/cad-script-naming.js'
-import { CategoricalSet } from './category-set.js'
+	isLoopStatement,
+	isPartialStatement
+} from '../generated/ast.js'
+import type { CadScriptServices } from '../cad-script-module.js'
+import { CadScriptExpressionEnv } from './cad-script-expression.js'
+import { interpolateIDString } from './cad-script-naming.js'
+import { CategoricalSet } from '../category-set.js'
 
 /**
  * Register custom validation checks.
@@ -29,7 +30,7 @@ export function registerValidationChecks(services: CadScriptServices) {
 		PartialStatement: [validator.checkPartialImport],
 		ParameterDefinition: [validator.warnUnimplementedParameterFeature],
 		LoopStatement: [validator.checkLoopUsingInteger, validator.checkNestedLoopShadowing],
-		SketchDefinition: [validator.checkEntityNamesUnique],
+		SketchDefinition: [validator.checkEntityNamesUnique, validator.checkImportNamesUnique],
 		Entity: [validator.checkEntityParameters],
 		Point: [validator.warnNotUsingPointPlace, validator.checkPointPlacePartiallyDefined]
 	}
@@ -121,6 +122,19 @@ export class CadScriptValidator {
 		const sketchContext: CadScriptExpressionEnv = new Map<string, number>()
 
 		this._entityNameUniqueRecursiveHelper(sketch, sketchContext, nameSet, accept)
+	}
+
+	checkImportNamesUnique(sketch: SketchDefinition, accept: ValidationAcceptor): void {
+		if (sketch.partial) return
+
+		const usedNames = new Set<string>()
+
+		sketch.statements.filter(isPartialStatement).forEach(stmt => {
+			if (usedNames.has(stmt.name)) {
+				accept('error', `Import has non unique name: '${stmt.name}'`, { node: stmt, property: 'name' })
+			}
+			usedNames.add(stmt.name)
+		})
 	}
 
 	private _entityNameUniqueRecursiveHelper(
