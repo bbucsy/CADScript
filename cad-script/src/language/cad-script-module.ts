@@ -9,6 +9,8 @@ import { createDefaultModule, createDefaultSharedModule, inject } from 'langium'
 import { CadScriptGeneratedModule, CadScriptGeneratedSharedModule } from './generated/module.js'
 import { CadScriptValidator, registerValidationChecks } from './features/cad-script-validator.js'
 import { InterpolatedIdScopeComputation } from './features/cad-script-scope.js'
+import { SimpleModelDescriptionBuilder } from './features/smd/simple-model-builder.js'
+import { MeasurementCompuitation } from './features/cad-script-measurement.js'
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -16,6 +18,12 @@ import { InterpolatedIdScopeComputation } from './features/cad-script-scope.js'
 export type CadScriptAddedServices = {
 	validation: {
 		CadScriptValidator: CadScriptValidator
+	}
+	modelBuilder: {
+		SimpleModelBuilder: SimpleModelDescriptionBuilder
+	}
+	expressions: {
+		UnitConverter: MeasurementCompuitation
 	}
 }
 
@@ -36,6 +44,12 @@ export const CadScriptModule: Module<CadScriptServices, PartialLangiumServices &
 	},
 	references: {
 		ScopeComputation: services => new InterpolatedIdScopeComputation(services)
+	},
+	modelBuilder: {
+		SimpleModelBuilder: services => new SimpleModelDescriptionBuilder(services)
+	},
+	expressions: {
+		UnitConverter: services => new MeasurementCompuitation(services)
 	}
 }
 

@@ -11,7 +11,10 @@ define partial  Sketch P2 (
 
 define partial Sketch P3 (
 
-    add Point as C
+    2 times do |j|
+        add Point as C_&(j)
+    end
+
 
 )
 
@@ -20,9 +23,12 @@ define Sketch Test(
    // length l1, defaults to 5 mm
 
     import P2 as p2
-    import P2 as p22
+    import P3 as asdasdasd
 
-    import P3 as p3
+    add Point as B at X = 1 dm
+    add Point as A around Y = 1cm
+
+    add Point at X = 1 in Y = 2 in
 
 
 )
