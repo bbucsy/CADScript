@@ -1,0 +1,27 @@
+
+
+define partial Sketch Circles (
+    add Point as circleCenter at X = 0mm Y = 0mm
+
+   2 times do |i|
+    add (i+1) cm Circle at circleCenter as C&(i)      
+   end
+)
+
+define partial Sketch ArcBase (
+    3 times do |j|
+        add Point as p&(j) around X = j*10 mm
+    end
+)
+
+define Sketch Test(
+  
+    import Circles as C1
+    import ArcBase as Base
+
+    add 20 cm Circle
+
+    add 10 cm Arc Base->p0 Base->p1 Base->p2
+
+)
+

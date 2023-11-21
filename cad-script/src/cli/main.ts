@@ -10,7 +10,7 @@ import { NodeFileSystem } from 'langium/node'
 export const expandAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
 	const services = createCadScriptServices(NodeFileSystem).CadScript
 	const model = await extractAstNode<Model>(fileName, services)
-	const expanded = services.modelBuilder.SimpleModelBuilder.buildSimpleModel(model)
+	const expanded = services.modelBuilder.modelExpander.expandModel(model);
 	console.log(JSON.stringify(expanded))
 	const generatedFilePath = expandSketch(model, fileName, opts.destination)
 	console.log(chalk.green(`Expanded sketch generated successfully: ${generatedFilePath}`))
@@ -26,7 +26,7 @@ export const jsonAction = async (fileName: string, opts: GenerateOptions): Promi
 
 		// convert json
 		const model = parseResult.value as Model
-		const simpleModel = services.modelBuilder.SimpleModelBuilder.buildSimpleModel(model)
+		const simpleModel = services.modelBuilder.modelExpander.expandModel(model);
 		const generatedFilePath = writeJSON(simpleModel, fileName, opts.destination)
 		console.log(chalk.green(`Expanded sketch generated successfully: ${generatedFilePath}`))
 	} else {

@@ -1,0 +1,22 @@
+
+
+define partial Sketch A (
+   
+   2 times do |i|
+    add Point as point_&(i) at X= 10* i mm
+   end
+
+   add Line from point_0 to point_1 as L1
+
+)
+
+define Sketch Test(
+  
+    import A as A1
+    import A as A2
+    
+    add 10 cm Line from A1->point_0 to A2->point_1 as L1
+
+    constrain perpendicular A1->L1 and L1
+)
+

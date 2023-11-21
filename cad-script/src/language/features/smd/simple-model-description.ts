@@ -5,47 +5,57 @@ export enum EntityType {
 }
 
 export enum ConstraintType {
-	DISTANCE,
-	ANGLE,
-	SAMELENGTH
+	DISTANCE = "DISTANCE",
+	ANGLE = "ANGLE",
+	SAMELENGTH = "SAMELENGTH",
+	HORIZONTAL = "HORIZONTAL",
+	VERTICAL = "VERTICAL",
+	RADIUS = "RADIUS",
+	PERPENDICULAR = "PERPENDICULAR"
 }
 
+
 export interface SimplePoint {
-	id: string
+	id?: string
 	posX?: number
 	posY?: number
 	lockX: boolean
 	lockY: boolean
 }
 
-export interface Circle {
+interface Identifiably {
+	id?: string
+}
+
+export interface SimpleCircle extends Identifiably {
 	type: 'CIRCLE'
 	p1: number
 }
 
-export interface Line {
+export interface SimpleLine extends Identifiably {
 	type: 'LINE'
 	p1: number
 	p2: number
 }
 
-export interface Arc {
+export interface SimpleArc extends Identifiably {
 	type: 'ARC'
 	p1: number
 	p2: number
 	p3: number
 }
 
-export type Entity = Circle | Line | Arc
+export type SimpleEntity = SimpleCircle | SimpleLine | SimpleArc;
 
-export interface Constraint {
-	id: string
+export interface SimpleConstraint {
+	id?: string
 	type: ConstraintType
+	originalEntity?: number
 	parameters: Array<number>
 }
 
 export interface SimpleDescription {
 	points: Array<SimplePoint>
-	entities: Array<Entity>
-	constraints: Array<Constraint>
+	entities: Array<Identifiably>
+	constraints: Array<SimpleConstraint>
 }

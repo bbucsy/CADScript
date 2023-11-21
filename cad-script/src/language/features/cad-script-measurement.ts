@@ -1,9 +1,9 @@
 import { CadScriptServices } from '../cad-script-module.js'
-import { LengthMeasurement, LengthUnit } from '../generated/ast.js'
+import { AngleMeasurement, LengthMeasurement, LengthUnit, isDegree, isDegreeWithMinutes, isRadian } from '../generated/ast.js'
 import { CadScriptExpressionEnv, evaluateExpression } from './cad-script-expression.js'
 
 export class MeasurementCompuitation {
-	constructor(_services: CadScriptServices) {}
+	constructor(_services: CadScriptServices) { }
 
 	private convertToMM(value: number, unit: LengthUnit): number {
 		if (typeof unit === 'undefined') return value
@@ -32,5 +32,14 @@ export class MeasurementCompuitation {
 	computeLenghtMeasurement(length: LengthMeasurement, ctx: CadScriptExpressionEnv): number {
 		const numericalValue = evaluateExpression(length.value, ctx)
 		return this.convertToMM(numericalValue, length.unit)
+	}
+
+	computeAngleMeasurement(angle: AngleMeasurement, ctx: CadScriptExpressionEnv): number {
+		if (isDegree(angle)) return evaluateExpression(angle.value, ctx);
+
+		else if (isDegreeWithMinutes(angle)) return (1 / 60) * evaluateExpression(angle.minutes, ctx) + evaluateExpression(angle.value, ctx)
+		else if (isRadian(angle)) return evaluateExpression(angle.value, ctx) * 180 / Math.PI
+
+		return NaN;
 	}
 }

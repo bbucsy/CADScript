@@ -115,9 +115,6 @@ export class InterpolatedIdScopeComputation extends DefaultScopeComputation {
 		const descriptions: AstNodeDescription[] = []
 
 		nameDictionary.entries().forEach(([entity, name]) => {
-			if (prefix !== '') {
-				console.log('Adding prefixed element: ' + `${prefix}${name}`)
-			}
 			descriptions.push(this.descriptions.createDescription(entity, `${prefix}${name}`, document))
 		})
 

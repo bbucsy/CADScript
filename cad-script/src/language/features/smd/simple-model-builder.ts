@@ -1,82 +1,127 @@
-import { CadScriptServices } from '../../cad-script-module.js'
 import {
+	Arc,
+	Circle,
+	Constraint,
+	Line,
 	LoopStatement,
 	Model,
 	Point,
 	SketchDefinition,
+	isAngleConstraint,
+	isArc,
+	isCircle,
+	isConstraint,
+	isDistanceConstraint,
+	isLine,
 	isLoopStatement,
 	isPartialStatement,
-	isPoint
+	isPerpendicularConstraint,
+	isPoint,
+	isSameLengthCosntraint
 } from '../../generated/ast.js'
+import { EntityRepository } from '../../utils/entity-repository.js'
 import { CadScriptExpressionEnv } from '../cad-script-expression.js'
 import { MeasurementCompuitation } from '../cad-script-measurement.js'
 import { interpolateIDString } from '../cad-script-naming.js'
-import { SimpleDescription, SimplePoint } from './simple-model-description.js'
+import {
+	ConstraintType,
+	SimpleArc,
+	SimpleCircle,
+	SimpleConstraint,
+	SimpleDescription,
+	SimpleEntity,
+	SimpleLine,
+	SimplePoint
+} from './simple-model-description.js'
 
 export class SimpleModelDescriptionBuilder {
 	private unitConverter: MeasurementCompuitation
+	private pointRepository: EntityRepository<SimplePoint>
+	private entityRespository: EntityRepository<SimpleEntity>
+	private constrainRespository: EntityRepository<SimpleConstraint>
 
-	private anonCounter = 0
-
-	private pointNames = new Set<string>()
-
-	constructor(services: CadScriptServices) {
-		this.unitConverter = services.expressions.UnitConverter
+	constructor(unitConverter: MeasurementCompuitation) {
+		this.unitConverter = unitConverter
+		this.pointRepository = new EntityRepository()
+		this.entityRespository = new EntityRepository()
+		this.constrainRespository = new EntityRepository()
 	}
 
-	public buildSimpleModel(model: Model): SimpleDescription {
-		const simpleModel = {
-			constraints: [],
-			entities: [],
-			points: []
-		}
-
+	public processModel(model: Model): void {
 		const mainSketch = model.sketches.find(s => !s.partial)
 		if (typeof mainSketch !== 'undefined') {
 			const ctx = new Map<string, number>()
-			this.processContainerPointsRecursive(mainSketch, ctx, '', simpleModel)
-		}
 
-		return simpleModel
+			/**
+			 * Here I use the fact, that the language is hierarchic:
+			 *  - Points do not refer to anything
+			 *  - Other Entities refer to points
+			 *  - Constraints refer to points
+			 * This way I can safely build up lookup tables in three passes
+			 */
+
+			this.processContainerRecursive(mainSketch, ctx, null, 'points')
+			this.processContainerRecursive(mainSketch, ctx, null, 'entities')
+			this.processContainerRecursive(mainSketch, ctx, null, 'constrains')
+		}
 	}
 
-	private processContainerPointsRecursive(
+	public fetchSimpleDescription(): SimpleDescription {
+		return {
+			points: this.pointRepository.getEntites(),
+			entities: this.entityRespository.getEntites(),
+			constraints: this.constrainRespository.getEntites(false)
+		}
+	}
+
+	private processContainerRecursive(
 		container: SketchDefinition | LoopStatement,
 		baseCtx: CadScriptExpressionEnv,
-		partialContext: string,
-		output: SimpleDescription
+		partialContext: string | null,
+		target: 'points' | 'entities' | 'constrains'
 	) {
 		container.statements.forEach(stmt => {
-			if (isPoint(stmt)) {
-				output.points.push(this.prepearePoint(stmt, baseCtx, partialContext))
+			if (isPoint(stmt) && target === 'points') {
+				this.proccesPoint(stmt, baseCtx, partialContext)
+			}
+
+			if (isLine(stmt) && target === 'entities') {
+				this.processLine(stmt, baseCtx, partialContext)
+			}
+
+			if (isCircle(stmt) && target === 'entities') {
+				this.processCircle(stmt, baseCtx, partialContext)
+			}
+
+			if (isArc(stmt) && target === 'entities') {
+				this.processArc(stmt, baseCtx, partialContext)
+			}
+
+			if (isConstraint(stmt) && target === 'constrains') {
+				this.processConstraint(stmt, baseCtx, partialContext)
 			}
 
 			if (isLoopStatement(stmt)) {
 				for (let i = 0; i < stmt.count; i++) {
 					const clonedContext = new Map<string, number>(baseCtx)
 					clonedContext.set(stmt.loopParam.name, i)
-					this.processContainerPointsRecursive(stmt, clonedContext, partialContext, output)
+					this.processContainerRecursive(stmt, clonedContext, partialContext, target)
 				}
 			}
 
 			if (isPartialStatement(stmt)) {
 				if (typeof stmt.partial.ref !== 'undefined') {
-					//const pContext = `${partialContext}->${stmt.name}`
-					this.processContainerPointsRecursive(stmt.partial.ref, baseCtx, stmt.name, output)
+					this.processContainerRecursive(stmt.partial.ref, baseCtx, stmt.name, target)
 				}
 			}
 		})
 	}
 
-	private prepearePoint(p: Point, ctx: CadScriptExpressionEnv, partialContext: string): SimplePoint {
-		const pointRawName = p.name ? interpolateIDString(p.name, ctx) : this.getUniqueAnonimName()
-
-		const fullName = partialContext === '' ? pointRawName : `${partialContext}->${pointRawName}`
-
-		this.pointNames.add(fullName)
-
-		const pointEntry: SimplePoint = {
-			id: fullName,
+	/**
+	 * Processes a Point AST node and stores them in a lookup table
+	 */
+	private proccesPoint(p: Point, ctx: CadScriptExpressionEnv, partialContext: string | null): void {
+		const pointDescription: SimplePoint = {
 			lockX: false,
 			lockY: false
 		}
@@ -84,28 +129,225 @@ export class SimpleModelDescriptionBuilder {
 		if (typeof p.place !== 'undefined') {
 			if (typeof p.place.xBase !== 'undefined') {
 				const value = this.unitConverter.computeLenghtMeasurement(p.place.xBase, ctx)
-				pointEntry.posX = value
-				pointEntry.lockX = p.place.placeType === 'at'
+				pointDescription.posX = value
+				pointDescription.lockX = p.place.placeType === 'at'
 			}
 
 			if (typeof p.place.yBase !== 'undefined') {
 				const value = this.unitConverter.computeLenghtMeasurement(p.place.yBase, ctx)
-				pointEntry.posY = value
-				pointEntry.lockY = p.place.placeType === 'at'
+				pointDescription.posY = value
+				pointDescription.lockY = p.place.placeType === 'at'
 			}
 		}
 
-		return pointEntry
+		if (typeof p.name !== 'undefined') {
+			const interpolatedLocalReference = interpolateIDString(p.name, ctx)
+			this.pointRepository.addNamed(partialContext, interpolatedLocalReference, pointDescription)
+		} else {
+			this.pointRepository.addAnonym(pointDescription)
+		}
 	}
 
-	private getUniqueAnonimName(): string {
-		let name = `anon_${this.anonCounter}`
+	/**
+	 * Processes a Line AST node into a simplified description.
+	 * Creates the necessar constraints if lenght or baseLine is given in the node
+	 */
+	private processLine(line: Line, ctx: CadScriptExpressionEnv, partialContext: string | null): void {
+		//resolve first point
+		const iP1 = this.pointRepository.lookup(partialContext, line.p1.$refText)
+		const iP2 = this.pointRepository.lookup(partialContext, line.p2.$refText)
 
-		while (this.pointNames.has(name)) {
-			this.anonCounter++
-			name = `anon_${this.anonCounter}`
+		if (typeof iP1 === 'undefined' || typeof iP2 === 'undefined') {
+			console.log('Expansion error: could not lookup point reference')
+			return
 		}
 
-		return name
+		const lineDescription: SimpleLine = {
+			type: 'LINE',
+			p1: iP1,
+			p2: iP2
+		}
+
+		let lineRef = NaN
+		if (typeof line.name !== 'undefined') {
+			const interpolatedLocalReference = interpolateIDString(line.name, ctx)
+			lineRef = this.entityRespository.addNamed(partialContext, interpolatedLocalReference, lineDescription)
+		} else {
+			lineRef = this.entityRespository.addAnonym(lineDescription)
+		}
+
+		// ADD Lenght Constraint if needed
+		if (typeof line.length !== 'undefined') {
+			const length = this.unitConverter.computeLenghtMeasurement(line.length, ctx)
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.DISTANCE,
+				originalEntity: lineRef,
+				parameters: [iP1, iP2, length]
+			})
+		}
+
+		// Addd horizontal constraint if necessary
+		if (line.baseLineConstraint === 'horizontal') {
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.HORIZONTAL,
+				originalEntity: lineRef,
+				parameters: [iP1, iP2]
+			})
+		}
+
+		// Addd vertical constraint if necessary
+		if (line.baseLineConstraint === 'vertical') {
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.VERTICAL,
+				originalEntity: lineRef,
+				parameters: [iP1, iP2]
+			})
+		}
+	}
+
+	/**
+	 * Processes a Circle AST node into a simplified description.
+	 * Creates the necessar constraints if the Radius is given in the node
+	 */
+	private processCircle(circle: Circle, ctx: CadScriptExpressionEnv, partialContext: string | null): void {
+		//resolve first point
+		const iCenter =
+			typeof circle.center !== 'undefined'
+				? this.pointRepository.lookup(partialContext, circle.center?.$refText)
+				: this.pointRepository.addAnonym({ lockX: false, lockY: false })
+
+		if (typeof iCenter === 'undefined') {
+			console.log('Expansion error: could not lookup point reference')
+			return
+		}
+
+		const lineDescription: SimpleCircle = {
+			type: 'CIRCLE',
+			p1: iCenter
+		}
+
+		let eRef = NaN
+		if (typeof circle.name !== 'undefined') {
+			const interpolatedLocalReference = interpolateIDString(circle.name, ctx)
+			eRef = this.entityRespository.addNamed(partialContext, interpolatedLocalReference, lineDescription)
+		} else {
+			eRef = this.entityRespository.addAnonym(lineDescription)
+		}
+
+		// ADD Radius Constraint if needed
+		if (typeof circle.radius !== 'undefined') {
+			const radius = this.unitConverter.computeLenghtMeasurement(circle.radius, ctx)
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.RADIUS,
+				parameters: [eRef, radius]
+			})
+		}
+	}
+
+	/**
+	 * Processes a Arc AST node into a simplified description.
+	 * Creates the necessar constraints if the Radius is given in the node
+	 */
+	private processArc(arc: Arc, ctx: CadScriptExpressionEnv, partialContext: string | null): void {
+		const iP1 = this.pointRepository.lookup(partialContext, arc.p1.$refText)
+		const iP2 = this.pointRepository.lookup(partialContext, arc.p2.$refText)
+
+		const iCenter = this.pointRepository.lookup(partialContext, arc.center?.$refText)
+
+		if (typeof iCenter === 'undefined' || typeof iP1 === 'undefined' || typeof iP2 === 'undefined') {
+			console.log('Expansion error: could not lookup point reference')
+			return
+		}
+
+		const lineDescription: SimpleArc = {
+			type: 'ARC',
+			p1: iP1,
+			p2: iCenter,
+			p3: iP2
+		}
+
+		let eRef = NaN
+		if (typeof arc.name !== 'undefined') {
+			const interpolatedLocalReference = interpolateIDString(arc.name, ctx)
+			eRef = this.entityRespository.addNamed(partialContext, interpolatedLocalReference, lineDescription)
+		} else {
+			eRef = this.entityRespository.addAnonym(lineDescription)
+		}
+
+		// ADD Radius Constraint if needed
+		if (typeof arc.radius !== 'undefined') {
+			const radius = this.unitConverter.computeLenghtMeasurement(arc.radius, ctx)
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.RADIUS,
+				parameters: [eRef, radius]
+			})
+		}
+	}
+
+	private processConstraint(
+		constraint: Constraint,
+		ctx: CadScriptExpressionEnv,
+		partialContext: string | null
+	): void {
+		if (isAngleConstraint(constraint)) {
+			const l1 = this.entityRespository.lookup(partialContext, constraint.l1.$refText)
+			const l2 = this.entityRespository.lookup(partialContext, constraint.l2.$refText)
+			const angle = this.unitConverter.computeAngleMeasurement(constraint.angle, ctx)
+
+			if (typeof l1 === 'undefined' || typeof l2 === 'undefined') {
+				console.log('Expansion error: could not lookup line reference')
+				return
+			}
+
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.ANGLE,
+				parameters: [l1, l2, angle]
+			})
+		}
+
+		if (isSameLengthCosntraint(constraint)) {
+			const l1 = this.entityRespository.lookup(partialContext, constraint.l1.$refText)
+			const l2 = this.entityRespository.lookup(partialContext, constraint.l2.$refText)
+
+			if (typeof l1 === 'undefined' || typeof l2 === 'undefined') {
+				console.log('Expansion error: could not lookup line reference')
+				return
+			}
+
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.SAMELENGTH,
+				parameters: [l1, l2]
+			})
+		}
+
+		if (isPerpendicularConstraint(constraint)) {
+			const l1 = this.entityRespository.lookup(partialContext, constraint.l1.$refText)
+			const l2 = this.entityRespository.lookup(partialContext, constraint.l2.$refText)
+
+			if (typeof l1 === 'undefined' || typeof l2 === 'undefined') {
+				console.log('Expansion error: could not lookup line reference')
+				return
+			}
+
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.PERPENDICULAR,
+				parameters: [l1, l2]
+			})
+		}
+
+		if (isDistanceConstraint(constraint)) {
+			//resolve first point
+			const iP1 = this.pointRepository.lookup(partialContext, constraint.p1.$refText)
+			const iP2 = this.pointRepository.lookup(partialContext, constraint.p2.$refText)
+
+			if (typeof iP1 === 'undefined' || typeof iP2 === 'undefined') {
+				console.log('Expansion error: could not lookup point reference')
+				return
+			}
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.DISTANCE,
+				parameters: [iP1, iP2]
+			})
+		}
 	}
 }

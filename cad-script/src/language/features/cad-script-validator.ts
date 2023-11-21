@@ -170,24 +170,24 @@ export class CadScriptValidator {
 		if (isLine(entity)) {
 			//console.log('Checking line')
 			//console.log(`${entity.p1.$refText} == ${entity.p2.$refText} -> ${entity.p1.ref === entity.p2.ref}`)
-			if (entity.p1.ref === entity.p2.ref) {
+			if (entity.p1.ref === entity.p2.ref && entity.p1.$refText === entity.p2.$refText) {
 				accept('error', 'Start point of a Line must be a different entity than End point', {
 					node: entity,
 					property: 'p2'
 				})
 			}
 		} else if (isArc(entity)) {
-			if (entity.p1.ref === entity.center.ref) {
+			if (entity.p1.ref === entity.center.ref && entity.p1.$refText === entity.center.$refText) {
 				accept('error', 'Start point of Arc must be different entity than Center point', {
 					node: entity,
 					property: 'center'
 				})
-			} else if (entity.center.ref === entity.p2.ref) {
+			} else if (entity.center.ref === entity.p2.ref && entity.center.$refText === entity.p2.$refText) {
 				accept('error', 'Center point of Arc must be different entity than End point', {
 					node: entity,
 					property: 'p2'
 				})
-			} else if (entity.p1.ref === entity.p2.ref) {
+			} else if (entity.p1.ref === entity.p2.ref && entity.p1.$refText === entity.p2.$refText) {
 				accept('error', 'Start point of Arc must be different entity than End point', {
 					node: entity,
 					property: 'p2'
