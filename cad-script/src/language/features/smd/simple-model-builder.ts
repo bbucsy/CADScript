@@ -13,10 +13,12 @@ import {
 	isConstraint,
 	isDistanceConstraint,
 	isLine,
+	isLineDirectionConstraint,
 	isLoopStatement,
 	isPartialStatement,
 	isPerpendicularConstraint,
 	isPoint,
+	isRadiusCosntraint,
 	isSameLengthCosntraint
 } from '../../generated/ast.js'
 import { EntityRepository } from '../../utils/entity-repository.js'
@@ -336,7 +338,6 @@ export class SimpleModelDescriptionBuilder {
 		}
 
 		if (isDistanceConstraint(constraint)) {
-			//resolve first point
 			const iP1 = this.pointRepository.lookup(partialContext, constraint.p1.$refText)
 			const iP2 = this.pointRepository.lookup(partialContext, constraint.p2.$refText)
 
@@ -347,6 +348,36 @@ export class SimpleModelDescriptionBuilder {
 			this.constrainRespository.addAnonym({
 				type: ConstraintType.DISTANCE,
 				parameters: [iP1, iP2]
+			})
+		}
+
+		if (isRadiusCosntraint(constraint)) {
+			const iEntity = this.entityRespository.lookup(partialContext, constraint.entity.$refText)
+			const radiusValue = this.unitConverter.computeLenghtMeasurement(constraint.radius, ctx)
+			if (typeof iEntity === 'undefined') {
+				console.log('Expansion error: could not lookup Entity reference')
+				return
+			}
+
+			this.constrainRespository.addAnonym({
+				type: ConstraintType.RADIUS,
+				parameters: [iEntity, radiusValue]
+			})
+		}
+
+		if (isLineDirectionConstraint(constraint)) {
+			const l1 = this.entityRespository.lookup(partialContext, constraint.l1.$refText)
+			if (typeof l1 === 'undefined') {
+				console.log('Expansion error: could not lookup Entity reference')
+				return
+			}
+
+			this.constrainRespository.addAnonym({
+				type:
+					constraint.baseLineConstraint === 'horizontal'
+						? ConstraintType.HORIZONTAL
+						: ConstraintType.VERTICAL,
+				parameters: [l1]
 			})
 		}
 	}

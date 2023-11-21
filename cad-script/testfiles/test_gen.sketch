@@ -5,7 +5,7 @@ define partial Sketch A (
     add Point as A at X = 0 mm
     add Point as B at Y = 10 mm
 
-    add 10 cm horizontal Line from A to B as L1
+    add 10 cm Line from A to B as L1
 
 )
 
@@ -18,5 +18,8 @@ define Sketch Test(
 
     add Line from A to A1->A
     add 20 cm Line from A1->A to A2->B 
+
+    constrain horizontal A1->L1
+    constrain vertical A2->L1
 )
 

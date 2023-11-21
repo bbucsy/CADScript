@@ -17,6 +17,9 @@ define Sketch Test(
     
     add 10 cm Line from A1->point_0 to A2->point_1 as L1
 
+    add Circle as C1
+
     constrain perpendicular A1->L1 and L1
+    constrain 10 mm radius to C1
 )
 

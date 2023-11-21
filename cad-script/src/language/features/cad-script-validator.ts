@@ -7,12 +7,14 @@ import {
 	ParameterDefinition,
 	PartialStatement,
 	Point,
+	RadiusCosntraint,
 	SketchDefinition,
 	isArc,
 	isEntity,
 	isLine,
 	isLoopStatement,
-	isPartialStatement
+	isPartialStatement,
+	isPoint
 } from '../generated/ast.js'
 import type { CadScriptServices } from '../cad-script-module.js'
 import { CadScriptExpressionEnv } from './cad-script-expression.js'
@@ -32,7 +34,8 @@ export function registerValidationChecks(services: CadScriptServices) {
 		LoopStatement: [validator.checkLoopUsingInteger, validator.checkNestedLoopShadowing],
 		SketchDefinition: [validator.checkEntityNamesUnique, validator.checkImportNamesUnique],
 		Entity: [validator.checkEntityParameters],
-		Point: [validator.warnNotUsingPointPlace, validator.checkPointPlacePartiallyDefined]
+		Point: [validator.warnNotUsingPointPlace, validator.checkPointPlacePartiallyDefined],
+		RadiusCosntraint: [validator.checkRadiusConstraintNoPointOrLine]
 	}
 	registry.register(checks, validator)
 }
@@ -211,6 +214,12 @@ export class CadScriptValidator {
 			if (typeof point.place.xBase === 'undefined' && typeof point.place.yBase === 'undefined') {
 				accept('error', 'You need to give X position, Y position or both', { node: point.place })
 			}
+		}
+	}
+
+	checkRadiusConstraintNoPointOrLine(c: RadiusCosntraint, accept: ValidationAcceptor): void {
+		if (isLine(c.entity.ref) || isPoint(c.entity.ref)) {
+			accept('error', 'Only Arc or Circle can be constrained with radius', { node: c, property: 'entity' })
 		}
 	}
 }

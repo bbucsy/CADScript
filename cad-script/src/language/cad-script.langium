@@ -71,7 +71,13 @@ Arc:
 
 // Constraints
 Constraint:
-    AngleConstraint | DistanceConstraint | PerpendicularConstraint | SameLengthCosntraint;
+    AngleConstraint | DistanceConstraint | PerpendicularConstraint | SameLengthCosntraint |LineDirectionConstraint |RadiusCosntraint;
+
+RadiusCosntraint:
+    'constrain' radius=LengthMeasurement 'radius' 'to' (entity=[Entity:ReferencedName]);
+
+LineDirectionConstraint:
+    'constrain' baseLineConstraint=BaseLineConstraint l1=[Line:ReferencedName];
 
 SameLengthCosntraint:
     'constrain' 'samelength' l1=[Line:ReferencedName] 'and' l2=[Line:ReferencedName];
@@ -84,6 +90,7 @@ DistanceConstraint:
 
 AngleConstraint:
     'constrain' angle=AngleMeasurement 'angle' 'to' l1=[Line:ReferencedName] 'and' l2=[Line:ReferencedName];
+
 
 
 // Measurement Units
