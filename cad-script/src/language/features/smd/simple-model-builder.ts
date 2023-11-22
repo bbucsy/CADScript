@@ -42,6 +42,8 @@ export class SimpleModelDescriptionBuilder {
 	private entityRespository: EntityRepository<SimpleEntity>
 	private constrainRespository: EntityRepository<SimpleConstraint>
 
+	private modelName = ''
+
 	constructor(unitConverter: MeasurementCompuitation) {
 		this.unitConverter = unitConverter
 		this.pointRepository = new EntityRepository()
@@ -65,11 +67,13 @@ export class SimpleModelDescriptionBuilder {
 			this.processContainerRecursive(mainSketch, ctx, null, 'points')
 			this.processContainerRecursive(mainSketch, ctx, null, 'entities')
 			this.processContainerRecursive(mainSketch, ctx, null, 'constrains')
+			this.modelName = mainSketch.name
 		}
 	}
 
 	public fetchSimpleDescription(): SimpleDescription {
 		return {
+			modelName: this.modelName,
 			points: this.pointRepository.getEntites(),
 			entities: this.entityRespository.getEntites(),
 			constraints: this.constrainRespository.getEntites(false)
@@ -340,14 +344,14 @@ export class SimpleModelDescriptionBuilder {
 		if (isDistanceConstraint(constraint)) {
 			const iP1 = this.pointRepository.lookup(partialContext, constraint.p1.$refText)
 			const iP2 = this.pointRepository.lookup(partialContext, constraint.p2.$refText)
-
+			const value = this.unitConverter.computeLenghtMeasurement(constraint.length, ctx)
 			if (typeof iP1 === 'undefined' || typeof iP2 === 'undefined') {
 				console.log('Expansion error: could not lookup point reference')
 				return
 			}
 			this.constrainRespository.addAnonym({
 				type: ConstraintType.DISTANCE,
-				parameters: [iP1, iP2]
+				parameters: [iP1, iP2, value]
 			})
 		}
 

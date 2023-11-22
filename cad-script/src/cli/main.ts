@@ -4,19 +4,20 @@ import { Command } from 'commander'
 import { CadScriptLanguageMetaData } from '../language/generated/module.js'
 import { createCadScriptServices } from '../language/cad-script-module.js'
 import { extractAstNode, extractDocument } from './cli-util.js'
-import { expandSketch, writeJSON } from './generator.js'
+import { writeJSON } from './generator.js'
 import { NodeFileSystem } from 'langium/node'
+import { SketchWriter } from './SketchWriter.js'
 
-export const expandAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
+export const expandAction = async (fileName: string, opts: ExpandOptions): Promise<void> => {
 	const services = createCadScriptServices(NodeFileSystem).CadScript
 	const model = await extractAstNode<Model>(fileName, services)
-	const expanded = services.modelBuilder.modelExpander.expandModel(model);
-	console.log(JSON.stringify(expanded))
-	const generatedFilePath = expandSketch(model, fileName, opts.destination)
+	const expanded = services.modelBuilder.modelExpander.expandModel(model)
+	const sketchWriter = new SketchWriter(expanded, fileName, opts.destination, opts.trace)
+	const generatedFilePath = sketchWriter.writeSketchToFile()
 	console.log(chalk.green(`Expanded sketch generated successfully: ${generatedFilePath}`))
 }
 
-export const jsonAction = async (fileName: string, opts: GenerateOptions): Promise<void> => {
+export const jsonAction = async (fileName: string, opts: JSONOptions): Promise<void> => {
 	const services = createCadScriptServices(NodeFileSystem).CadScript
 	const document = await extractDocument(fileName, services)
 
@@ -26,7 +27,7 @@ export const jsonAction = async (fileName: string, opts: GenerateOptions): Promi
 
 		// convert json
 		const model = parseResult.value as Model
-		const simpleModel = services.modelBuilder.modelExpander.expandModel(model);
+		const simpleModel = services.modelBuilder.modelExpander.expandModel(model)
 		const generatedFilePath = writeJSON(simpleModel, fileName, opts.destination)
 		console.log(chalk.green(`Expanded sketch generated successfully: ${generatedFilePath}`))
 	} else {
@@ -34,8 +35,13 @@ export const jsonAction = async (fileName: string, opts: GenerateOptions): Promi
 	}
 }
 
-export type GenerateOptions = {
+export type JSONOptions = {
 	destination?: string
+}
+
+export type ExpandOptions = {
+	destination?: string
+	trace: boolean
 }
 
 const program = new Command()
@@ -49,6 +55,7 @@ program
 	.command('expand')
 	.argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
 	.option('-d, --destination <dir>', 'destination directory of generating')
+	.option('-t, --trace', 'Generate trace comments', false)
 	.description('Generates an expanded version of the input Sketch file.')
 	.action(expandAction)
 
