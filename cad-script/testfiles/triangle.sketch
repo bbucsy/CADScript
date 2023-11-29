@@ -1,0 +1,16 @@
+
+
+define Sketch Triangle (
+
+
+    add Point as A at X = 0 mm Y = 0 mm 
+    add Point as B around X = 0 mm Y = 1 cm
+    add Point as C around X = 1cm Y = 0 cm
+
+
+    add 4 cm horizontal Line from A to C
+    add 3 cm  Line from A to B 
+    add 45 mm  Line from C to B
+
+
+)

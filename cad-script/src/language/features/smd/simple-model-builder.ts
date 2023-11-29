@@ -371,13 +371,18 @@ export class SimpleModelDescriptionBuilder {
 				return
 			}
 
-			this.constrainRespository.addAnonym({
-				type:
-					constraint.baseLineConstraint === 'horizontal'
-						? ConstraintType.HORIZONTAL
-						: ConstraintType.VERTICAL,
-				parameters: [l1]
-			})
+			const line = this.entityRespository.get(l1)
+
+			if (line.type === 'LINE') {
+				this.constrainRespository.addAnonym({
+					type:
+						constraint.baseLineConstraint === 'horizontal'
+							? ConstraintType.HORIZONTAL
+							: ConstraintType.VERTICAL,
+					parameters: [line.p1, line.p2],
+					originalEntity: l1
+				})
+			}
 		}
 	}
 }

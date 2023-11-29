@@ -47,7 +47,7 @@ export const solveAction = async (fileName: string): Promise<void> => {
 		const model = parseResult.value as Model
 		const solver = services.modelBuilder.modelSolver
 
-		solver.compileModel(model)
+		await solver.compileModel(model)
 
 		console.log(chalk.green(`Solver run successfully`))
 	} else {
