@@ -67,14 +67,12 @@ export class SketchWriter {
 		this.pointNames.set(index, name)
 
 		node.append(`add Point as ${name}`)
-		if (point.lockX || point.lockY) {
+		if (point.locked) {
 			node.append(' at ')
-			if (point.lockX) {
-				node.append(`X = ${point.posX} mm `)
-			}
-			if (point.lockY) {
-				node.append(`Y = ${point.posY} mm `)
-			}
+
+			node.append(`X = ${point.posX} mm `)
+
+			node.append(`Y = ${point.posY} mm `)
 		}
 
 		node.append(NL, NL)

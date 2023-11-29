@@ -25,8 +25,8 @@ define Sketch Test(
     import P2 as p2
     import P3 as asdasdasd
 
-    add Point as B at X = 1 dm
-    add Point as A around Y = 1cm
+    add Point as B at X = 1 dm Y = 1 dm
+    add Point as A around X = 1dm Y = 1cm
 
     add Point at X = 1 in Y = 2 in
 

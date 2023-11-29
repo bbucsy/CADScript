@@ -128,22 +128,17 @@ export class SimpleModelDescriptionBuilder {
 	 */
 	private proccesPoint(p: Point, ctx: CadScriptExpressionEnv, partialContext: string | null): void {
 		const pointDescription: SimplePoint = {
-			lockX: false,
-			lockY: false
+			locked: false
 		}
 
 		if (typeof p.place !== 'undefined') {
-			if (typeof p.place.xBase !== 'undefined') {
-				const value = this.unitConverter.computeLenghtMeasurement(p.place.xBase, ctx)
-				pointDescription.posX = value
-				pointDescription.lockX = p.place.placeType === 'at'
-			}
+			pointDescription.locked = p.place.placeType === 'at'
 
-			if (typeof p.place.yBase !== 'undefined') {
-				const value = this.unitConverter.computeLenghtMeasurement(p.place.yBase, ctx)
-				pointDescription.posY = value
-				pointDescription.lockY = p.place.placeType === 'at'
-			}
+			const xValue = this.unitConverter.computeLenghtMeasurement(p.place.xBase, ctx)
+			pointDescription.posX = xValue
+
+			const yValue = this.unitConverter.computeLenghtMeasurement(p.place.yBase, ctx)
+			pointDescription.posY = yValue
 		}
 
 		if (typeof p.name !== 'undefined') {
@@ -220,7 +215,7 @@ export class SimpleModelDescriptionBuilder {
 		const iCenter =
 			typeof circle.center !== 'undefined'
 				? this.pointRepository.lookup(partialContext, circle.center?.$refText)
-				: this.pointRepository.addAnonym({ lockX: false, lockY: false })
+				: this.pointRepository.addAnonym({ locked: false })
 
 		if (typeof iCenter === 'undefined') {
 			console.log('Expansion error: could not lookup point reference')

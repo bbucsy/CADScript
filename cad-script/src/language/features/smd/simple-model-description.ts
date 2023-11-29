@@ -18,8 +18,7 @@ export interface SimplePoint {
 	id?: string
 	posX?: number
 	posY?: number
-	lockX: boolean
-	lockY: boolean
+	locked: boolean
 }
 
 interface Identifiable {

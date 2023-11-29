@@ -2,8 +2,8 @@
 
 define partial Sketch A (
    
-    add Point as A at X = 0 mm
-    add Point as B at Y = 10 mm
+    add Point as A at X = 0 mm Y = 0 mm
+    add Point as B at X = 10 mm Y = 10 mm
 
     add 10 cm Line from A to B as L1
 
@@ -14,7 +14,7 @@ define Sketch Test(
     import A as A1
     import A as A2
     
-    add Point as A around Y = 1cm
+    add Point as A around X = 30cm Y = 1cm
 
     add Line from A to A1->A
     add 20 cm Line from A1->A to A2->B 

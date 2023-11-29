@@ -3,7 +3,7 @@
 define partial Sketch A (
    
    2 times do |i|
-    add Point as point_&(i) at X= 10* i mm
+    add Point as point_&(i) at X= 10* i mm Y = i mm
    end
 
    add Line from point_0 to point_1 as L1

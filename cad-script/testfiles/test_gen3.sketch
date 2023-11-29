@@ -10,7 +10,7 @@ define partial Sketch Circles (
 
 define partial Sketch ArcBase (
     3 times do |j|
-        add Point as p&(j) around X = j*10 mm
+        add Point as p&(j) around X = j*10 mm Y = (j-1)*10 mm
     end
 )
 

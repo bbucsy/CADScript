@@ -46,7 +46,7 @@ Point:
     'add' 'Point' ('as'name=InterpolatedId)? (place=PointPlace)?;
 
 PointPlace:
-    placeType=PointPlaceTerminal ('X' '=' xBase=LengthMeasurement)? ('Y' '=' yBase=LengthMeasurement)?;
+    placeType=PointPlaceTerminal 'X' '=' xBase=LengthMeasurement 'Y' '=' yBase=LengthMeasurement;
 
 PointPlaceTerminal returns string:
     'at' | 'around';

@@ -1,8 +1,8 @@
 define Sketch Test (
 
 
-    add Point as A_&(6) at X = 10 mm
-    add Point as B around Y = 20 in
+    add Point as A_&(6) at X = 10 mm Y = 0 mm
+    add Point as B around X = 1cm Y = 20 in
     add Point as C at X = 10mm Y = 20 + 1 yd 
 
     add 5cm Line from A_6 to B as BaseLine 
@@ -11,7 +11,7 @@ define Sketch Test (
 
     add 1 dm Line from C to A_6
 
-    add Point as D around
+    add Point as D 
 
     add Point as E
 
