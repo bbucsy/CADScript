@@ -11,6 +11,7 @@ import { CadScriptValidator, registerValidationChecks } from './features/cad-scr
 import { InterpolatedIdScopeComputation } from './features/cad-script-scope.js'
 import { MeasurementCompuitation } from './features/cad-script-measurement.js'
 import { CadScriptExpansionService } from './features/cad-script-expansion.js'
+import { SolveSpaceProvider } from './features/cad-script-solvespace.js'
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -21,6 +22,7 @@ export type CadScriptAddedServices = {
 	}
 	modelBuilder: {
 		modelExpander: CadScriptExpansionService
+		modelSolver: SolveSpaceProvider
 	}
 	expressions: {
 		UnitConverter: MeasurementCompuitation
@@ -46,7 +48,8 @@ export const CadScriptModule: Module<CadScriptServices, PartialLangiumServices &
 		ScopeComputation: services => new InterpolatedIdScopeComputation(services)
 	},
 	modelBuilder: {
-		modelExpander: services => new CadScriptExpansionService(services)
+		modelExpander: services => new CadScriptExpansionService(services),
+		modelSolver: services => new SolveSpaceProvider(services)
 	},
 	expressions: {
 		UnitConverter: services => new MeasurementCompuitation(services)

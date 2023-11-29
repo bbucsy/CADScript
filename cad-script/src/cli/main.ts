@@ -4,9 +4,9 @@ import { Command } from 'commander'
 import { CadScriptLanguageMetaData } from '../language/generated/module.js'
 import { createCadScriptServices } from '../language/cad-script-module.js'
 import { extractAstNode, extractDocument } from './cli-util.js'
-import { writeJSON } from './generator.js'
+import { writeJSON } from './generators/json.js'
 import { NodeFileSystem } from 'langium/node'
-import { SketchWriter } from './SketchWriter.js'
+import { SketchWriter } from './generators/SketchWriter.js'
 
 export const expandAction = async (fileName: string, opts: ExpandOptions): Promise<void> => {
 	const services = createCadScriptServices(NodeFileSystem).CadScript
@@ -30,6 +30,26 @@ export const jsonAction = async (fileName: string, opts: JSONOptions): Promise<v
 		const simpleModel = services.modelBuilder.modelExpander.expandModel(model)
 		const generatedFilePath = writeJSON(simpleModel, fileName, opts.destination)
 		console.log(chalk.green(`Expanded sketch generated successfully: ${generatedFilePath}`))
+	} else {
+		console.log(chalk.red(`Failed to parse and validate ${fileName}!`))
+	}
+}
+
+export const solveAction = async (fileName: string): Promise<void> => {
+	const services = createCadScriptServices(NodeFileSystem).CadScript
+	const document = await extractDocument(fileName, services)
+
+	const parseResult = document.parseResult
+	if (parseResult.lexerErrors.length === 0 && parseResult.parserErrors.length === 0) {
+		console.log(chalk.green(`Parsed and validated ${fileName} successfully!`))
+
+		// convert json
+		const model = parseResult.value as Model
+		const solver = services.modelBuilder.modelSolver
+
+		solver.compileModel(model)
+
+		console.log(chalk.green(`Solver run successfully`))
 	} else {
 		console.log(chalk.red(`Failed to parse and validate ${fileName}!`))
 	}
@@ -65,5 +85,11 @@ program
 	.option('-d, --destination <dir>', 'destination directory of generating')
 	.description('Generates an expanded version of the input Sketch file in a Simplified form')
 	.action(jsonAction)
+
+program
+	.command('solve')
+	.argument('<file>', `source file (possible file extensions: ${fileExtensions})`)
+	.description('Tries to solve model constraints with SolveSpace library')
+	.action(solveAction)
 
 program.parse(process.argv)

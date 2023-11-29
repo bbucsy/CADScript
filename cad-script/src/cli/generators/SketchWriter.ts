@@ -1,6 +1,6 @@
 import * as path from 'node:path'
 import * as fs from 'node:fs'
-import { extractDestinationAndName } from './cli-util.js'
+import { extractDestinationAndName } from '../cli-util.js'
 import { CompositeGeneratorNode, NL, toString } from 'langium'
 import {
 	ConstraintType,
@@ -8,7 +8,7 @@ import {
 	SimpleDescription,
 	SimpleEntity,
 	SimplePoint
-} from '../language/features/smd/simple-model-description.js'
+} from '../../language/features/smd/simple-model-description.js'
 
 export class SketchWriter {
 	private model: SimpleDescription
