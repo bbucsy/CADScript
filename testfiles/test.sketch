@@ -1,0 +1,29 @@
+define Sketch Test (
+
+
+    add Point as A_&(6) at X = 10 mm Y = 0 mm
+    add Point as B around X = 1cm Y = 20 in
+    add Point as C at X = 10mm Y = 20 + 1 yd 
+
+    add 5cm Line from A_6 to B as BaseLine 
+
+    add vertical Line from B to C as SecondLine
+
+    add 1 dm Line from C to A_6
+
+    add Point as D 
+
+    add Point as E
+
+    add horizontal Line from D to E
+
+    add 5 cm Circle at A_6 as Cricle1 
+
+    add 1in Arc D A_6 C as Arc1
+
+    constrain 30°60' angle to BaseLine and SecondLine
+
+    constrain  samelength BaseLine and SecondLine
+
+    constrain 20 mm distance to A_6 and B
+)
