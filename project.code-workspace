@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "📦 cad-script",
+			"path": "project/packages/cad-script"
+		},
+		{
+			"name": "📦 cli",
+			"path": "project/packages/cli"
+		}
+	],
+	"settings": {}
+}

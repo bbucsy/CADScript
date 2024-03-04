@@ -52,7 +52,7 @@ const program = new Command()
 
 program
 	// eslint-disable-next-line @typescript-eslint/no-var-requires
-	.version('0.0.1')
+	.version('0.0.2')
 
 const fileExtensions = CadScriptLanguageMetaData.fileExtensions.join(', ')
 program

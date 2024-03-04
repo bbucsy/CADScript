@@ -978,6 +978,8 @@ __metadata:
     langium: "npm:~3.0.0"
     tsup: "npm:^8.0.2"
     typescript: "npm:^5.3.3"
+  bin:
+    cadlang: ./dist/main.js
   languageName: unknown
   linkType: soft
 
