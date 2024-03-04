@@ -5,8 +5,8 @@
 			"path": "project/packages/cad-script"
 		},
 		{
-			"name": "🚀 web",
-			"path": "project/packages/web"
+			"name": "🚀 web-frontend",
+			"path": "project/packages/web-frontend"
 		}
 	],
 	"settings": {}
