@@ -7,13 +7,14 @@ import { MonacoEditorReactComp } from '@typefox/monaco-editor-react'
 import { UserConfig } from 'monaco-editor-wrapper'
 import { buildWorkerDefinition } from 'monaco-editor-workers'
 import { loadStatemachinWorkerRegular } from './config/workerWrapper'
+import { getMonarchGrammar } from './config/monarch'
 
 buildWorkerDefinition('../libs/monaco-editor-workers/workers', import.meta.url, false)
 
 const rootElem = document.getElementById('root')!
 const worker = loadStatemachinWorkerRegular()
 const EditorDemo: React.FC = () => {
-	const logMessage = 'define sketch Main ()'
+	const logMessage = '//empty sketch definition \ndefine Sketch Main (\n\tadd Point as A at X = 0 mm Y = 0 mm\n)'
 	const [content, setContent] = useState(logMessage)
 
 	const userConfig: UserConfig = {
@@ -29,7 +30,8 @@ const EditorDemo: React.FC = () => {
 				languageId: 'cad-script',
 				useDiffEditor: false,
 				theme: 'vs-dark',
-				code: content
+				code: content,
+				languageDef: getMonarchGrammar()
 			}
 		},
 		languageClientConfig: {
