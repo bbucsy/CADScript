@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "📦 cad-script",
+			"path": "project/packages/cad-script"
+		},
+		{
+			"name": "🚀 web-frontend",
+			"path": "project/packages/web-frontend"
+		}
+	],
+	"settings": {}
+}

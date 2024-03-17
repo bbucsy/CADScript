@@ -1,0 +1,38 @@
+{
+  "name": "web-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@codingame/monaco-vscode-configuration-service-override": "~1.85.0",
+    "@codingame/monaco-vscode-editor-service-override": "~1.85.0",
+    "@codingame/monaco-vscode-json-default-extension": "~1.85.0",
+    "@codingame/monaco-vscode-keybindings-service-override": "~1.85.0",
+    "@codingame/monaco-vscode-python-default-extension": "~1.85.0",
+    "@typefox/monaco-editor-react": "^2.6.0",
+    "cad-script": "workspace:^",
+    "monaco-editor": "npm:@codingame/monaco-editor-treemended@>=1.85.0 <1.86.0",
+    "monaco-editor-workers": "^0.45.0",
+    "monaco-editor-wrapper": "^3.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6"
+  }
+}
