@@ -6,12 +6,14 @@ import React, { useState } from 'react'
 import { MonacoEditorReactComp } from '@typefox/monaco-editor-react'
 import { UserConfig } from 'monaco-editor-wrapper'
 import { buildWorkerDefinition } from 'monaco-editor-workers'
+import { loadStatemachinWorkerRegular } from './config/workerWrapper'
 
 buildWorkerDefinition('../libs/monaco-editor-workers/workers', import.meta.url, false)
 
 const rootElem = document.getElementById('root')!
+const worker = loadStatemachinWorkerRegular()
 const EditorDemo: React.FC = () => {
-	const logMessage = "console.log('hello')"
+	const logMessage = 'define sketch Main ()'
 	const [content, setContent] = useState(logMessage)
 
 	const userConfig: UserConfig = {
@@ -24,10 +26,16 @@ const EditorDemo: React.FC = () => {
 			},
 			editorAppConfig: {
 				$type: 'classic',
-				languageId: 'typescript',
+				languageId: 'cad-script',
 				useDiffEditor: false,
 				theme: 'vs-dark',
 				code: content
+			}
+		},
+		languageClientConfig: {
+			options: {
+				$type: 'WorkerDirect',
+				worker: worker
 			}
 		}
 	}

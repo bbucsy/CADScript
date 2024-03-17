@@ -16,6 +16,7 @@
     "@codingame/monaco-vscode-keybindings-service-override": "~1.85.0",
     "@codingame/monaco-vscode-python-default-extension": "~1.85.0",
     "@typefox/monaco-editor-react": "^2.6.0",
+    "cad-script": "workspace:^",
     "monaco-editor": "npm:@codingame/monaco-editor-treemended@>=1.85.0 <1.86.0",
     "monaco-editor-workers": "^0.45.0",
     "monaco-editor-wrapper": "^3.6.0",
