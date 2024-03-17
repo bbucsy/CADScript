@@ -3,47 +3,33 @@ export function getMonarchGrammar() {
 		keywords: [
 			'X',
 			'Y',
-			'add',
 			'and',
 			'angle',
 			'around',
 			'as',
 			'at',
-			'cm',
-			'constrain',
 			'defaults',
-			'define',
-			'deg',
 			'distance',
-			'dm',
 			'do',
 			'end',
 			'from',
-			'ft',
 			'horizontal',
 			'import',
-			'in',
 			'length',
-			'm',
-			'mm',
 			'partial',
 			'perpendicular',
 			'rad',
 			'radius',
 			'samelength',
-			'th',
-			'times',
 			'to',
-			'vertical',
-			'yd',
-			'Arc',
-			'Circle',
-			'Line',
-			'Point',
-			'Sketch'
+			'vertical'
 		],
 
-		//typeKeywords: [],
+		typeKeywords: ['Arc', 'Circle', 'Line', 'Point', 'Sketch'],
+
+		measureKeywords: ['yd', 'th', 'm', 'mm', 'in', 'ft', 'dm', 'deg', 'cm'],
+
+		actionKeywords: ['add', 'constrain', 'define', 'times'],
 
 		operators: ['&', `'`, '*', '+', ',', '-', '->', '/', '=', '|', '°'],
 		symbols: /&|'|\(|\)|\*|\+|,|-|->|\/|=|\||°/,
@@ -55,7 +41,9 @@ export function getMonarchGrammar() {
 					action: {
 						cases: {
 							'@keywords': { token: 'keyword' },
-							//'@typeKeywords': { token: 'keyword.typeKeyword' },
+							'@typeKeywords': { token: 'keyword.type' },
+							'@measureKeywords': { token: 'keyword.measure' },
+							'@actionKeywords': { token: 'keyword.action' },
 							'@default': { token: 'ID' }
 						}
 					}
