@@ -15,8 +15,10 @@
     "@codingame/monaco-vscode-json-default-extension": "~1.85.0",
     "@codingame/monaco-vscode-keybindings-service-override": "~1.85.0",
     "@codingame/monaco-vscode-python-default-extension": "~1.85.0",
+    "@nextui-org/react": "^2.2.10",
     "@typefox/monaco-editor-react": "^2.6.0",
     "cad-script": "workspace:^",
+    "framer-motion": "^11.0.25",
     "monaco-editor": "npm:@codingame/monaco-editor-treemended@>=1.85.0 <1.86.0",
     "monaco-editor-workers": "^0.45.0",
     "monaco-editor-wrapper": "^3.6.0",
@@ -29,9 +31,12 @@
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
     "typescript": "^5.2.2",
     "vite": "^5.1.6"
   }
