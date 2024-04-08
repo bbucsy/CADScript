@@ -3,7 +3,4 @@
 	"editor.formatOnSave": true,
 	"eslint.options": {},
 
-	"files.associations": {
-		"*.css": "tailwindcss"
-	  }
 }
