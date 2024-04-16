@@ -22,23 +22,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/code-frame@npm:^7.0.0":
+"@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.23.5":
   version: 7.24.2
   resolution: "@babel/code-frame@npm:7.24.2"
   dependencies:
     "@babel/highlight": "npm:^7.24.2"
     picocolors: "npm:^1.0.0"
   checksum: 10c0/d1d4cba89475ab6aab7a88242e1fd73b15ecb9f30c109b69752956434d10a26a52cbd37727c4eca104b6d45227bd1dfce39a6a6f4a14c9b2f07f871e968cf406
-  languageName: node
-  linkType: hard
-
-"@babel/code-frame@npm:^7.23.5":
-  version: 7.23.5
-  resolution: "@babel/code-frame@npm:7.23.5"
-  dependencies:
-    "@babel/highlight": "npm:^7.23.4"
-    chalk: "npm:^2.4.2"
-  checksum: 10c0/a10e843595ddd9f97faa99917414813c06214f4d9205294013e20c70fbdf4f943760da37dec1d998bf3e6fc20fa2918a47c0e987a7e458663feb7698063ad7c6
   languageName: node
   linkType: hard
 
@@ -123,21 +113,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-module-imports@npm:^7.16.7":
+"@babel/helper-module-imports@npm:^7.16.7, @babel/helper-module-imports@npm:^7.22.15":
   version: 7.24.3
   resolution: "@babel/helper-module-imports@npm:7.24.3"
   dependencies:
     "@babel/types": "npm:^7.24.0"
   checksum: 10c0/052c188adcd100f5e8b6ff0c9643ddaabc58b6700d3bbbc26804141ad68375a9f97d9d173658d373d31853019e65f62610239e3295cdd58e573bdcb2fded188d
-  languageName: node
-  linkType: hard
-
-"@babel/helper-module-imports@npm:^7.22.15":
-  version: 7.22.15
-  resolution: "@babel/helper-module-imports@npm:7.22.15"
-  dependencies:
-    "@babel/types": "npm:^7.22.15"
-  checksum: 10c0/4e0d7fc36d02c1b8c8b3006dfbfeedf7a367d3334a04934255de5128115ea0bafdeb3e5736a2559917f0653e4e437400d54542da0468e08d3cbc86d3bbfa8f30
   languageName: node
   linkType: hard
 
@@ -213,17 +194,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/highlight@npm:^7.23.4":
-  version: 7.23.4
-  resolution: "@babel/highlight@npm:7.23.4"
-  dependencies:
-    "@babel/helper-validator-identifier": "npm:^7.22.20"
-    chalk: "npm:^2.4.2"
-    js-tokens: "npm:^4.0.0"
-  checksum: 10c0/fbff9fcb2f5539289c3c097d130e852afd10d89a3a08ac0b5ebebbc055cc84a4bcc3dcfed463d488cde12dd0902ef1858279e31d7349b2e8cee43913744bda33
-  languageName: node
-  linkType: hard
-
 "@babel/highlight@npm:^7.24.2":
   version: 7.24.2
   resolution: "@babel/highlight@npm:7.24.2"
@@ -267,21 +237,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.21.0":
   version: 7.24.4
   resolution: "@babel/runtime@npm:7.24.4"
   dependencies:
     regenerator-runtime: "npm:^0.14.0"
   checksum: 10c0/785aff96a3aa8ff97f90958e1e8a7b1d47f793b204b47c6455eaadc3f694f48c97cd5c0a921fe3596d818e71f18106610a164fb0f1c71fd68c622a58269d537c
-  languageName: node
-  linkType: hard
-
-"@babel/runtime@npm:^7.21.0":
-  version: 7.24.0
-  resolution: "@babel/runtime@npm:7.24.0"
-  dependencies:
-    regenerator-runtime: "npm:^0.14.0"
-  checksum: 10c0/3495eed727bf4a4f84c35bb51ab53317ae38f4bbc3b1d0a8303751f9dfa0ce6f5fb2afced72b76c3dd0d8bb2ccb84787559a4dee9886291a36b26f02f0f759b4
   languageName: node
   linkType: hard
 
@@ -314,7 +275,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/types@npm:^7.0.0, @babel/types@npm:^7.20.7, @babel/types@npm:^7.22.15, @babel/types@npm:^7.22.5, @babel/types@npm:^7.23.0, @babel/types@npm:^7.23.6, @babel/types@npm:^7.24.0, @babel/types@npm:^7.8.3":
+"@babel/types@npm:^7.0.0, @babel/types@npm:^7.20.7, @babel/types@npm:^7.22.5, @babel/types@npm:^7.23.0, @babel/types@npm:^7.23.6, @babel/types@npm:^7.24.0, @babel/types@npm:^7.8.3":
   version: 7.24.0
   resolution: "@babel/types@npm:7.24.0"
   dependencies:
@@ -1559,185 +1520,267 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-base-service-override@npm:1.85.6":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-base-service-override@npm:1.85.6"
+"@codingame/esbuild-import-meta-url-plugin@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@codingame/esbuild-import-meta-url-plugin@npm:1.0.2"
   dependencies:
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/06197b19fb996ebd38fc202018ed0e096fd81ca36203097254ed90a5e76d07a6a1dbbc879a19d25610d14b1350a243a1d429184a93470e007d27fdf67974ac12
+    esbuild: "npm:>=0.19.x"
+    import-meta-resolve: "npm:^4.0.0"
+  checksum: 10c0/8602401c442597ec96f4d8b2a7d90881eba9a049344c51d589797cbb0df7f79fa223f883c1c2b74d46ba9324d8f1fb451e48e01a0a4b9beccf9fe849b05f593b
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-configuration-service-override@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-configuration-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-base-service-override@npm:4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-base-service-override@npm:4.2.1"
   dependencies:
-    "@codingame/monaco-vscode-base-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-environment-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-extensions-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-files-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-host-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-layout-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-quickaccess-service-override": "npm:1.85.6"
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/1c62151d00827a61b2f5785b90abecc150294e329745ac0c2842f667488da8cdc3cf4e705d38feae5f6628c1cafecb5bff00359f1b655a2ff44a657f5976d90d
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/92ab575705a237619144cfbf0ca972cdfff74a82950850cbc505b28468813631ec4bbe1f29c4b6cdb33ff0802d840e60f40502cc7802798bfa1ad3aff40a64e2
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-editor-service-override@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-editor-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-configuration-service-override@npm:~4.2.0, @codingame/monaco-vscode-configuration-service-override@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-configuration-service-override@npm:4.2.1"
   dependencies:
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/5c5c72a5e390508cc968a07e097306b2f85a053990ea66de821805635ac581129f1ea4febdde894d6fb9f95c49d628862d2429b5b94a26bc77436482cb27f7a1
+    "@codingame/monaco-vscode-base-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-environment-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-extensions-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-files-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-host-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-layout-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-quickaccess-service-override": "npm:4.2.1"
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/ba4a1ea81f0db1003a315c2966cbc6e979bdd7a14f72db626c78ea5869c7fcf4f4820fc5583a0cce84a648d8355563d3ccc22f30fdc32f143b3944c3a721e953
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-environment-service-override@npm:1.85.6":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-environment-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-editor-service-override@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-editor-service-override@npm:4.2.1"
   dependencies:
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/4173ac72aa5f837abed01a56fc9c2bff18f45231121562c2897587aba66a5c61301b27de9bd58bac94317a609c2eeca4335c884d37637c4a46ebe6225af32fe7
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/f68a3a183ed03bf035fb45706c8ce39931d62405f3f404629b379421d16610a5ddf7880aba50ea36690501961e9c9afd4b57a5c47eeb823b567e3c489cca6750
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-extensions-service-override@npm:1.85.6":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-extensions-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-environment-service-override@npm:4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-environment-service-override@npm:4.2.1"
   dependencies:
-    "@codingame/monaco-vscode-files-service-override": "npm:1.85.6"
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-    vscode-semver: "npm:semver@=5.5.0"
-  checksum: 10c0/a69e07b53b4b587ccb9a4092d06236c6501542bab4ce990478470c4e12d7b1d39d73d6bba9b9546fe12c1377c8622f96864534de583523e20c192c9563ff6c62
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/4555d4f8d4d8c3415a5d4c4c9194a7d108ef3fdd9ee8fcf16f1d78f8130eaef2e67a31198ff1f5ff2ad28fe8304a8f65909c8ad22b79ded0ec4d176cb847f2fc
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-files-service-override@npm:1.85.6":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-files-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-extensions-service-override@npm:4.2.1, @codingame/monaco-vscode-extensions-service-override@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-extensions-service-override@npm:4.2.1"
   dependencies:
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/d393796e7b5603f455d22bbca1643a88c2aacfbc8600403a8e2d78a5c8c1d34539f44800955c7ed0aeb09c3f8aa60ac2c9319f5b3e53da466a059c07b043af06
+    "@codingame/monaco-vscode-files-service-override": "npm:4.2.1"
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/969efee625cd4ee68e9d380c3e6e50003ba7c1c9b73272f059bb30862a18a3576d548310673dd927bfd902934bd999773f6b579eb7369e36c5cfeda6cb9954cc
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-host-service-override@npm:1.85.6":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-host-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-files-service-override@npm:4.2.1, @codingame/monaco-vscode-files-service-override@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-files-service-override@npm:4.2.1"
   dependencies:
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/09813fc50eec21564dad89b88394957e18f986254a5904c649975054f9f8e24c4ae9f2820d23feed16d6d46268da7053409da551ac871796d2342e58ddcc7b20
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/04e84b34934dcd954d50cd0624426e7661d212154f45db143b80fe5cc74a3a3bbc53e8fe5a1d10b4e217e392d3284e5ad77262abdb874a322cc3167b3f556426
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-json-default-extension@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-json-default-extension@npm:1.85.6"
+"@codingame/monaco-vscode-groovy-default-extension@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-groovy-default-extension@npm:4.2.1"
   dependencies:
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/02e489d4d089ef42e01573e6fe489f69e2054ba9405e669385e97db51057905e8a72e2d48defb2f47beef995ec1c3825f65573f87b0cb0a7de28a9bf9ae88b54
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/f2c0baa294f666182ca37697c55366851e67aefbbc658a94a3420e91be267d585104c341ed160386f0e5bc4c6d6b09c2b9882554dd8cc1819c8f4d58b78cae2c
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-keybindings-service-override@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-keybindings-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-host-service-override@npm:4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-host-service-override@npm:4.2.1"
   dependencies:
-    "@codingame/monaco-vscode-files-service-override": "npm:1.85.6"
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/76983c533f67b076ded986b2d1142dd1a023864605606d957e6423692c9b3711e6dd6ff42605040e8ee20ee88cbf44a375bffcb7a4551b2c4a506a0c37b38f4b
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/7e65bc4170f50b587fe16ed840b12f3c4d0ebc72a13fcb7174bd9746ebc4bb3ab5525e9d99a468cad9f15a1e4e0d46c313b0e893691747e9258aa1a339aa67d2
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-languages-service-override@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-languages-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-javascript-default-extension@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-javascript-default-extension@npm:4.2.1"
   dependencies:
-    "@codingame/monaco-vscode-files-service-override": "npm:1.85.6"
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/75f1b3015cee979672117e7497afe1fee98393a166be72e5415a3aadf6a90e2caee389e4b37e090d5129b8e29884e3fd8d2bda7eed3b498d3e3f41c7bd754021
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/247cdf7140457e05699e43ef2e05b98382d5d09f2fd30661ba9479d2495374c89779038c3e645f1a9e297de92a86bd770a23efefcc585e595dac2099d64c588c
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-layout-service-override@npm:1.85.6":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-layout-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-json-default-extension@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-json-default-extension@npm:4.2.1"
   dependencies:
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/c88ea88323544acc1dc716c5410f693fb09c2cca7b75bd0a7b8ea6bd81030ccc246b46717a18e2063be3bdbe805f01542dbd4ae9ff68a5b159ad1d7b3601f89f
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/37ccc8c3965bd52d45297317b48d8203ec1c7a09a6475258492dbc57087975bd07b7a37efab392b25ec69ffd23245cfeb1a3bffc40b17e22f4f0a21307122f82
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-model-service-override@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-model-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-keybindings-service-override@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-keybindings-service-override@npm:4.2.1"
   dependencies:
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/636576cbeabf00e23b2e24e1a7590f462bedd6094e6560859ffebeda69113e71c9491429554f651f1f6d1ede65d34e1e03cd5b91a0f3922137a873b514a38db9
+    "@codingame/monaco-vscode-base-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-environment-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-extensions-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-files-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-host-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-layout-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-quickaccess-service-override": "npm:4.2.1"
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/f20206bad0e8172b73ca5a8312223fe4d8d2392a07ab246edb74e361128c1d596c634eb84449d095fb36dfa40d0a565c0af0d5f7947a934d228a5f396fddb699
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-python-default-extension@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-python-default-extension@npm:1.85.6"
+"@codingame/monaco-vscode-languages-service-override@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-languages-service-override@npm:4.2.1"
   dependencies:
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/9bdb0175b89641429ffc8aa7173a5c0aadc6ab2a01778388b39d88af47c0b40717ded51d9b3021532980019ece4890a5a0d7a79b49690c2c339c39c332b2ccbc
+    "@codingame/monaco-vscode-files-service-override": "npm:4.2.1"
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/da2dd0cd784b8a32b27b1eb70868d73f2cbbfffdbc1f6cb2e7d9bcab62393fd91acafccd8e12854129c24008d94433efe93eb24af070af39d2c7978059824d8e
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-quickaccess-service-override@npm:1.85.6":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-quickaccess-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-layout-service-override@npm:4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-layout-service-override@npm:4.2.1"
   dependencies:
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/68bdbd36594c74941bbca6335e77e91ea3c6129d5d5019bbf702502ab62544cf18e224619b8c6d147aa07f0defa48cb493de8c54f03d0b065889cac3aa2d3d3e
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/250f4304a4535eaabe281db03b16586cf94a86c2feb0e071263051ea9af88423c043f94ff31e337ec3fc492985daf2ed56d266027b5d68ab4de5c46cd7a7f634
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-textmate-service-override@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-textmate-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-lifecycle-service-override@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-lifecycle-service-override@npm:4.2.1"
   dependencies:
-    "@codingame/monaco-vscode-files-service-override": "npm:1.85.6"
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/6c60aabfc7e21d284a36c005377df751b8c1a982bb0ba4dc0d346ce0daa103e4b17e77f8c2a1bd5d1efe548246ecd7c183f2b73f6677c1a07b7c72c2ff067612
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-localization-service-override@npm:~4.2.0, @codingame/monaco-vscode-localization-service-override@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-localization-service-override@npm:4.2.1"
+  dependencies:
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/90c4d517acf43e0ae7a79da4a89bd8d44cc23ff32fb4328c61354cb759766ac9b3537d26da386ea5c70dac0bfa24eeeebff8903f7c761a608bd41a1251e66f8e
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-model-service-override@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-model-service-override@npm:4.2.1"
+  dependencies:
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/a3768dcc708842a65f4460058f3ab864d4334ff6dc960307406846246f83dfe0b0d24949f327b6444bf175ba28b47470e18942ef195cd5f2c5212fe0305fa712
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-python-default-extension@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-python-default-extension@npm:4.2.1"
+  dependencies:
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/3a479420d3fa27dc2dd4752f438b9416a9f88bcb58872238cd9017adffd4a8d5c7c12a1a6f908b6598a50e643fe585b2569a5b9ade7fcf59894b39b7d7fe782c
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-quickaccess-service-override@npm:4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-quickaccess-service-override@npm:4.2.1"
+  dependencies:
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/5c2e7d9e1066421b37009e372fd6cc3b04f6aa2acbd5484aea084565f45bf46232487867d750ae14c28f80f010e4a3aa6990c3af80853ef1cc5f91882dd2e496
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-standalone-json-language-features@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-standalone-json-language-features@npm:4.2.1"
+  dependencies:
+    monaco-editor: "npm:@codingame/monaco-vscode-editor-api@4.2.1"
+  checksum: 10c0/a5a206c207e64508251029f7494f27d5df3c980edf2b30767f3466cd6d926589c1a29647d0b17afaf8aea04238c4a76a5deb5357d2cce3bdec48761a078790d5
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-standalone-languages@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-standalone-languages@npm:4.2.1"
+  dependencies:
+    monaco-editor: "npm:@codingame/monaco-vscode-editor-api@4.2.1"
+  checksum: 10c0/7a4fc472970a58dac3091f295f34fbeb734bccdc737346103944c9611f9b8a6bee654adacc31dbd79fff90c9725b30e46af44598b582d1dc798c355cc1147ecf
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-standalone-typescript-language-features@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-standalone-typescript-language-features@npm:4.2.1"
+  dependencies:
+    monaco-editor: "npm:@codingame/monaco-vscode-editor-api@4.2.1"
+  checksum: 10c0/e3a913a06f1a210235935a1b50bd4a3f4f5df081bc5b32918fe7685d5fded6888ec2d78c6fe62d2b31deb5bcd99b8aa2b9876c23464d1720d2bb1397a665016a
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-textmate-service-override@npm:~4.2.0, @codingame/monaco-vscode-textmate-service-override@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-textmate-service-override@npm:4.2.1"
+  dependencies:
+    "@codingame/monaco-vscode-files-service-override": "npm:4.2.1"
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
     vscode-oniguruma: "npm:1.7.0"
     vscode-textmate: "npm:9.0.0"
-  checksum: 10c0/62136c22069fd5f2955a686364d24c49b89f322f620585fc05aa9d9960907dc7b896693ae5f8b23fcdb6850c35647be6ec94b248a92b55506f846c0ca231db39
+  checksum: 10c0/6f97b6865d915ddcd9c3aea77a1725f33cb852093703f50e5db4cfae2402d20fb93f1d3baced830343f8674751ffb5cb3c618a5e09ba5d0bd1f9f8a761b89206
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-theme-defaults-default-extension@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-theme-defaults-default-extension@npm:1.85.6"
+"@codingame/monaco-vscode-theme-defaults-default-extension@npm:~4.2.0, @codingame/monaco-vscode-theme-defaults-default-extension@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-theme-defaults-default-extension@npm:4.2.1"
   dependencies:
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/35da96c91d67c47f0f97b1d4e8507dd9d2da7e84d76325dcf609571ba19184bc47800fe6bbacde153fd878b9ad35203a607054f116db3108488c6911effd8f58
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/421c933ad08f77778272d9f1af981b756c1ff155ceab10dd74cb6c893f7ece0d6104c99e634a18435cee30f25f4afbf8ac9adc9fe75cbcf9a504bad95009ac4c
   languageName: node
   linkType: hard
 
-"@codingame/monaco-vscode-theme-service-override@npm:~1.85.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-theme-service-override@npm:1.85.6"
+"@codingame/monaco-vscode-theme-service-override@npm:~4.2.0, @codingame/monaco-vscode-theme-service-override@npm:~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-theme-service-override@npm:4.2.1"
   dependencies:
-    "@codingame/monaco-vscode-files-service-override": "npm:1.85.6"
-    monaco-editor: "npm:0.45.0"
-    vscode: "npm:@codingame/monaco-vscode-api@1.85.6"
-  checksum: 10c0/6ae17d522fe01333cb0dc0131ca0cfc01dabd3463bbe4013f593a1d9a3660df2657e7df350cbf9dfe9db8a9f76daefec8192aa45978bb236a36b3ad753367d31
+    "@codingame/monaco-vscode-files-service-override": "npm:4.2.1"
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/58e97bd879b80d6d685c3ca77682bdd27e8b06136129313fdb298b45be0597ee56e7a22ca0f13b45de399e3b53a2ec6490d46fd9fa498ef1d220a2369a694764
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-typescript-basics-default-extension@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-typescript-basics-default-extension@npm:4.2.1"
+  dependencies:
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/857a4f8d60761f25cc198ba35df4e6ffdbfcca916e6fe74dbf015019acad55d1388dc4a2cd649f5a2dc065d8b876060879463fd5fcd180bcfbfec44c2938c415
+  languageName: node
+  linkType: hard
+
+"@codingame/monaco-vscode-typescript-language-features-default-extension@npm:~4.2.0":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-typescript-language-features-default-extension@npm:4.2.1"
+  dependencies:
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/9af781c9ded7a62f3cb52d51ed802605bf967944802dd7615efd1121ab57b396263c54111fe4b9fc8a551ca40c6d28a4172b1b8f1f95799c6bd14b3ac11bea5e
   languageName: node
   linkType: hard
 
@@ -1894,9 +1937,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/aix-ppc64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/aix-ppc64@npm:0.20.2"
+  conditions: os=aix & cpu=ppc64
+  languageName: node
+  linkType: hard
+
 "@esbuild/android-arm64@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/android-arm64@npm:0.19.12"
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@esbuild/android-arm64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/android-arm64@npm:0.20.2"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
@@ -1908,9 +1965,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/android-arm@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/android-arm@npm:0.20.2"
+  conditions: os=android & cpu=arm
+  languageName: node
+  linkType: hard
+
 "@esbuild/android-x64@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/android-x64@npm:0.19.12"
+  conditions: os=android & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/android-x64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/android-x64@npm:0.20.2"
   conditions: os=android & cpu=x64
   languageName: node
   linkType: hard
@@ -1922,9 +1993,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/darwin-arm64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/darwin-arm64@npm:0.20.2"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@esbuild/darwin-x64@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/darwin-x64@npm:0.19.12"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/darwin-x64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/darwin-x64@npm:0.20.2"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
@@ -1936,9 +2021,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/freebsd-arm64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/freebsd-arm64@npm:0.20.2"
+  conditions: os=freebsd & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@esbuild/freebsd-x64@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/freebsd-x64@npm:0.19.12"
+  conditions: os=freebsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/freebsd-x64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/freebsd-x64@npm:0.20.2"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
@@ -1950,9 +2049,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-arm64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/linux-arm64@npm:0.20.2"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@esbuild/linux-arm@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/linux-arm@npm:0.19.12"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"@esbuild/linux-arm@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/linux-arm@npm:0.20.2"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
@@ -1964,9 +2077,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-ia32@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/linux-ia32@npm:0.20.2"
+  conditions: os=linux & cpu=ia32
+  languageName: node
+  linkType: hard
+
 "@esbuild/linux-loong64@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/linux-loong64@npm:0.19.12"
+  conditions: os=linux & cpu=loong64
+  languageName: node
+  linkType: hard
+
+"@esbuild/linux-loong64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/linux-loong64@npm:0.20.2"
   conditions: os=linux & cpu=loong64
   languageName: node
   linkType: hard
@@ -1978,9 +2105,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-mips64el@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/linux-mips64el@npm:0.20.2"
+  conditions: os=linux & cpu=mips64el
+  languageName: node
+  linkType: hard
+
 "@esbuild/linux-ppc64@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/linux-ppc64@npm:0.19.12"
+  conditions: os=linux & cpu=ppc64
+  languageName: node
+  linkType: hard
+
+"@esbuild/linux-ppc64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/linux-ppc64@npm:0.20.2"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
@@ -1992,9 +2133,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-riscv64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/linux-riscv64@npm:0.20.2"
+  conditions: os=linux & cpu=riscv64
+  languageName: node
+  linkType: hard
+
 "@esbuild/linux-s390x@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/linux-s390x@npm:0.19.12"
+  conditions: os=linux & cpu=s390x
+  languageName: node
+  linkType: hard
+
+"@esbuild/linux-s390x@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/linux-s390x@npm:0.20.2"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
@@ -2006,9 +2161,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/linux-x64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/linux-x64@npm:0.20.2"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@esbuild/netbsd-x64@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/netbsd-x64@npm:0.19.12"
+  conditions: os=netbsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/netbsd-x64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/netbsd-x64@npm:0.20.2"
   conditions: os=netbsd & cpu=x64
   languageName: node
   linkType: hard
@@ -2020,9 +2189,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/openbsd-x64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/openbsd-x64@npm:0.20.2"
+  conditions: os=openbsd & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@esbuild/sunos-x64@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/sunos-x64@npm:0.19.12"
+  conditions: os=sunos & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/sunos-x64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/sunos-x64@npm:0.20.2"
   conditions: os=sunos & cpu=x64
   languageName: node
   linkType: hard
@@ -2034,6 +2217,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/win32-arm64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/win32-arm64@npm:0.20.2"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "@esbuild/win32-ia32@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/win32-ia32@npm:0.19.12"
@@ -2041,9 +2231,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@esbuild/win32-ia32@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/win32-ia32@npm:0.20.2"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
 "@esbuild/win32-x64@npm:0.19.12":
   version: 0.19.12
   resolution: "@esbuild/win32-x64@npm:0.19.12"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@esbuild/win32-x64@npm:0.20.2":
+  version: 0.20.2
+  resolution: "@esbuild/win32-x64@npm:0.20.2"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2234,24 +2438,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/rollup-android-arm-eabi@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-android-arm-eabi@npm:4.12.0"
-  conditions: os=android & cpu=arm
-  languageName: node
-  linkType: hard
-
 "@rollup/rollup-android-arm-eabi@npm:4.13.0":
   version: 4.13.0
   resolution: "@rollup/rollup-android-arm-eabi@npm:4.13.0"
   conditions: os=android & cpu=arm
-  languageName: node
-  linkType: hard
-
-"@rollup/rollup-android-arm64@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-android-arm64@npm:4.12.0"
-  conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -2262,24 +2452,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/rollup-darwin-arm64@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-darwin-arm64@npm:4.12.0"
-  conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@rollup/rollup-darwin-arm64@npm:4.13.0":
   version: 4.13.0
   resolution: "@rollup/rollup-darwin-arm64@npm:4.13.0"
   conditions: os=darwin & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@rollup/rollup-darwin-x64@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-darwin-x64@npm:4.12.0"
-  conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
@@ -2290,24 +2466,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm-gnueabihf@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-linux-arm-gnueabihf@npm:4.12.0"
-  conditions: os=linux & cpu=arm
-  languageName: node
-  linkType: hard
-
 "@rollup/rollup-linux-arm-gnueabihf@npm:4.13.0":
   version: 4.13.0
   resolution: "@rollup/rollup-linux-arm-gnueabihf@npm:4.13.0"
   conditions: os=linux & cpu=arm
-  languageName: node
-  linkType: hard
-
-"@rollup/rollup-linux-arm64-gnu@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-linux-arm64-gnu@npm:4.12.0"
-  conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
@@ -2318,24 +2480,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm64-musl@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-linux-arm64-musl@npm:4.12.0"
-  conditions: os=linux & cpu=arm64 & libc=musl
-  languageName: node
-  linkType: hard
-
 "@rollup/rollup-linux-arm64-musl@npm:4.13.0":
   version: 4.13.0
   resolution: "@rollup/rollup-linux-arm64-musl@npm:4.13.0"
   conditions: os=linux & cpu=arm64 & libc=musl
-  languageName: node
-  linkType: hard
-
-"@rollup/rollup-linux-riscv64-gnu@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-linux-riscv64-gnu@npm:4.12.0"
-  conditions: os=linux & cpu=riscv64 & libc=glibc
   languageName: node
   linkType: hard
 
@@ -2346,24 +2494,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-x64-gnu@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-linux-x64-gnu@npm:4.12.0"
-  conditions: os=linux & cpu=x64 & libc=glibc
-  languageName: node
-  linkType: hard
-
 "@rollup/rollup-linux-x64-gnu@npm:4.13.0":
   version: 4.13.0
   resolution: "@rollup/rollup-linux-x64-gnu@npm:4.13.0"
   conditions: os=linux & cpu=x64 & libc=glibc
-  languageName: node
-  linkType: hard
-
-"@rollup/rollup-linux-x64-musl@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-linux-x64-musl@npm:4.12.0"
-  conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
@@ -2374,24 +2508,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/rollup-win32-arm64-msvc@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-win32-arm64-msvc@npm:4.12.0"
-  conditions: os=win32 & cpu=arm64
-  languageName: node
-  linkType: hard
-
 "@rollup/rollup-win32-arm64-msvc@npm:4.13.0":
   version: 4.13.0
   resolution: "@rollup/rollup-win32-arm64-msvc@npm:4.13.0"
   conditions: os=win32 & cpu=arm64
-  languageName: node
-  linkType: hard
-
-"@rollup/rollup-win32-ia32-msvc@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-win32-ia32-msvc@npm:4.12.0"
-  conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
@@ -2402,13 +2522,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/rollup-win32-x64-msvc@npm:4.12.0":
-  version: 4.12.0
-  resolution: "@rollup/rollup-win32-x64-msvc@npm:4.12.0"
-  conditions: os=win32 & cpu=x64
-  languageName: node
-  linkType: hard
-
 "@rollup/rollup-win32-x64-msvc@npm:4.13.0":
   version: 4.13.0
   resolution: "@rollup/rollup-win32-x64-msvc@npm:4.13.0"
@@ -2416,17 +2529,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typefox/monaco-editor-react@npm:^2.6.0":
-  version: 2.6.0
-  resolution: "@typefox/monaco-editor-react@npm:2.6.0"
+"@typefox/monaco-editor-react@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "@typefox/monaco-editor-react@npm:3.2.0"
   dependencies:
-    monaco-editor: "npm:@codingame/monaco-editor-treemended@>=1.85.0 <1.86.0"
-    monaco-editor-wrapper: "npm:~3.6.0"
+    monaco-editor: "npm:@codingame/monaco-vscode-editor-api@~4.2.1"
+    monaco-editor-wrapper: "npm:~4.2.0"
+    monaco-languageclient: "npm:~8.3.0"
     react: "npm:~18.2.0"
-    vscode: "npm:@codingame/monaco-vscode-api@>=1.85.0 <1.86.0"
+    vscode: "npm:@codingame/monaco-vscode-api@~4.2.1"
   peerDependencies:
-    monaco-editor-wrapper: ~3.6.0
-  checksum: 10c0/d3acff320216e502b8135f5c2ac3fe6ff993a01142e056828a885c4f17f4c235a3d35fd57ea2cf52bf4562275eef0d7ee921f14ed707563f24290431fff07d60
+    monaco-editor: "*"
+    monaco-editor-wrapper: ~4.2.0
+    monaco-languageclient: ~8.3.0
+    react: ~18.2.0
+    vscode: "*"
+  peerDependenciesMeta:
+    monaco-editor:
+      optional: false
+    monaco-editor-wrapper:
+      optional: false
+    react:
+      optional: false
+    vscode:
+      optional: false
+  checksum: 10c0/f61f06347b80a604967e2d7483b5d81ee7fc3bdcdb0ebd69f69c76bdc8ba3963d49b08716db51381dad70e1d198d632adf728feb42cf281d90767a6c902b75dd
   languageName: node
   linkType: hard
 
@@ -2564,6 +2691,13 @@ __metadata:
   version: 7.5.8
   resolution: "@types/semver@npm:7.5.8"
   checksum: 10c0/8663ff927234d1c5fcc04b33062cb2b9fcfbe0f5f351ed26c4d1e1581657deebd506b41ff7fdf89e787e3d33ce05854bc01686379b89e9c49b564c4cfa988efa
+  languageName: node
+  linkType: hard
+
+"@types/vscode@npm:^1.88.0":
+  version: 1.88.0
+  resolution: "@types/vscode@npm:1.88.0"
+  checksum: 10c0/3d5f7394d654a3104be668aef0e41a76ac6dbc0319bee54f9070404c73b1f61e1b1ffc2ed2e7efabe7950f5afaa69f1097fa51c2c36c89e3d04b8ded25d28a00
   languageName: node
   linkType: hard
 
@@ -3527,6 +3661,86 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild@npm:>=0.19.x, esbuild@npm:~0.20.2":
+  version: 0.20.2
+  resolution: "esbuild@npm:0.20.2"
+  dependencies:
+    "@esbuild/aix-ppc64": "npm:0.20.2"
+    "@esbuild/android-arm": "npm:0.20.2"
+    "@esbuild/android-arm64": "npm:0.20.2"
+    "@esbuild/android-x64": "npm:0.20.2"
+    "@esbuild/darwin-arm64": "npm:0.20.2"
+    "@esbuild/darwin-x64": "npm:0.20.2"
+    "@esbuild/freebsd-arm64": "npm:0.20.2"
+    "@esbuild/freebsd-x64": "npm:0.20.2"
+    "@esbuild/linux-arm": "npm:0.20.2"
+    "@esbuild/linux-arm64": "npm:0.20.2"
+    "@esbuild/linux-ia32": "npm:0.20.2"
+    "@esbuild/linux-loong64": "npm:0.20.2"
+    "@esbuild/linux-mips64el": "npm:0.20.2"
+    "@esbuild/linux-ppc64": "npm:0.20.2"
+    "@esbuild/linux-riscv64": "npm:0.20.2"
+    "@esbuild/linux-s390x": "npm:0.20.2"
+    "@esbuild/linux-x64": "npm:0.20.2"
+    "@esbuild/netbsd-x64": "npm:0.20.2"
+    "@esbuild/openbsd-x64": "npm:0.20.2"
+    "@esbuild/sunos-x64": "npm:0.20.2"
+    "@esbuild/win32-arm64": "npm:0.20.2"
+    "@esbuild/win32-ia32": "npm:0.20.2"
+    "@esbuild/win32-x64": "npm:0.20.2"
+  dependenciesMeta:
+    "@esbuild/aix-ppc64":
+      optional: true
+    "@esbuild/android-arm":
+      optional: true
+    "@esbuild/android-arm64":
+      optional: true
+    "@esbuild/android-x64":
+      optional: true
+    "@esbuild/darwin-arm64":
+      optional: true
+    "@esbuild/darwin-x64":
+      optional: true
+    "@esbuild/freebsd-arm64":
+      optional: true
+    "@esbuild/freebsd-x64":
+      optional: true
+    "@esbuild/linux-arm":
+      optional: true
+    "@esbuild/linux-arm64":
+      optional: true
+    "@esbuild/linux-ia32":
+      optional: true
+    "@esbuild/linux-loong64":
+      optional: true
+    "@esbuild/linux-mips64el":
+      optional: true
+    "@esbuild/linux-ppc64":
+      optional: true
+    "@esbuild/linux-riscv64":
+      optional: true
+    "@esbuild/linux-s390x":
+      optional: true
+    "@esbuild/linux-x64":
+      optional: true
+    "@esbuild/netbsd-x64":
+      optional: true
+    "@esbuild/openbsd-x64":
+      optional: true
+    "@esbuild/sunos-x64":
+      optional: true
+    "@esbuild/win32-arm64":
+      optional: true
+    "@esbuild/win32-ia32":
+      optional: true
+    "@esbuild/win32-x64":
+      optional: true
+  bin:
+    esbuild: bin/esbuild
+  checksum: 10c0/66398f9fb2c65e456a3e649747b39af8a001e47963b25e86d9c09d2a48d61aa641b27da0ce5cad63df95ad246105e1d83e7fee0e1e22a0663def73b1c5101112
+  languageName: node
+  linkType: hard
+
 "esbuild@npm:^0.19.2, esbuild@npm:^0.19.3, esbuild@npm:~0.19.2":
   version: 0.19.12
   resolution: "esbuild@npm:0.19.12"
@@ -4242,6 +4456,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"import-meta-resolve@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "import-meta-resolve@npm:4.0.0"
+  checksum: 10c0/709375e01f8c3a87b7870991ca29c630d71bb7e22b7bb0f622613173d87b41b4043b4a983800e6d38ab3867496a46f82d30df0cbc2e55792c91c23193eea67a1
+  languageName: node
+  linkType: hard
+
 "imurmurhash@npm:^0.1.4":
   version: 0.1.4
   resolution: "imurmurhash@npm:0.1.4"
@@ -4834,61 +5055,72 @@ __metadata:
   languageName: node
   linkType: hard
 
-"monaco-editor-wrapper@npm:^3.6.0, monaco-editor-wrapper@npm:~3.6.0":
-  version: 3.6.0
-  resolution: "monaco-editor-wrapper@npm:3.6.0"
+"monaco-editor-wrapper@npm:^4.2.0, monaco-editor-wrapper@npm:~4.2.0":
+  version: 4.2.0
+  resolution: "monaco-editor-wrapper@npm:4.2.0"
   dependencies:
-    "@codingame/monaco-vscode-configuration-service-override": "npm:~1.85.0"
-    "@codingame/monaco-vscode-editor-service-override": "npm:~1.85.0"
-    "@codingame/monaco-vscode-textmate-service-override": "npm:~1.85.0"
-    "@codingame/monaco-vscode-theme-defaults-default-extension": "npm:~1.85.0"
-    "@codingame/monaco-vscode-theme-service-override": "npm:~1.85.0"
-    monaco-editor: "npm:@codingame/monaco-editor-treemended@>=1.85.0 <1.86.0"
-    monaco-languageclient: "npm:~7.3.0"
-    vscode: "npm:@codingame/monaco-vscode-api@>=1.85.0 <1.86.0"
+    "@codingame/monaco-vscode-configuration-service-override": "npm:~4.2.1"
+    "@codingame/monaco-vscode-editor-service-override": "npm:~4.2.1"
+    "@codingame/monaco-vscode-textmate-service-override": "npm:~4.2.1"
+    "@codingame/monaco-vscode-theme-defaults-default-extension": "npm:~4.2.1"
+    "@codingame/monaco-vscode-theme-service-override": "npm:~4.2.1"
+    esbuild: "npm:~0.20.2"
+    monaco-editor: "npm:@codingame/monaco-vscode-editor-api@~4.2.1"
+    vscode: "npm:@codingame/monaco-vscode-api@~4.2.1"
     vscode-languageclient: "npm:~9.0.1"
     vscode-languageserver-protocol: "npm:~3.17.5"
-    vscode-ws-jsonrpc: "npm:~3.1.0"
+    vscode-ws-jsonrpc: "npm:~3.3.1"
   peerDependencies:
-    monaco-languageclient: ~7.3.0
-    vscode-ws-jsonrpc: ~3.1.0
-  checksum: 10c0/bb8bcc5a68ea7cf7e8acc33e738da86cd57d1db7d55d740b2a75f70f26b68add8689f8fde9ca15cf08ed0022a83b15e68b045fe1f22f29e7f1dc0c82e5b1a9b2
+    monaco-editor: "*"
+    monaco-languageclient: ~8.3.0
+    vscode: "*"
+  peerDependenciesMeta:
+    monaco-editor:
+      optional: false
+    monaco-languageclient:
+      optional: false
+    vscode:
+      optional: false
+  checksum: 10c0/f97517fc35ef1ab26583f846dcda2d4adcaa7aaa9a23e964cde19e61b203d333949e4e0bea9b3a550be272fd24564db7ab42c9835a7965bb3015cc2f0bd93811
   languageName: node
   linkType: hard
 
-"monaco-editor@npm:0.45.0, monaco-editor@npm:~0.45.0":
+"monaco-editor@npm:@codingame/monaco-vscode-editor-api@4.2.1, monaco-editor@npm:@codingame/monaco-vscode-editor-api@~4.2.0, monaco-editor@npm:@codingame/monaco-vscode-editor-api@~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-editor-api@npm:4.2.1"
+  dependencies:
+    vscode: "npm:@codingame/monaco-vscode-api@4.2.1"
+  checksum: 10c0/3e0347ba6f4f8907a910a9c556aaf0aa282c4ebc7243db5a86f397c4c0d12caa7e4a639f97daf9eb9868aef00afba1bda36c904ce990ac65efceca61c1310bea
+  languageName: node
+  linkType: hard
+
+"monaco-editor@npm:~0.45.0":
   version: 0.45.0
   resolution: "monaco-editor@npm:0.45.0"
   checksum: 10c0/77b1522dbbf06b582f143a7be22f48ad82e5cade3f22c26fc19086446e473c720b2147f8a1ac6edf2172abf5d6bc92a5e858f62fb60df8617f8532f1fa1119ab
   languageName: node
   linkType: hard
 
-"monaco-editor@npm:@codingame/monaco-editor-treemended@>=1.85.0 <1.86.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-editor-treemended@npm:1.85.6"
-  checksum: 10c0/ef668b5b1ffd38465088dcc350c305322802ac600a0f9c959491d3d8e655b2295f5be1732b2b07575f2f49b43b4801aa9991ddbc7ac1d14552864a485047c186
-  languageName: node
-  linkType: hard
-
-"monaco-languageclient@npm:~7.3.0":
-  version: 7.3.0
-  resolution: "monaco-languageclient@npm:7.3.0"
+"monaco-languageclient@npm:~8.3.0":
+  version: 8.3.0
+  resolution: "monaco-languageclient@npm:8.3.0"
   dependencies:
-    "@codingame/monaco-vscode-editor-service-override": "npm:~1.85.0"
-    "@codingame/monaco-vscode-languages-service-override": "npm:~1.85.0"
-    "@codingame/monaco-vscode-model-service-override": "npm:~1.85.0"
-    monaco-editor: "npm:@codingame/monaco-editor-treemended@>=1.85.0 <1.86.0"
-    vscode: "npm:@codingame/monaco-vscode-api@>=1.85.0 <1.86.0"
+    "@codingame/monaco-vscode-extensions-service-override": "npm:~4.2.1"
+    "@codingame/monaco-vscode-languages-service-override": "npm:~4.2.1"
+    "@codingame/monaco-vscode-localization-service-override": "npm:~4.2.1"
+    "@codingame/monaco-vscode-model-service-override": "npm:~4.2.1"
+    monaco-editor: "npm:@codingame/monaco-vscode-editor-api@~4.2.1"
+    vscode: "npm:@codingame/monaco-vscode-api@~4.2.1"
     vscode-languageclient: "npm:~9.0.1"
   peerDependencies:
-    monaco-editor: 0.45.0
+    monaco-editor: "*"
     vscode: "*"
   peerDependenciesMeta:
     monaco-editor:
       optional: false
     vscode:
       optional: false
-  checksum: 10c0/816aee17c56f38774825bbe542fc059374c77ab77df119939c1357b8f50636abc5bde0095bcd2b94d8daf0cf964a709eabc32f6d07905e21a0b68a68eb5c8234
+  checksum: 10c0/27cc6dd28a97c7ba5f0ec51c5702dbdde4983bffc1afaf78acb1da46d269d6bfb8db1f3e7e444cadb8d9138a2c818f705160170c3cc33d2bfb6c94538a70ec3e
   languageName: node
   linkType: hard
 
@@ -5447,61 +5679,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.0.2":
-  version: 4.12.0
-  resolution: "rollup@npm:4.12.0"
-  dependencies:
-    "@rollup/rollup-android-arm-eabi": "npm:4.12.0"
-    "@rollup/rollup-android-arm64": "npm:4.12.0"
-    "@rollup/rollup-darwin-arm64": "npm:4.12.0"
-    "@rollup/rollup-darwin-x64": "npm:4.12.0"
-    "@rollup/rollup-linux-arm-gnueabihf": "npm:4.12.0"
-    "@rollup/rollup-linux-arm64-gnu": "npm:4.12.0"
-    "@rollup/rollup-linux-arm64-musl": "npm:4.12.0"
-    "@rollup/rollup-linux-riscv64-gnu": "npm:4.12.0"
-    "@rollup/rollup-linux-x64-gnu": "npm:4.12.0"
-    "@rollup/rollup-linux-x64-musl": "npm:4.12.0"
-    "@rollup/rollup-win32-arm64-msvc": "npm:4.12.0"
-    "@rollup/rollup-win32-ia32-msvc": "npm:4.12.0"
-    "@rollup/rollup-win32-x64-msvc": "npm:4.12.0"
-    "@types/estree": "npm:1.0.5"
-    fsevents: "npm:~2.3.2"
-  dependenciesMeta:
-    "@rollup/rollup-android-arm-eabi":
-      optional: true
-    "@rollup/rollup-android-arm64":
-      optional: true
-    "@rollup/rollup-darwin-arm64":
-      optional: true
-    "@rollup/rollup-darwin-x64":
-      optional: true
-    "@rollup/rollup-linux-arm-gnueabihf":
-      optional: true
-    "@rollup/rollup-linux-arm64-gnu":
-      optional: true
-    "@rollup/rollup-linux-arm64-musl":
-      optional: true
-    "@rollup/rollup-linux-riscv64-gnu":
-      optional: true
-    "@rollup/rollup-linux-x64-gnu":
-      optional: true
-    "@rollup/rollup-linux-x64-musl":
-      optional: true
-    "@rollup/rollup-win32-arm64-msvc":
-      optional: true
-    "@rollup/rollup-win32-ia32-msvc":
-      optional: true
-    "@rollup/rollup-win32-x64-msvc":
-      optional: true
-    fsevents:
-      optional: true
-  bin:
-    rollup: dist/bin/rollup
-  checksum: 10c0/1650168231ae8e2bd6fb4d82cc232e53b5c0fe67895188fa683370c9bd3f1febaa28e45c6b100cea333e54f8f5fae6f4d0eea7d86256ec2cc3e38212c55796d6
-  languageName: node
-  linkType: hard
-
-"rollup@npm:^4.2.0":
+"rollup@npm:^4.0.2, rollup@npm:^4.2.0":
   version: 4.13.0
   resolution: "rollup@npm:4.13.0"
   dependencies:
@@ -6012,23 +6190,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.2.2":
+"typescript@npm:^5.2.2, typescript@npm:^5.3.3":
   version: 5.4.2
   resolution: "typescript@npm:5.4.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/583ff68cafb0c076695f72d61df6feee71689568179fb0d3a4834dac343df6b6ed7cf7b6f6c801fa52d43cd1d324e2f2d8ae4497b09f9e6cfe3d80a6d6c9ca52
-  languageName: node
-  linkType: hard
-
-"typescript@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "typescript@npm:5.3.3"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/e33cef99d82573624fc0f854a2980322714986bc35b9cb4d1ce736ed182aeab78e2cb32b385efa493b2a976ef52c53e20d6c6918312353a91850e2b76f1ea44f
   languageName: node
   linkType: hard
 
@@ -6042,23 +6210,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.3.3#optional!builtin<compat/typescript>":
   version: 5.4.2
   resolution: "typescript@patch:typescript@npm%3A5.4.2#optional!builtin<compat/typescript>::version=5.4.2&hash=d69c25"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/22e2f213c3ffe5960c5eaec6c95c04e01858fed57a94be250746f540b935b2c18c3c3fc80d3ab65d28c0aba1eb76284557ba3bf521d28caee811c44ba2b648f9
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@npm%3A^5.3.3#optional!builtin<compat/typescript>":
-  version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 10c0/1d0a5f4ce496c42caa9a30e659c467c5686eae15d54b027ee7866744952547f1be1262f2d40de911618c242b510029d51d43ff605dba8fb740ec85ca2d3f9500
   languageName: node
   linkType: hard
 
@@ -6258,15 +6416,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-semver@npm:semver@=5.5.0":
-  version: 5.5.0
-  resolution: "semver@npm:5.5.0"
-  bin:
-    semver: ./bin/semver
-  checksum: 10c0/5f08215ed81dad3df3f0f22edc2744a46c705782a1630154b98a6d97ab49eeac82d10f0ad3676940d5996fc288744ce997c1c09b09bc01eada3a1efa7292d701
-  languageName: node
-  linkType: hard
-
 "vscode-textmate@npm:9.0.0":
   version: 9.0.0
   resolution: "vscode-textmate@npm:9.0.0"
@@ -6281,31 +6430,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vscode-ws-jsonrpc@npm:~3.1.0":
-  version: 3.1.0
-  resolution: "vscode-ws-jsonrpc@npm:3.1.0"
+"vscode-ws-jsonrpc@npm:~3.3.1":
+  version: 3.3.1
+  resolution: "vscode-ws-jsonrpc@npm:3.3.1"
   dependencies:
     vscode-jsonrpc: "npm:~8.2.0"
-  checksum: 10c0/9927e51c3fe5492a93208dfb01c6f3aa137573134e21cd81040a3924bcb49cb35ca7043df55e6ec42e25b6a0e9cd4f58cb09ae145667a912918198f8118dae68
+  checksum: 10c0/1843ffa3173bf2f458905aac94335f2b7dbdff1d3326903514a96dc9ec5132e80b6fbb5eb0e8eae27619fc580168fbaa6ab21bf01551eb754bb378cf4f94c3e3
   languageName: node
   linkType: hard
 
-"vscode@npm:@codingame/monaco-vscode-api@1.85.6, vscode@npm:@codingame/monaco-vscode-api@>=1.85.0 <1.86.0":
-  version: 1.85.6
-  resolution: "@codingame/monaco-vscode-api@npm:1.85.6"
+"vscode@npm:@codingame/monaco-vscode-api@4.2.1, vscode@npm:@codingame/monaco-vscode-api@~4.2.0, vscode@npm:@codingame/monaco-vscode-api@~4.2.1":
+  version: 4.2.1
+  resolution: "@codingame/monaco-vscode-api@npm:4.2.1"
   dependencies:
-    "@codingame/monaco-vscode-base-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-environment-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-extensions-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-files-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-host-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-layout-service-override": "npm:1.85.6"
-    "@codingame/monaco-vscode-quickaccess-service-override": "npm:1.85.6"
-    monaco-editor: "npm:0.45.0"
-    vscode-semver: "npm:semver@=5.5.0"
-  bin:
-    monaco-treemending: monaco-treemending.js
-  checksum: 10c0/1bc5f652e38589d0e015ba44ea4331806a61a78e76906632ac6ad20832818083b313ff2f72138cdf90b67cfbdbcd10be672b571269c99dcf5acb6aaeac1e680f
+    "@codingame/monaco-vscode-base-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-environment-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-extensions-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-files-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-host-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-layout-service-override": "npm:4.2.1"
+    "@codingame/monaco-vscode-quickaccess-service-override": "npm:4.2.1"
+  checksum: 10c0/c2145ce4e4841d15912362ed029584bc8e25b96aae0e0c96fc67ed8b0bfef31a93c2036d94e33a3c91bb22f4a250e2088f0d2ab4b0aba7462d392df11a7cbdac
   languageName: node
   linkType: hard
 
@@ -6314,16 +6459,30 @@ __metadata:
   resolution: "web-frontend@workspace:packages/web-frontend"
   dependencies:
     "@chakra-ui/react": "npm:^2.8.2"
-    "@codingame/monaco-vscode-configuration-service-override": "npm:~1.85.0"
-    "@codingame/monaco-vscode-editor-service-override": "npm:~1.85.0"
-    "@codingame/monaco-vscode-json-default-extension": "npm:~1.85.0"
-    "@codingame/monaco-vscode-keybindings-service-override": "npm:~1.85.0"
-    "@codingame/monaco-vscode-python-default-extension": "npm:~1.85.0"
+    "@codingame/esbuild-import-meta-url-plugin": "npm:^1.0.2"
+    "@codingame/monaco-vscode-configuration-service-override": "npm:~4.2.0"
+    "@codingame/monaco-vscode-files-service-override": "npm:~4.2.0"
+    "@codingame/monaco-vscode-groovy-default-extension": "npm:~4.2.0"
+    "@codingame/monaco-vscode-javascript-default-extension": "npm:~4.2.0"
+    "@codingame/monaco-vscode-json-default-extension": "npm:~4.2.0"
+    "@codingame/monaco-vscode-keybindings-service-override": "npm:~4.2.0"
+    "@codingame/monaco-vscode-lifecycle-service-override": "npm:~4.2.0"
+    "@codingame/monaco-vscode-localization-service-override": "npm:~4.2.0"
+    "@codingame/monaco-vscode-python-default-extension": "npm:~4.2.0"
+    "@codingame/monaco-vscode-standalone-json-language-features": "npm:~4.2.0"
+    "@codingame/monaco-vscode-standalone-languages": "npm:~4.2.0"
+    "@codingame/monaco-vscode-standalone-typescript-language-features": "npm:~4.2.0"
+    "@codingame/monaco-vscode-textmate-service-override": "npm:~4.2.0"
+    "@codingame/monaco-vscode-theme-defaults-default-extension": "npm:~4.2.0"
+    "@codingame/monaco-vscode-theme-service-override": "npm:~4.2.0"
+    "@codingame/monaco-vscode-typescript-basics-default-extension": "npm:~4.2.0"
+    "@codingame/monaco-vscode-typescript-language-features-default-extension": "npm:~4.2.0"
     "@emotion/react": "npm:^11.11.4"
     "@emotion/styled": "npm:^11.11.5"
-    "@typefox/monaco-editor-react": "npm:^2.6.0"
+    "@typefox/monaco-editor-react": "npm:^3.2.0"
     "@types/react": "npm:^18.2.64"
     "@types/react-dom": "npm:^18.2.21"
+    "@types/vscode": "npm:^1.88.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.1.1"
     "@typescript-eslint/parser": "npm:^7.1.1"
     "@vitejs/plugin-react": "npm:^4.2.1"
@@ -6332,14 +6491,16 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.6.0"
     eslint-plugin-react-refresh: "npm:^0.4.5"
     framer-motion: "npm:^11.1.0"
-    monaco-editor: "npm:@codingame/monaco-editor-treemended@>=1.85.0 <1.86.0"
+    monaco-editor: "npm:@codingame/monaco-vscode-editor-api@~4.2.0"
     monaco-editor-workers: "npm:^0.45.0"
-    monaco-editor-wrapper: "npm:^3.6.0"
+    monaco-editor-wrapper: "npm:^4.2.0"
+    monaco-languageclient: "npm:~8.3.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
     react-icons: "npm:^5.0.1"
     typescript: "npm:^5.2.2"
     vite: "npm:^5.1.6"
+    vscode: "npm:@codingame/monaco-vscode-api@~4.2.0"
   languageName: unknown
   linkType: soft
 

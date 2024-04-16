@@ -14,6 +14,7 @@ import { CADScriptEditor } from './components/CadScriptEditor'
 import { CadScriptNavbar } from './components/Navbar'
 import { SketchDisplay } from './components/SketchDisplay'
 import { Footer } from './components/Footer'
+import { JSONViewer } from './components/JSONViewer'
 
 function App() {
 	return (
@@ -32,7 +33,7 @@ function App() {
 
 						<TabPanels>
 							<TabPanel>
-								<p>//TODO</p>
+								<JSONViewer></JSONViewer>
 							</TabPanel>
 							<TabPanel>
 								<AspectRatio>

@@ -2,11 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { ChakraProvider } from '@chakra-ui/react'
+import { WorkspaceContextProvider } from './components/WorkspaceContext/WorkspaceContextProvider.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<ChakraProvider>
-			<App />
+			<WorkspaceContextProvider>
+				<App />
+			</WorkspaceContextProvider>
 		</ChakraProvider>
 	</React.StrictMode>
 )
