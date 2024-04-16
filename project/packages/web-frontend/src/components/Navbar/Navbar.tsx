@@ -1,11 +1,11 @@
-import { Box, HStack } from '@chakra-ui/react'
+import { Box, HStack, Heading } from '@chakra-ui/react'
 import React from 'react'
 
 export const CadScriptNavbar: React.FC = () => {
 	return (
-		<Box width="100%" bg={'gray'}>
+		<Box width="100%" padding={'5'}>
 			<HStack spacing="24px">
-				<Box>CadScript Cloud</Box>
+				<Heading>CadScript Cloud</Heading>
 			</HStack>
 		</Box>
 	)

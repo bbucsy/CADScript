@@ -1,4 +1,15 @@
-import { AspectRatio, Box, Center, Container, SimpleGrid } from '@chakra-ui/react'
+import {
+	AspectRatio,
+	Box,
+	Center,
+	Container,
+	SimpleGrid,
+	Tab,
+	TabList,
+	TabPanel,
+	TabPanels,
+	Tabs
+} from '@chakra-ui/react'
 import { CADScriptEditor } from './components/CadScriptEditor'
 import { CadScriptNavbar } from './components/Navbar'
 import { SketchDisplay } from './components/SketchDisplay'
@@ -8,14 +19,28 @@ function App() {
 	return (
 		<>
 			<CadScriptNavbar></CadScriptNavbar>
-			<Container padding={'10px'}>
+			<Container maxW={'container.2xl'}>
 				<SimpleGrid columns={2} spacing={10}>
 					<Box>
 						<CADScriptEditor></CADScriptEditor>
 					</Box>
-					<AspectRatio>
-						<SketchDisplay></SketchDisplay>
-					</AspectRatio>
+					<Tabs>
+						<TabList>
+							<Tab>JSON</Tab>
+							<Tab>Graphical</Tab>
+						</TabList>
+
+						<TabPanels>
+							<TabPanel>
+								<p>//TODO</p>
+							</TabPanel>
+							<TabPanel>
+								<AspectRatio>
+									<SketchDisplay></SketchDisplay>
+								</AspectRatio>
+							</TabPanel>
+						</TabPanels>
+					</Tabs>
 				</SimpleGrid>
 			</Container>
 			<Center>

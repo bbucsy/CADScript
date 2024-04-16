@@ -20,7 +20,7 @@
     "@emotion/styled": "^11.11.5",
     "@typefox/monaco-editor-react": "^2.6.0",
     "cad-script": "workspace:^",
-    "framer-motion": "^11.0.25",
+    "framer-motion": "^11.1.0",
     "monaco-editor": "npm:@codingame/monaco-editor-treemended@>=1.85.0 <1.86.0",
     "monaco-editor-workers": "^0.45.0",
     "monaco-editor-wrapper": "^3.6.0",

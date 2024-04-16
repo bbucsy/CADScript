@@ -30,7 +30,7 @@ export const CADScriptEditor: React.FC = () => {
 				languageId: 'cad-script',
 				useDiffEditor: false,
 				code: logMessage,
-				themeData: { base: 'vs-dark', inherit: true, rules: rules, colors: colors },
+				themeData: { base: 'vs', inherit: true, rules: rules, colors: colors },
 				editorOptions: {
 					'semanticHighlighting.enabled': true
 				},
