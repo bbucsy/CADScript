@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useWorkspaceContext } from '../WorkspaceContext'
 import { Box } from '@chakra-ui/react'
+import { syntaxHighlight } from './util'
+import './temp.css'
 
 export const JSONViewer: React.FC = () => {
 	const [jsonData, setJSONData] = useState<object>({})
@@ -17,7 +19,11 @@ export const JSONViewer: React.FC = () => {
 
 	return (
 		<Box maxHeight={'75vh'} bg={'lightgray'} overflowY={'scroll'} padding={3}>
-			<Box as="pre">{JSON.stringify(jsonData, null, 2)}</Box>
+			<pre
+				dangerouslySetInnerHTML={{
+					__html: syntaxHighlight(JSON.stringify(jsonData, undefined, 4))
+				}}
+			/>
 		</Box>
 	)
 }
