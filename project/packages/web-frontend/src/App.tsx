@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+	AspectRatio,
+	Box,
+	Center,
+	Container,
+	SimpleGrid,
+	Tab,
+	TabList,
+	TabPanel,
+	TabPanels,
+	Tabs
+} from '@chakra-ui/react'
+import { CADScriptEditor } from './components/CadScriptEditor'
+import { CadScriptNavbar } from './components/Navbar'
+import { SketchDisplay } from './components/SketchDisplay'
+import { Footer } from './components/Footer'
+import { JSONViewer } from './components/JSONViewer'
 
 function App() {
-  const [count, setCount] = useState(0)
+	return (
+		<>
+			<CadScriptNavbar></CadScriptNavbar>
+			<Container maxW={'container.2xl'}>
+				<SimpleGrid columns={2} spacing={10}>
+					<Box>
+						<CADScriptEditor></CADScriptEditor>
+					</Box>
+					<Tabs>
+						<TabList>
+							<Tab>JSON</Tab>
+							<Tab>Graphical</Tab>
+						</TabList>
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+						<TabPanels>
+							<TabPanel>
+								<JSONViewer></JSONViewer>
+							</TabPanel>
+							<TabPanel>
+								<AspectRatio>
+									<SketchDisplay></SketchDisplay>
+								</AspectRatio>
+							</TabPanel>
+						</TabPanels>
+					</Tabs>
+				</SimpleGrid>
+			</Container>
+			<Center>
+				<Footer />
+			</Center>
+		</>
+	)
 }
 
 export default App
