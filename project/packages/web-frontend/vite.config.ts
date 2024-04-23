@@ -7,14 +7,15 @@ export default defineConfig({
 	build: {
 		target: 'esnext'
 	},
+	worker: {
+		format: 'es'
+	},
 	resolve: {
 		dedupe: ['monaco-editor', 'vscode']
 	},
 	optimizeDeps: {
 		esbuildOptions: {
-			plugins: [
-				importMetaUrlPlugin
-			]
+			plugins: [importMetaUrlPlugin]
 		}
 	},
 	define: {
