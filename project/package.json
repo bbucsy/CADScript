@@ -9,6 +9,7 @@
     "shared": "yarn workspace shared",
     "lang": "yarn workspace cad-script",
     "cli": "yarn workspace cli",
-    "web": "yarn workspace web-frontend"
+    "web": "yarn workspace web-frontend",
+    "solver": "yarn workspace solver"
   }
 }
