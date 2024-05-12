@@ -25,8 +25,8 @@ import { EntityRepository } from '../../utils/entity-repository.js'
 import { CadScriptExpressionEnv } from '../cad-script-expression.js'
 import { MeasurementCompuitation } from '../cad-script-measurement.js'
 import { interpolateIDString } from '../cad-script-naming.js'
+
 import {
-	ConstraintType,
 	SimpleArc,
 	SimpleCircle,
 	SimpleConstraint,
@@ -34,7 +34,7 @@ import {
 	SimpleEntity,
 	SimpleLine,
 	SimplePoint
-} from './simple-model-description.js'
+} from 'shared'
 
 export class SimpleModelDescriptionBuilder {
 	private unitConverter: MeasurementCompuitation
@@ -181,7 +181,7 @@ export class SimpleModelDescriptionBuilder {
 		if (typeof line.length !== 'undefined') {
 			const length = this.unitConverter.computeLenghtMeasurement(line.length, ctx)
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.DISTANCE,
+				type: "DISTANCE",
 				originalEntity: lineRef,
 				parameters: [iP1, iP2, length]
 			})
@@ -190,7 +190,7 @@ export class SimpleModelDescriptionBuilder {
 		// Addd horizontal constraint if necessary
 		if (line.baseLineConstraint === 'horizontal') {
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.HORIZONTAL,
+				type: "HORIZONTAL",
 				originalEntity: lineRef,
 				parameters: [iP1, iP2]
 			})
@@ -199,7 +199,7 @@ export class SimpleModelDescriptionBuilder {
 		// Addd vertical constraint if necessary
 		if (line.baseLineConstraint === 'vertical') {
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.VERTICAL,
+				type: "VERTICAL",
 				originalEntity: lineRef,
 				parameters: [iP1, iP2]
 			})
@@ -239,7 +239,7 @@ export class SimpleModelDescriptionBuilder {
 		if (typeof circle.radius !== 'undefined') {
 			const radius = this.unitConverter.computeLenghtMeasurement(circle.radius, ctx)
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.RADIUS,
+				type: "RADIUS",
 				parameters: [eRef, radius]
 			})
 		}
@@ -279,7 +279,7 @@ export class SimpleModelDescriptionBuilder {
 		if (typeof arc.radius !== 'undefined') {
 			const radius = this.unitConverter.computeLenghtMeasurement(arc.radius, ctx)
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.RADIUS,
+				type: "RADIUS",
 				parameters: [eRef, radius]
 			})
 		}
@@ -301,7 +301,7 @@ export class SimpleModelDescriptionBuilder {
 			}
 
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.ANGLE,
+				type: "ANGLE",
 				parameters: [l1, l2, angle]
 			})
 		}
@@ -316,7 +316,7 @@ export class SimpleModelDescriptionBuilder {
 			}
 
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.SAMELENGTH,
+				type: "SAMELENGTH",
 				parameters: [l1, l2]
 			})
 		}
@@ -331,7 +331,7 @@ export class SimpleModelDescriptionBuilder {
 			}
 
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.PERPENDICULAR,
+				type: "PERPENDICULAR",
 				parameters: [l1, l2]
 			})
 		}
@@ -345,7 +345,7 @@ export class SimpleModelDescriptionBuilder {
 				return
 			}
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.DISTANCE,
+				type: "DISTANCE",
 				parameters: [iP1, iP2, value]
 			})
 		}
@@ -359,7 +359,7 @@ export class SimpleModelDescriptionBuilder {
 			}
 
 			this.constrainRespository.addAnonym({
-				type: ConstraintType.RADIUS,
+				type: "RADIUS",
 				parameters: [iEntity, radiusValue]
 			})
 		}
@@ -377,8 +377,8 @@ export class SimpleModelDescriptionBuilder {
 				this.constrainRespository.addAnonym({
 					type:
 						constraint.baseLineConstraint === 'horizontal'
-							? ConstraintType.HORIZONTAL
-							: ConstraintType.VERTICAL,
+							? "HORIZONTAL"
+							: "VERTICAL",
 					parameters: [line.p1, line.p2],
 					originalEntity: l1
 				})

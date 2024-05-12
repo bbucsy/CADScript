@@ -1,11 +1,12 @@
-FROM node:20.11.1 as deps
+FROM node:20.11.1 as build
 WORKDIR /src
 RUN apt-get update && apt-get upgrade -y
 COPY . .
-RUN yarn set version 4.1.0 && yarn install
-CMD ["/bin/bash"]
+RUN corepack enable && yarn set version 4.1.0
 
-FROM deps as build
+RUN yarn --network-timeout 1000000000
+
+RUN yarn workspace shared build
 # Build Language 
 RUN yarn workspace cad-script langium:generate && yarn workspace cad-script build:lib
 # Build CLI

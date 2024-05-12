@@ -17,6 +17,7 @@
   "include": [
      "src/**/*.ts"
   ],
+  "references": [{"path": "../shared"}],
   "exclude": [
      "out",
      "node_modules"

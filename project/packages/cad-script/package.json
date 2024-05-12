@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "langium": "~3.0.0",
+        "shared": "workspace:^",
         "vscode-languageclient": "~9.0.1",
         "vscode-languageserver": "~9.0.1"
     },

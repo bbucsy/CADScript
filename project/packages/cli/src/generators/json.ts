@@ -1,7 +1,7 @@
 import * as path from 'node:path'
 import * as fs from 'node:fs'
 import { extractDestinationAndName } from '../cli-util.js'
-import { SimpleDescription } from 'cad-script/lib/lib.js'
+import { SimpleDescription } from 'shared/dist/index.js';
 
 export function writeJSON(model: SimpleDescription, filePath: string, destination: string | undefined): string {
 	const data = extractDestinationAndName(filePath, destination)

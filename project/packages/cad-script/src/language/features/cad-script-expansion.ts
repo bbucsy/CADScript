@@ -2,7 +2,7 @@ import { CadScriptServices } from '../cad-script-module.js'
 import { Model } from '../generated/ast.js';
 import { MeasurementCompuitation } from './cad-script-measurement.js';
 import { SimpleModelDescriptionBuilder } from './smd/simple-model-builder.js';
-import { SimpleDescription } from './smd/simple-model-description.js';
+import { SimpleDescription } from 'shared';
 
 
 /**

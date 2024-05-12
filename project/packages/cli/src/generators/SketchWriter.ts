@@ -2,7 +2,7 @@ import * as path from 'node:path'
 import * as fs from 'node:fs'
 import { extractDestinationAndName } from '../cli-util.js'
 
-import { ConstraintType, SimpleConstraint, SimpleDescription, SimpleEntity, SimplePoint } from 'cad-script/lib/lib.js'
+import {  SimpleConstraint, SimpleDescription, SimpleEntity, SimplePoint } from 'shared/dist/index.js'
 import { CompositeGeneratorNode, NL, toString } from 'langium/generate'
 
 export class SketchWriter {
@@ -102,47 +102,47 @@ export class SketchWriter {
 		node.append('constrain ')
 
 		switch (c.type) {
-			case ConstraintType.ANGLE:
+			case "ANGLE":
 				{
 					const e1 = this.entityNames.get(c.parameters[0])
 					const e2 = this.entityNames.get(c.parameters[1])
 					node.append(`${c.parameters[2]} ° angle to ${e1} and ${e2}`)
 				}
 				break
-			case ConstraintType.SAMELENGTH:
+			case "SAMELENGTH":
 				{
 					const e1 = this.entityNames.get(c.parameters[0])
 					const e2 = this.entityNames.get(c.parameters[1])
 					node.append(`samelength to ${e1} and ${e2}`)
 				}
 				break
-			case ConstraintType.PERPENDICULAR:
+			case "PERPENDICULAR":
 				{
 					const e1 = this.entityNames.get(c.parameters[0])
 					const e2 = this.entityNames.get(c.parameters[1])
 					node.append(`perpendicular to ${e1} and ${e2}`)
 				}
 				break
-			case ConstraintType.DISTANCE:
+			case "DISTANCE":
 				{
 					const p1 = this.pointNames.get(c.parameters[0])
 					const p2 = this.pointNames.get(c.parameters[1])
 					node.append(`${c.parameters[2]} mm distance to ${p1} and ${p2}`)
 				}
 				break
-			case ConstraintType.HORIZONTAL:
+			case "HORIZONTAL":
 				{
 					const e1 = this.entityNames.get(c.parameters[0])
 					node.append(`horizontal ${e1}`)
 				}
 				break
-			case ConstraintType.VERTICAL:
+			case "VERTICAL":
 				{
 					const e1 = this.entityNames.get(c.parameters[0])
 					node.append(`vertical ${e1}`)
 				}
 				break
-			case ConstraintType.RADIUS:
+			case "RADIUS":
 				{
 					const e1 = this.entityNames.get(c.parameters[0])
 					node.append(`${c.parameters[1]} mm radius to ${e1}`)
