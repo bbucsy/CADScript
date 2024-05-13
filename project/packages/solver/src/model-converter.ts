@@ -3,6 +3,7 @@ import { Drawable, SimpleDescription } from 'shared'
 
 export const SimpleDescription2SketchPrimitive = async (model: SimpleDescription): Promise<SketchPrimitive[]> => {
 	const sketchPrimitives: Array<SketchPrimitive> = []
+	const latePush: Array<SketchPrimitive> = []
 	// convert points into sketch primitive
 
 	const pointReference = (ref: number): string => `${ref}`
@@ -57,9 +58,9 @@ export const SimpleDescription2SketchPrimitive = async (model: SimpleDescription
 				start_angle: 1,
 				end_angle: 1
 			})
-			sketchPrimitives.push({
+			latePush.push({
 				type: 'arc_rules',
-				id: `${sketchPrimitives.length}`,
+				id: `-`,
 				a_id: arc_id
 			})
 		}
@@ -129,6 +130,12 @@ export const SimpleDescription2SketchPrimitive = async (model: SimpleDescription
 				l2_id: entityReference(constraint.l2)
 			})
 		}
+	})
+
+	latePush.forEach(primitive => {
+		const copy = { ...primitive }
+		copy.id = `${sketchPrimitives.length}`
+		sketchPrimitives.push(copy)
 	})
 
 	return sketchPrimitives
