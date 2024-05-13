@@ -1,5 +1,5 @@
-import { SketchPrimitive } from '@salusoft89/planegcs'
-import { SimpleDescription } from 'shared'
+import { SketchPoint, SketchPrimitive } from '@salusoft89/planegcs'
+import { Drawable, SimpleDescription } from 'shared'
 
 export const SimpleDescription2SketchPrimitive = async (model: SimpleDescription): Promise<SketchPrimitive[]> => {
 	const sketchPrimitives: Array<SketchPrimitive> = []
@@ -46,15 +46,21 @@ export const SimpleDescription2SketchPrimitive = async (model: SimpleDescription
 		}
 
 		if (entity.type == 'ARC') {
+			const arc_id = `${sketchPrimitives.length}`
 			sketchPrimitives.push({
 				type: 'arc',
-				id: `${sketchPrimitives.length}`,
+				id: arc_id,
 				c_id: pointReference(entity.p2),
 				start_id: pointReference(entity.p1),
 				end_id: pointReference(entity.p3),
 				radius: 1,
-				start_angle: 0,
-				end_angle: Math.PI / 2
+				start_angle: 1,
+				end_angle: 1
+			})
+			sketchPrimitives.push({
+				type: 'arc_rules',
+				id: `${sketchPrimitives.length}`,
+				a_id: arc_id
 			})
 		}
 	})
@@ -126,4 +132,69 @@ export const SimpleDescription2SketchPrimitive = async (model: SimpleDescription
 	})
 
 	return sketchPrimitives
+}
+
+export const Sketch2Drawable = (sketch: SketchPrimitive[]): Drawable[] => {
+	const result: Drawable[] = []
+
+	const pLookUp = (p_id: string): SketchPoint => {
+		const res = sketch.find(s => {
+			return s.type == 'point' && s.id == p_id
+		}) as SketchPoint
+
+		if (typeof res === 'undefined') {
+			throw new Error(`Cannot find point with id(${p_id}) in sketch`)
+		}
+		return res
+	}
+
+	sketch.forEach(primitve => {
+		if (primitve.type == 'point') {
+			result.push({
+				type: 'POINT',
+				x: primitve.x,
+				y: primitve.y
+			})
+		}
+
+		if (primitve.type == 'line') {
+			const p1 = pLookUp(primitve.p1_id)
+			const p2 = pLookUp(primitve.p2_id)
+			result.push({
+				type: 'LINE',
+				x1: p1.x,
+				y1: p1.y,
+				x2: p2.x,
+				y2: p2.y
+			})
+		}
+
+		if (primitve.type == 'arc') {
+			const start = pLookUp(primitve.start_id)
+			const center = pLookUp(primitve.c_id)
+			const end = pLookUp(primitve.end_id)
+			result.push({
+				type: 'ARC',
+				radius: primitve.radius,
+				xs: start.x,
+				ys: start.y,
+				xc: center.x,
+				yc: center.y,
+				xe: end.x,
+				ye: end.y
+			})
+		}
+
+		if (primitve.type == 'circle') {
+			const c = pLookUp(primitve.c_id)
+			result.push({
+				type: 'CIRCLE',
+				radius: primitve.radius,
+				x: c.x,
+				y: c.y
+			})
+		}
+	})
+
+	return result
 }

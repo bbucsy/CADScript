@@ -27,13 +27,17 @@ function App() {
 					</Box>
 					<Tabs>
 						<TabList>
-							<Tab>JSON</Tab>
+							<Tab>Intermediate Representation</Tab>
+							<Tab>PlaneGCS Input</Tab>
 							<Tab>Graphical</Tab>
 						</TabList>
 
 						<TabPanels>
 							<TabPanel>
 								<JSONViewer></JSONViewer>
+							</TabPanel>
+							<TabPanel>
+								<JSONViewer convertURL="http://localhost:3000/sd2sp"></JSONViewer>
 							</TabPanel>
 							<TabPanel>
 								<AspectRatio>
