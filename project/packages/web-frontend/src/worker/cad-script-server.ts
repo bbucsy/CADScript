@@ -24,8 +24,6 @@ const services = createCadScriptServices({ connection, ...EmptyFileSystem })
 
 const shared = services.shared
 
-console.log('Hay hay! Worker desu')
-
 // Start the language server with the shared services
 startLanguageServer(shared)
 

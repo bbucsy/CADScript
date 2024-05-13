@@ -1,5 +1,6 @@
 {
   "name": "solver",
+  "type": "module",
   "packageManager": "yarn@4.1.0",
   "devDependencies": {
     "@types/express": "^4.17.21",
