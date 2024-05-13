@@ -76,18 +76,13 @@ app.post(
 			for (const alg of algorithms) {
 				status = gcs_wrapper.solve(alg)
 				if (status == 0) {
-					gcs_wrapper.apply_solution()
 					break
 				}
 			}
-		} else {
-			gcs_wrapper.apply_solution()
 		}
 
+		gcs_wrapper.apply_solution()
 		const dof = gcs_wrapper.gcs.dof()
-		if (status == 0) {
-			gcs_wrapper.apply_solution()
-		}
 
 		const solved_sketch = gcs_wrapper.sketch_index.get_primitives()
 		console.log(gcs_wrapper.get_gcs_redundant_constraints())
