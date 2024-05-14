@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    image: bbucy/cadcloud-web
+    ports:
+      - 3001:80
+    
+  solver:
+    build: 
+      context: .
+      dockerfile: Dockerfile.solver
+    image: bbucsy/cadcloud-solver
+    ports: 
+      - 3000:3000
+

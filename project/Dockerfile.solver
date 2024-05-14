@@ -1,0 +1,19 @@
+FROM node:20.11.1 as build
+WORKDIR /src
+RUN apt-get update && apt-get upgrade -y
+COPY . .
+RUN corepack enable && yarn set version 4.1.0
+
+RUN yarn --network-timeout 1000000000
+
+RUN yarn workspace shared build
+# Build solver
+RUN yarn workspace solver build
+CMD ["/bin/bash"]
+
+
+FROM node:20.11.1-alpine
+WORKDIR /app
+COPY --from=build /src/ /app
+EXPOSE 3000
+CMD [ "node", "packages/solver/dist/index.js" ]

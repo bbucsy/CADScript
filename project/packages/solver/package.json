@@ -6,6 +6,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/node": "^20.12.11",
+    "tsup": "^8.0.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
@@ -15,7 +16,7 @@
     "shared": "workspace:^"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsup",
     "serve": "node dist/index.js"
   }
 }

@@ -6515,6 +6515,7 @@ __metadata:
     cors: "npm:^2.8.5"
     express: "npm:^4.19.2"
     shared: "workspace:^"
+    tsup: "npm:^8.0.2"
     typescript: "npm:^5.4.5"
   languageName: unknown
   linkType: soft
