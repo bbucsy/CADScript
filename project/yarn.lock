@@ -6416,6 +6416,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "shared@workspace:packages/shared"
   dependencies:
+    tsup: "npm:^8.0.2"
     typescript: "npm:^5.4.5"
   languageName: unknown
   linkType: soft
