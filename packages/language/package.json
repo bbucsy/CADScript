@@ -1,0 +1,29 @@
+{
+    "name": "@cadscript/language",
+    "description": "Parser for CAD Script files",
+    "version": "0.0.1",
+    "files": [
+        "out",
+        "src"
+    ],
+    "type": "module",
+    "scripts": {
+        "build": "tsc -b tsconfig.json",
+        "watch": "tsc -b tsconfig.json --watch",
+        "lint": "eslint src --ext ts",
+        "langium:generate": "langium generate",
+        "langium:watch": "langium generate --watch",
+        "genbuild": "npm run langium:generate && npm run build"
+    },
+    "dependencies": {
+        "langium": "~3.2.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.7.4",
+        "@typescript-eslint/eslint-plugin": "~7.3.1",
+        "@typescript-eslint/parser": "~7.3.1",
+        "eslint": "~8.57.0",
+        "langium-cli": "~3.2.0",
+        "typescript": "^5.6.2"
+    }
+}
