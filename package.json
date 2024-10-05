@@ -1,0 +1,27 @@
+{
+  "name": "cadlang",
+  "version": "1.0.0",
+  "description": "Domain Specific Language and tools for helping with 2D computer aided design processes",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc --build --verbose tsconfig.build.json",
+    "start:solver": "npm run start:dev -w packages/solver-service"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbucsy/CADLang.git"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "typescript": "^5.6.2"
+  },
+  "author": "Benjamin Bucsy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbucsy/CADLang/issues"
+  },
+  "homepage": "https://github.com/bbucsy/CADLang#readme",
+  "private": true
+}
