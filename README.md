@@ -2,7 +2,7 @@
 
 This project is part of my Master's thesis: **Design and Implementation of a Domain-Specific Language and Tooling for 2D Computer-Aided Design**.
 
-The project includes a web-based IDE for a language called CAD Script. CAD Script is a declarative language for describing 2D geometries, including basic shapes and constraints. You can find more details about the usage of the language [here](docs/usage.md)
+The project includes a web-based IDE for a language called CAD Script. CAD Script is a declarative language for describing 2D geometries, including basic shapes and constraints. You can find more details about the usage of the language [docs](docs/usage.md) or [examples](docs/examples.md)
 
 ## Running with docker (recommended)
 

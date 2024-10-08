@@ -44,10 +44,12 @@ export class SolverService {
 
     // solve with different solvers
 
+    Logger.debug('Solving with DogLeg');
     let status = gcs_wrapper.solve(Algorithm.DogLeg);
 
     if (status !== 0) {
       for (const alg of algorithms) {
+        Logger.debug(`Solving with ${alg}`);
         status = gcs_wrapper.solve(alg);
         if (status == 0) {
           break;

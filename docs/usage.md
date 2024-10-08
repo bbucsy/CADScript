@@ -6,7 +6,7 @@ CAD Script is a declarative language used to create 2D drafts with precision, wi
 
 he main unit of work in CAD Script is a *Sketch*. It contains parameters, entities, and constraints. You can define a sketch like this:
 
-```
+```Java
 Sketch Main {
  //
 }
@@ -20,21 +20,25 @@ The entities of the imported sketch can be referenced in the parent sketch via t
 
 Example:
 
-```mathematica
+```Java
 Sketch Main {
  // Regular triangle with side length 10
  import RegularTriangle RT1
 
  // Regular triangle with side length 10
  import RegularTriangle RT2 with SIDE_LENGTH = 20 
+
+ // Line referencing two points from the instances
+ Line from: RT1->C to: RT2->C
 }
 
 partial Sketch RegularTriangle{
  parameter SIDE_LENGTH default: 10
-
- // code for describing a regular triangle
+ Point C
+ // ...code for describing a regular triangle
 }
 ```
+
 
 **Rules for Sketches:** A valid document must have exactly one main sketch (a sketch that is not partial), and only partial sketches can be imported.
 
