@@ -299,3 +299,18 @@ You can dynamically reference entities outside of loops
     }
 
 ```
+
+### Helper Decorator
+
+Some entities are only needed for reference by others, but displaying them in the final draft is not necessary. For these cases, a decorator can be applied to indicate that they should not be included in the final draft.
+
+Example:
+
+```mathematica
+@helper
+Point C at: {0,0}
+
+Circle cetner: C
+```
+
+In this example, the circle's center point will be constrained to the origin, but only the circle itself will be drawn.
