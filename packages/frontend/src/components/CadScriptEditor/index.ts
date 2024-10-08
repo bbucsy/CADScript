@@ -1,1 +1,1 @@
-export * from "./CadScriptEditor";
+export * from './Editor'

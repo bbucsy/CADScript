@@ -1,35 +1,15 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import { ChakraProvider } from "@chakra-ui/react";
-import "./index.css";
-import { WorkspaceContextProvider } from "./providers/WorkspaceContext/WorkspaceContextProvider.tsx";
-import { useWorkerFactory } from "monaco-editor-wrapper/workerFactory";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import { ChakraProvider } from '@chakra-ui/react'
+import { WorkspaceContextProvider } from './components/WorkspaceContext/WorkspaceContextProvider.tsx'
 
-const configureMonacoWorkers = () => {
-  useWorkerFactory({
-    ignoreMapping: true,
-    workerLoaders: {
-      editorWorkerService: () =>
-        new Worker(
-          new URL(
-            "monaco-editor/esm/vs/editor/editor.worker.js",
-            import.meta.url
-          ),
-          { type: "module" }
-        ),
-    },
-  });
-};
-
-configureMonacoWorkers();
-
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <ChakraProvider>
-      <WorkspaceContextProvider>
-        <App />
-      </WorkspaceContextProvider>
-    </ChakraProvider>
-  </StrictMode>
-);
+ReactDOM.createRoot(document.getElementById('root')!).render(
+	<React.StrictMode>
+		<ChakraProvider>
+			<WorkspaceContextProvider>
+				<App />
+			</WorkspaceContextProvider>
+		</ChakraProvider>
+	</React.StrictMode>
+)

@@ -1,60 +1,58 @@
 import {
-  Container,
-  SimpleGrid,
-  Box,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  AspectRatio,
-  Center,
-} from "@chakra-ui/react";
-import {
-  CadScriptNavbar,
-  CADScriptEditor,
-  JSONViewer,
-  SketchDisplay,
-  Footer,
-} from "./components";
+	AspectRatio,
+	Box,
+	Center,
+	Container,
+	SimpleGrid,
+	Tab,
+	TabList,
+	TabPanel,
+	TabPanels,
+	Tabs
+} from '@chakra-ui/react'
+import { CADScriptEditor } from './components/CadScriptEditor'
+import { CadScriptNavbar } from './components/Navbar'
+import { SketchDisplay } from './components/SketchDisplay'
+import { Footer } from './components/Footer'
+import { JSONViewer } from './components/JSONViewer'
 
 function App() {
-  return (
-    <>
-      <CadScriptNavbar></CadScriptNavbar>
-      <Container maxW={"container.2xl"}>
-        <SimpleGrid columns={2} spacing={10}>
-          <Box>
-            <CADScriptEditor></CADScriptEditor>
-          </Box>
-          <Tabs>
-            <TabList>
-              <Tab>Intermediate Representation</Tab>
-              <Tab>PlaneGCS Input</Tab>
-              <Tab>Graphical</Tab>
-            </TabList>
+	return (
+		<>
+			<CadScriptNavbar></CadScriptNavbar>
+			<Container maxW={'container.2xl'}>
+				<SimpleGrid columns={2} spacing={10}>
+					<Box>
+						<CADScriptEditor></CADScriptEditor>
+					</Box>
+					<Tabs>
+						<TabList>
+							<Tab>Intermediate Representation</Tab>
+							<Tab>PlaneGCS Input</Tab>
+							<Tab>Graphical</Tab>
+						</TabList>
 
-            <TabPanels>
-              <TabPanel>
-                <JSONViewer></JSONViewer>
-              </TabPanel>
-              <TabPanel>
-                <JSONViewer convertURL="http://localhost:3000/sd2sp"></JSONViewer>
-              </TabPanel>
-              <TabPanel>
-                <AspectRatio>
-                  <SketchDisplay></SketchDisplay>
-                </AspectRatio>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-        </SimpleGrid>
-      </Container>
-      <Center>
-        <Footer />
-      </Center>
-    </>
-  );
+						<TabPanels>
+							<TabPanel>
+								<JSONViewer></JSONViewer>
+							</TabPanel>
+							<TabPanel>
+								<JSONViewer convertURL="http://localhost:3000/sd2sp"></JSONViewer>
+							</TabPanel>
+							<TabPanel>
+								<AspectRatio>
+									<SketchDisplay></SketchDisplay>
+								</AspectRatio>
+							</TabPanel>
+						</TabPanels>
+					</Tabs>
+				</SimpleGrid>
+			</Container>
+			<Center>
+				<Footer />
+			</Center>
+		</>
+	)
 }
 
-export default App;
+export default App

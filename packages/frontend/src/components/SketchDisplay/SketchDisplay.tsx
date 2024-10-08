@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { useWorkspaceContext } from "../../providers/WorkspaceContext";
-import { drawCoordinateSystem } from "./canvas";
-//import { ISolverResult } from "shared";
+import { useWorkspaceContext } from "../WorkspaceContext";
+import { drawSketch, drawCoordinateSystem, drawMessages } from "./canvas";
+import { ISolverResult } from "@cadscript/shared";
 
 export const SketchDisplay: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,9 +18,9 @@ export const SketchDisplay: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    //const messages: string[] = [];
+    const messages: string[] = [];
 
-    /*fetch("http://localhost:3000/solve", {
+    fetch("http://localhost:3000/solve", {
       method: "POST",
       body: simpleModel,
       headers: {
@@ -43,7 +43,7 @@ export const SketchDisplay: React.FC = () => {
       .catch((err) => {
         console.log(err);
         messages.push("Falure! See logs for more info");
-      });*/
+      });
   }, [simpleModel]);
 
   return (
