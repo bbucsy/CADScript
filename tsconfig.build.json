@@ -5,13 +5,13 @@
       "path": "packages/shared"
     },
     {
+      "path": "packages/language"
+    },
+    {
       "path": "packages/solver-service"
     },
     {
       "path": "packages/frontend"
-    },
-    {
-      "path": "packages/language"
     }
   ]
 }

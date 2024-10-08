@@ -1,72 +1,72 @@
-import { Drawable, DrawableArc, DrawableCircle, DrawableLine, DrawablePoint } from 'shared'
+//import { Drawable, DrawableArc, DrawableCircle, DrawableLine, DrawablePoint } from 'shared'
 
 export const drawCoordinateSystem = (canvas: HTMLCanvasElement) => {
-	const ctx = canvas.getContext('2d')
-	if (ctx == null) return
+  const ctx = canvas.getContext("2d");
+  if (ctx == null) return;
 
-	// Clear canvas
-	ctx.fillStyle = 'white'
-	ctx.fillRect(0, 0, canvas.width, canvas.height)
+  // Clear canvas
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-	// Translate origin to the center of the canvas
-	ctx.translate(canvas.width / 2, canvas.height / 2)
+  // Translate origin to the center of the canvas
+  ctx.translate(canvas.width / 2, canvas.height / 2);
 
-	// Draw x-axis
-	ctx.beginPath()
-	ctx.moveTo(-canvas.width / 2, 0)
-	ctx.lineTo(canvas.width / 2, 0)
-	ctx.strokeStyle = 'black'
-	ctx.stroke()
+  // Draw x-axis
+  ctx.beginPath();
+  ctx.moveTo(-canvas.width / 2, 0);
+  ctx.lineTo(canvas.width / 2, 0);
+  ctx.strokeStyle = "black";
+  ctx.stroke();
 
-	// Draw y-axis
-	ctx.beginPath()
-	ctx.moveTo(0, -canvas.height / 2)
-	ctx.lineTo(0, canvas.height / 2)
-	ctx.strokeStyle = 'black'
-	ctx.stroke()
+  // Draw y-axis
+  ctx.beginPath();
+  ctx.moveTo(0, -canvas.height / 2);
+  ctx.lineTo(0, canvas.height / 2);
+  ctx.strokeStyle = "black";
+  ctx.stroke();
 
-	// Draw tick marks on x-axis
-	for (let x = -canvas.width / 2; x <= canvas.width / 2; x += 20) {
-		ctx.beginPath()
-		ctx.moveTo(x, -5)
-		ctx.lineTo(x, 5)
-		ctx.stroke()
-	}
+  // Draw tick marks on x-axis
+  for (let x = -canvas.width / 2; x <= canvas.width / 2; x += 20) {
+    ctx.beginPath();
+    ctx.moveTo(x, -5);
+    ctx.lineTo(x, 5);
+    ctx.stroke();
+  }
 
-	// Draw tick marks on y-axis
-	for (let y = -canvas.height / 2; y <= canvas.height / 2; y += 20) {
-		ctx.beginPath()
-		ctx.moveTo(-5, y)
-		ctx.lineTo(5, y)
-		ctx.stroke()
-	}
+  // Draw tick marks on y-axis
+  for (let y = -canvas.height / 2; y <= canvas.height / 2; y += 20) {
+    ctx.beginPath();
+    ctx.moveTo(-5, y);
+    ctx.lineTo(5, y);
+    ctx.stroke();
+  }
 
-	// Reset transformation matrix to the identity matrix
-	ctx.setTransform(1, 0, 0, 1, 0, 0)
-}
+  // Reset transformation matrix to the identity matrix
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+};
 
 export const drawMessages = (canvas: HTMLCanvasElement, messages: string[]) => {
-	const ctx = canvas.getContext('2d')
-	if (!ctx) {
-		console.error('Canvas 2D context is not supported.')
-		return
-	}
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    console.error("Canvas 2D context is not supported.");
+    return;
+  }
 
-	// Set font style
-	ctx.font = '16px Arial'
-	ctx.fillStyle = 'black'
+  // Set font style
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "black";
 
-	// Write messages
-	const lineHeight = 20 // Adjust line height as needed
-	const padding = 10 // Padding from top and left edges
-	let y = padding
-	for (const message of messages) {
-		ctx.fillText(message, padding, y)
-		y += lineHeight
-	}
-}
+  // Write messages
+  const lineHeight = 20; // Adjust line height as needed
+  const padding = 10; // Padding from top and left edges
+  let y = padding;
+  for (const message of messages) {
+    ctx.fillText(message, padding, y);
+    y += lineHeight;
+  }
+};
 
-export const drawSketch = (canvas: HTMLCanvasElement, sketch: Drawable[]) => {
+/*export const drawSketch = (canvas: HTMLCanvasElement, sketch: Drawable[]) => {
 	console.log('DRAWING SKETCH')
 	const ctx = canvas.getContext('2d')
 	if (!ctx) {
@@ -174,4 +174,4 @@ function drawArcWithPoints(
 	ctx.beginPath()
 	ctx.arc(center.x, center.y, radius, startAngle, endAngle)
 	ctx.stroke()
-}
+}*/

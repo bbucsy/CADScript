@@ -1,9 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2023",
     "module": "Node16",
-    "lib": ["ESNext"],
+    "lib": ["es2023"],
     "sourceMap": true,
     "outDir": "out",
     "composite": true,

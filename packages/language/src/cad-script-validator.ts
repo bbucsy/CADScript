@@ -124,8 +124,26 @@ export class CadScriptValidator {
       CadScriptContext.emptyArgs()
     );
 
+    // TODO: REmove polyfill by providing better TSConfig
+    const findLastIndex = <T>(
+      list: T[],
+      predicate: (value: T) => boolean
+    ): number => {
+      for (let i = list.length - 1; i >= 0; i--) {
+        if (predicate(list[i])) {
+          return i;
+        }
+      }
+      return -1;
+    };
+
     const duplicates = entities.filter((entity, idx) => {
-      return entities.findLastIndex((e) => e.name === entity.name) !== idx;
+      return (
+        findLastIndex(
+          entities,
+          (e: EntityDescription) => e.name === entity.name
+        ) !== idx
+      );
     });
 
     duplicates.forEach((d) => {

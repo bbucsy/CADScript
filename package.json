@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc --build --verbose tsconfig.build.json",
+    "build": "npm run langium:generate -w packages/language && tsc --build --verbose tsconfig.build.json",
     "start:solver": "npm run start:dev -w packages/solver-service",
     "start:frontend": "npm run dev -w packages/frontend"
   },

@@ -26,6 +26,7 @@ const services = createCadScriptServices({ connection, ...EmptyFileSystem });
 const shared = services.shared;
 
 // Start the language server with the shared services
+console.log("Starting langium LSP");
 startLanguageServer(shared);
 
 type DocumentChange = {
@@ -40,6 +41,7 @@ const documentChangeNotification = new NotificationType<DocumentChange>(
 shared.workspace.DocumentBuilder.onBuildPhase(
   DocumentState.Validated,
   (documents) => {
+    console.log("Inside on build phase");
     // perform this for every validated document in this build phase batch
     for (const document of documents) {
       const model = document.parseResult.value as Model;
