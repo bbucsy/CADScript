@@ -1,0 +1,18 @@
+FROM node:20.11.1 as build
+WORKDIR /src
+RUN apt-get update && apt-get upgrade -y
+COPY . .
+
+RUN  npm install --fetch-timeout=60000
+
+RUN npm run build
+
+RUN npm run build -w packages/solver-service
+CMD ["/bin/bash"]
+
+
+FROM node:20.11.1-alpine
+WORKDIR /app
+COPY --from=build /src/ /app
+EXPOSE 3000
+CMD [ "node", "packages/solver-service/dist/main.js" ]
