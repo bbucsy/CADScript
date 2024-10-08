@@ -1,18 +1,27 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
-import { SimpleGeometryDescription } from '@cadscript/shared';
+import { Body, Controller, Post } from '@nestjs/common';
+import { ISolverResult, SimpleGeometryDescription } from '@cadscript/shared';
+import { ConverterService } from './converter.service';
+import { SketchPrimitive } from '@cadscript/planegcs';
+import { SolverService } from './solver.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly solverService: SolverService,
+    private readonly converterService: ConverterService,
+  ) {}
 
-  @Get()
-  getHello(): SimpleGeometryDescription {
-    return this.appService.getHello();
+  @Post('sd2sp')
+  convertToSketchPrimitive(
+    @Body() input: SimpleGeometryDescription,
+  ): SketchPrimitive[] {
+    return this.converterService.convertToSketchPrimitive(input);
   }
 
-  @Get('solve')
-  getSolve() {
-    return this.appService.solveExample();
+  @Post('solve')
+  async solveGeometry(
+    @Body() input: SimpleGeometryDescription,
+  ): Promise<ISolverResult> {
+    return await this.solverService.solve(input);
   }
 }

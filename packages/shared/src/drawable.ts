@@ -1,11 +1,13 @@
 export interface DrawablePoint {
   type: "POINT";
+  helper: boolean;
   x: number;
   y: number;
 }
 
 export interface DrawableLine {
   type: "LINE";
+  helper: boolean;
   x1: number;
   y1: number;
   x2: number;
@@ -14,6 +16,7 @@ export interface DrawableLine {
 
 export interface DrawableCircle {
   type: "CIRCLE";
+  helper: boolean;
   x: number;
   y: number;
   radius: number;
@@ -21,6 +24,7 @@ export interface DrawableCircle {
 
 export interface DrawableArc {
   type: "ARC";
+  helper: boolean;
   xs: number;
   ys: number;
   xc: number;
