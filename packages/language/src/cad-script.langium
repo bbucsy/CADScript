@@ -169,7 +169,7 @@ PointOnCircle:
    'circle' 'point:' p=PointRef 'circle:' c=CircleRef;
 
 PointOnArc:
-   'arc' 'point:' p=PointRef 'circle:' a=ArcRef;
+   'arc' 'point:' p=PointRef 'arc:' a=ArcRef;
 
 PointOnLine:
     'line' 'point:' p=PointRef 'line:' l=LineRef (bisect='[bisector]')?;

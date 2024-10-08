@@ -293,7 +293,7 @@ export class ConverterService {
         this.assertPoint(start);
         this.assertPoint(center);
         this.assertPoint(end);
-        this.assertCircle(entityPrimitive);
+        this.assertArc(entityPrimitive);
 
         result.push({
           type: 'ARC',

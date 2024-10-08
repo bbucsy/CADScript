@@ -59,8 +59,12 @@ export class SolverService {
     const dof = gcs_wrapper.gcs.dof();
 
     const solved_sketch = gcs_wrapper.sketch_index.get_primitives();
-    Logger.log(gcs_wrapper.get_gcs_redundant_constraints());
-    Logger.log(gcs_wrapper.get_gcs_conflicting_constraints());
+    Logger.log(
+      `redundant constrains: ${JSON.stringify(gcs_wrapper.get_gcs_redundant_constraints())}`,
+    );
+    Logger.log(
+      `conflicting constrains_ ${JSON.stringify(gcs_wrapper.get_gcs_conflicting_constraints())}`,
+    );
 
     gcs_wrapper.destroy_gcs_module();
 
