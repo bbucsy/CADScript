@@ -1,11 +1,14 @@
 {
-    "files": [],
-    "references": [
-      {
-        "path": "packages/shared"
-      },
-      {
-        "path": "packages/solver-service"
-      }
-    ]
-  }
+  "files": [],
+  "references": [
+    {
+      "path": "packages/shared"
+    },
+    {
+      "path": "packages/solver-service"
+    },
+    {
+      "path": "packages/frontend"
+    }
+  ]
+}
