@@ -1,0 +1,19 @@
+FROM node:20.11.1 as build
+WORKDIR /src
+RUN apt-get update && apt-get upgrade -y
+COPY . .
+
+RUN  npm install --fetch-timeout=60000
+
+RUN npm run build
+
+RUN npm run build -w packages/frontend
+CMD ["/bin/bash"]
+
+
+FROM nginx:alpine
+WORKDIR /usr/local/bin
+COPY --from=build /src/packages/frontend/dist /usr/share/nginx/html
+COPY --from=build /src/docker/nginx.template /etc/nginx/conf.d/default.conf
+
+EXPOSE 80

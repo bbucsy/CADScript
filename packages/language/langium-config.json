@@ -1,0 +1,16 @@
+{
+    "projectName": "CadScript",
+    "languages": [
+        {
+            "id": "cad-script",
+            "grammar": "src/cad-script.langium",
+            "fileExtensions": [
+                ".sketch"
+            ],
+            "textMate": {
+                "out": "syntaxes/cad-script.tmLanguage.json"
+            }
+        }
+    ],
+    "out": "src/generated"
+}

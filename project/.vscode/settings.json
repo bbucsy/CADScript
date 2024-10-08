@@ -1,6 +1,0 @@
-{
-	"eslint.workingDirectories": ["packages/web-frontend"],
-	"editor.formatOnSave": true,
-	"eslint.options": {},
-
-}

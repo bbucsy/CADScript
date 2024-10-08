@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+    image: cadscript/cadcloud-web
+    ports:
+      - 3001:80
+
+  solver:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.solver
+    image: cadscript/cadcloud-solver
+    ports:
+      - 3000:3000
