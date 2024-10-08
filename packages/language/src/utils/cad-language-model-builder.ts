@@ -52,7 +52,7 @@ import {
   PointRef,
   SketchDefinition,
 } from "../generated/ast.js";
-import { CadScriptArgList, CadScriptContext } from "./cad-language-context.js";
+import { CadScriptArgList, CadScriptContext } from "./cad-script-context.js";
 
 export class SimpleGeometryDescriptionBuilder {
   private _entities: EntityRepository<SimpleGeometryData>;

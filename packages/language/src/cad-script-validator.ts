@@ -37,11 +37,11 @@ import {
   SketchDefinition,
 } from "./generated/ast.js";
 
-import { CadScriptContext } from "./utils/cad-language-context.js";
+import { CadScriptContext } from "./utils/cad-script-context.js";
 import {
   CadLanguageNextReferenceResolver,
   EntityDescription,
-} from "./utils/cad-language-reference-resolver.js";
+} from "./utils/cad-script-reference-resolver.js";
 import { isPresent, popFirstFromSet } from "@cadscript/shared";
 import { CadScriptServices } from "./cad-script-module.js";
 

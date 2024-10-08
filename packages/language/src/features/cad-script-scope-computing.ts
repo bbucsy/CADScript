@@ -8,8 +8,8 @@ import {
 import { LangiumServices } from "langium/lsp";
 import { CancellationToken } from "vscode-languageserver";
 import { SketchDefinition, Model } from "../generated/ast.js";
-import { CadScriptContext } from "../utils/cad-language-context.js";
-import { CadLanguageNextReferenceResolver } from "../utils/cad-language-reference-resolver.js";
+import { CadScriptContext } from "../utils/cad-script-context.js";
+import { CadLanguageNextReferenceResolver } from "../utils/cad-script-reference-resolver.js";
 
 export class CadScriptScopeComputation extends DefaultScopeComputation {
   private _sketchRef: Map<string, SketchDefinition>;

@@ -10,7 +10,7 @@ import {
   PartialImport,
   SketchDefinition,
 } from "../generated/ast.js";
-import { CadScriptContext, CadScriptArgList } from "./cad-language-context.js";
+import { CadScriptContext, CadScriptArgList } from "./cad-script-context.js";
 import { isPresent } from "@cadscript/shared";
 
 export interface EntityDescription {
