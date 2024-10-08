@@ -17,6 +17,7 @@ import {
 } from "./cad-script-validator.js";
 import { CadScriptScopeComputation } from "./features/cad-script-scope-computing.js";
 import { CadScriptScopeProvider } from "./features/cad-script-scope-provider.js";
+import { SGDBuilderService } from "./features/cad-script-model-builder-service.js";
 
 /**
  * Declaration of custom services - add your own service classes here.
@@ -24,6 +25,9 @@ import { CadScriptScopeProvider } from "./features/cad-script-scope-provider.js"
 export type CadScriptAddedServices = {
   validation: {
     CadScriptValidator: CadScriptValidator;
+  };
+  generators: {
+    simpleGeometryDescriptionService: SGDBuilderService;
   };
 };
 
@@ -48,6 +52,9 @@ export const CadScriptModule: Module<
   references: {
     ScopeComputation: (services) => new CadScriptScopeComputation(services),
     ScopeProvider: (services) => new CadScriptScopeProvider(services),
+  },
+  generators: {
+    simpleGeometryDescriptionService: () => new SGDBuilderService(),
   },
 };
 

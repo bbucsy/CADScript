@@ -9,6 +9,9 @@
     },
     {
       "path": "packages/frontend"
+    },
+    {
+      "path": "packages/language"
     }
   ]
 }

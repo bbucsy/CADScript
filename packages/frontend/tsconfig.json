@@ -1,4 +1,7 @@
 {
+  "compilerOptions": {
+    "composite": true
+  },
   "files": [],
   "references": [
     {
@@ -9,6 +12,9 @@
     },
     {
       "path": "../shared"
+    },
+    {
+      "path": "../language"
     }
   ]
 }

@@ -1,6 +1,12 @@
 import React from "react";
 import { UserConfig } from "monaco-editor-wrapper";
 import { MonacoEditorReactComp } from "@typefox/monaco-editor-react";
+import { loadStatemachinWorkerRegular } from "./config/workerWrapper";
+
+const worker = loadStatemachinWorkerRegular();
+worker.onmessage = (event) => {
+  console.log(`onRecevie: ${event.data}`);
+};
 
 export const CADScriptEditor: React.FC = () => {
   const userConfig: UserConfig = {
@@ -8,12 +14,25 @@ export const CADScriptEditor: React.FC = () => {
       editorAppConfig: {
         $type: "extended",
         useDiffEditor: false,
+        userConfiguration: {
+          json: JSON.stringify({
+            "workbench.colorTheme": "Default Dark Modern",
+            "semanticHighlighting.enabled": true,
+          }),
+        },
         codeResources: {
           main: {
             text: 'print("Hello, World!")',
             uri: "/workspace/hello.py",
           },
         },
+      },
+    },
+    languageClientConfig: {
+      languageId: "cad-script",
+      options: {
+        $type: "WorkerDirect",
+        worker: worker,
       },
     },
   };
