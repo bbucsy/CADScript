@@ -156,10 +156,14 @@ export class ConverterService {
 
       if (entity.type == 'P_ON_L') {
         sketchPrimitives.push({
-          type: entity.midpoint
-            ? 'point_on_perp_bisector_pl'
-            : 'point_on_line_pl',
+          type: 'point_on_line_pl',
           id: `${index}`,
+          l_id: entityReference(entity.l),
+          p_id: entityReference(entity.p),
+        });
+        latePush.push({
+          type: 'point_on_perp_bisector_pl',
+          id: '-',
           l_id: entityReference(entity.l),
           p_id: entityReference(entity.p),
         });
