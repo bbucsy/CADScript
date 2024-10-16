@@ -74,6 +74,7 @@ export const drawMessages = (canvas: HTMLCanvasElement, messages: string[]) => {
 
 export const drawSketch = (canvas: HTMLCanvasElement, sketch: Drawable[]) => {
   console.log("DRAWING SKETCH");
+  console.log("sketch", sketch);
   const ctx = canvas.getContext("2d");
   if (!ctx) {
     console.error("Canvas 2D context is not supported.");
@@ -108,7 +109,7 @@ const drawPoint = (
   const x = centerX + point.x;
   const y = centerY - point.y; // Invert y-axis to match usual Cartesian coordinates
 
-  ctx.fillStyle = "black";
+  ctx.fillStyle = point.helper ? "blue" : "black";
   // Draw the point
   ctx.beginPath();
   ctx.arc(x, y, 5, 0, Math.PI * 2);
@@ -126,6 +127,7 @@ const drawLine = (ctx: CanvasRenderingContext2D, line: DrawableLine): void => {
   const x2 = centerX + line.x2;
   const y2 = centerY - line.y2; // Invert y-axis to match usual Cartesian coordinates
 
+  ctx.strokeStyle = line.helper ? "blue" : "black";
   // Draw the line
   ctx.beginPath();
   ctx.moveTo(x1, y1);
@@ -145,6 +147,7 @@ const drawCircle = (
   const x = centerX + circle.x;
   const y = centerY - circle.y; // Invert y-axis to match usual Cartesian coordinates
 
+  ctx.strokeStyle = circle.helper ? "blue" : "black";
   // Draw the circle
   ctx.beginPath();
   ctx.arc(x, y, circle.radius, 0, Math.PI * 2);
@@ -164,6 +167,7 @@ const drawArc = (ctx: CanvasRenderingContext2D, arc: DrawableArc): void => {
   const xe = centerX + arc.xe;
   const ye = centerY - arc.ye; // Invert y-axis to match usual Cartesian coordinates
 
+  ctx.strokeStyle = arc.helper ? "blue" : "black";
   drawArcWithPoints(
     ctx,
     { x: xs, y: ys },
