@@ -204,6 +204,22 @@ export class ConverterService {
           radius: entity.r,
         });
       }
+
+      if (entity.type == 'DIRECTION') {
+        if (entity.d === 'HORIZONTAL') {
+          sketchPrimitives.push({
+            type: 'horizontal_l',
+            id: `${index}`,
+            l_id: entityReference(entity.l),
+          });
+        } else {
+          sketchPrimitives.push({
+            type: 'vertical_l',
+            id: `${index}`,
+            l_id: entityReference(entity.l),
+          });
+        }
+      }
     });
 
     latePush.forEach((primitive) => {
