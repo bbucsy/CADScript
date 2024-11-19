@@ -31,7 +31,9 @@ export class ConverterService {
       ref: SGLineRef | SGCircleRef | SGArcRef | SGPointRef,
     ) => `${ref.index}`;
 
-    model.data.forEach((entity, index) => {
+    const data = model?.data ?? [];
+
+    data.forEach((entity, index) => {
       if (entity.type === 'POINT') {
         sketchPrimitives.push({
           type: 'point',
@@ -161,12 +163,14 @@ export class ConverterService {
           l_id: entityReference(entity.l),
           p_id: entityReference(entity.p),
         });
-        latePush.push({
-          type: 'point_on_perp_bisector_pl',
-          id: '-',
-          l_id: entityReference(entity.l),
-          p_id: entityReference(entity.p),
-        });
+        if (entity.midpoint) {
+          latePush.push({
+            type: 'point_on_perp_bisector_pl',
+            id: '-',
+            l_id: entityReference(entity.l),
+            p_id: entityReference(entity.p),
+          });
+        }
       }
 
       if (entity.type == 'P_ON_C') {
@@ -261,7 +265,9 @@ export class ConverterService {
   ): Drawable[] {
     const result: Drawable[] = [];
 
-    original.data.forEach((entity, index) => {
+    const data = original?.data ?? [];
+
+    data.forEach((entity, index) => {
       if (entity.type === 'POINT') {
         const primitive = sketch.find((p) => p.id === `${index}`);
         this.assertPoint(primitive);

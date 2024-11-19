@@ -1,17 +1,20 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useWorkspaceContext } from "../WorkspaceContext";
-import { drawSketch, drawCoordinateSystem, drawMessages } from "./canvas";
 import { ISolverResult } from "@cadscript/shared";
+import { drawMessages, drawSketch, getSvgString } from "./canvasRenderer";
+import { Box, Button } from "@chakra-ui/react";
+import { downloadSvg } from "./svg-downloader";
 
 export const SketchDisplay: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const { simpleModel } = useWorkspaceContext();
+  const [solverResult, setSolverResult] = useState<ISolverResult | undefined>();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    drawCoordinateSystem(canvas);
+    drawSketch(canvas, []);
   }, []);
 
   useEffect(() => {
@@ -36,9 +39,9 @@ export const SketchDisplay: React.FC = () => {
         messages.push(`solver: ${body.status ?? "N/A"}`);
         messages.push(`dof: ${body.dof ?? "N/A"}`);
 
-        drawCoordinateSystem(canvas);
         drawSketch(canvas, body.sketch);
         drawMessages(canvas, messages);
+        setSolverResult(body);
       })
       .catch((err) => {
         console.log(err);
@@ -47,11 +50,27 @@ export const SketchDisplay: React.FC = () => {
   }, [simpleModel]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={1024}
-      height={1024}
-      style={{ width: "100%", aspectRatio: "1" }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        width={1024}
+        height={1024}
+        style={{ width: "100%", aspectRatio: "1" }}
+      />
+      <Box
+        style={{
+          alignItems: "flex-end",
+          justifyContent: "flex-end",
+        }}
+      >
+        <Button
+          onClick={() => {
+            downloadSvg("sketch", getSvgString(solverResult?.sketch));
+          }}
+        >
+          Download SVG
+        </Button>
+      </Box>
+    </>
   );
 };
