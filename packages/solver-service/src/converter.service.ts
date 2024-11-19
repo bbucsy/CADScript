@@ -163,12 +163,14 @@ export class ConverterService {
           l_id: entityReference(entity.l),
           p_id: entityReference(entity.p),
         });
-        latePush.push({
-          type: 'point_on_perp_bisector_pl',
-          id: '-',
-          l_id: entityReference(entity.l),
-          p_id: entityReference(entity.p),
-        });
+        if (entity.midpoint) {
+          latePush.push({
+            type: 'point_on_perp_bisector_pl',
+            id: '-',
+            l_id: entityReference(entity.l),
+            p_id: entityReference(entity.p),
+          });
+        }
       }
 
       if (entity.type == 'P_ON_C') {

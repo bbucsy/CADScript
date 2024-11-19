@@ -37,7 +37,7 @@ export const drawSketch = (canvas: HTMLCanvasElement, sketch: Drawable[]) => {
     return BoundingBox.combine(acc, obj.boundingBox());
   }, BoundingBox.infiniteBox());
 
-  const camera = new CanvasCamera(canvas, boundingBox.getScale(canvas, 0.9));
+  const camera = new CanvasCamera(canvas, boundingBox.getScale(canvas, 0.8));
   new CoordianteSystem().render(camera);
   renderEntites.forEach((r) => r.render(camera));
 };
