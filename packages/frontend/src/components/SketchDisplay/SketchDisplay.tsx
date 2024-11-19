@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useWorkspaceContext } from "../WorkspaceContext";
-import { drawMessages } from "./canvas";
 import { ISolverResult } from "@cadscript/shared";
-import { drawSketch } from "./canvas.next";
+import { drawMessages, drawSketch } from "./canvasRenderer";
 
 export const SketchDisplay: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
