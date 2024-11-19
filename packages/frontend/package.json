@@ -32,6 +32,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@typefox/monaco-editor-react": "3.2.1",
+    "canvas-to-svg": "^1.0.3",
     "framer-motion": "^11.1.0",
     "monaco-editor": "npm:@codingame/monaco-vscode-editor-api@~4.3.2",
     "monaco-editor-workers": "^0.45.0",
@@ -43,6 +44,7 @@
     "vscode": "npm:@codingame/monaco-vscode-api@~4.3.2"
   },
   "devDependencies": {
+    "@types/node": "^22.7.4",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@types/vscode": "^1.88.0",
@@ -52,7 +54,6 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "@types/node": "^22.7.4",
     "typescript": "^5.6.2",
     "vite": "5.1.6"
   }

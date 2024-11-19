@@ -1,3 +1,5 @@
+import CanvasToSvg from "canvas-to-svg";
+
 export abstract class Camera {
   constructor() {}
 
@@ -7,7 +9,7 @@ export abstract class Camera {
 
   public abstract get scale(): number;
 
-  public abstract get ctx(): CanvasRenderingContext2D;
+  public abstract get ctx(): CanvasRenderingContext2D | CanvasToSvg;
 
   public abstract get canvasWidth(): number;
 
