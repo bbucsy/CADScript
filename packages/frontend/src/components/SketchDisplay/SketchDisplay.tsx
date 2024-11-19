@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useWorkspaceContext } from "../WorkspaceContext";
-import { drawSketch, drawCoordinateSystem, drawMessages } from "./canvas";
+import { drawMessages } from "./canvas";
 import { ISolverResult } from "@cadscript/shared";
+import { drawSketch } from "./canvas.next";
 
 export const SketchDisplay: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -11,7 +12,7 @@ export const SketchDisplay: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    drawCoordinateSystem(canvas);
+    drawSketch(canvas, []);
   }, []);
 
   useEffect(() => {
@@ -36,7 +37,6 @@ export const SketchDisplay: React.FC = () => {
         messages.push(`solver: ${body.status ?? "N/A"}`);
         messages.push(`dof: ${body.dof ?? "N/A"}`);
 
-        drawCoordinateSystem(canvas);
         drawSketch(canvas, body.sketch);
         drawMessages(canvas, messages);
       })

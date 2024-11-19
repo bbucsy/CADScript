@@ -31,7 +31,9 @@ export class ConverterService {
       ref: SGLineRef | SGCircleRef | SGArcRef | SGPointRef,
     ) => `${ref.index}`;
 
-    model.data.forEach((entity, index) => {
+    const data = model?.data ?? [];
+
+    data.forEach((entity, index) => {
       if (entity.type === 'POINT') {
         sketchPrimitives.push({
           type: 'point',
@@ -261,7 +263,9 @@ export class ConverterService {
   ): Drawable[] {
     const result: Drawable[] = [];
 
-    original.data.forEach((entity, index) => {
+    const data = original?.data ?? [];
+
+    data.forEach((entity, index) => {
       if (entity.type === 'POINT') {
         const primitive = sketch.find((p) => p.id === `${index}`);
         this.assertPoint(primitive);
