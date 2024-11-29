@@ -9,7 +9,7 @@ import { LangiumServices } from "langium/lsp";
 import { CancellationToken } from "vscode-languageserver";
 import { SketchDefinition, Model } from "../generated/ast.js";
 import { CadScriptContext } from "../utils/cad-script-context.js";
-import { CadLanguageNextReferenceResolver } from "../utils/cad-script-reference-resolver.js";
+import { CadScriptReferenceResolver } from "../utils/cad-script-reference-resolver.js";
 
 export class CadScriptScopeComputation extends DefaultScopeComputation {
   private _sketchRef: Map<string, SketchDefinition>;
@@ -25,7 +25,7 @@ export class CadScriptScopeComputation extends DefaultScopeComputation {
   ): Promise<PrecomputedScopes> {
     const scopes = await super.computeLocalScopes(document, cancelToken);
     const model = document.parseResult.value as Model;
-    const refResolver = new CadLanguageNextReferenceResolver(model);
+    const refResolver = new CadScriptReferenceResolver(model);
 
     // populate local sketchRef
     this._sketchRef.clear();

@@ -1,14 +1,36 @@
- [
-		{
-			"foreground": "#bd93f9",
-			"token": "keyword.type"
-		},
-		{
-			"foreground": "#16825D",
-			"token": "keyword.measure"
-		},
-		{
-			"foreground": "#e69b00",
-			"token": "keyword.action"
-		}
+[
+  {
+    "foreground": "#8AB4F8",
+    "token": "keyword.type"
+  },
+  {
+    "foreground": "#F28B82",
+    "token": "keyword.measure"
+  },
+  {
+    "foreground": "#81C784",
+    "token": "keyword.action"
+  },
+  {
+    "foreground": "#FFD700",
+    "fontStyle": "bold",
+    "token": "keyword"
+  },
+  {
+    "foreground": "#D4D4D4",
+    "fontStyle": "italic",
+    "token": "ID"
+  },
+  {
+    "foreground": "#FFAB40",
+    "token": "operator"
+  },
+  {
+    "foreground": "#CFD8DC",
+    "token": "comment"
+  },
+  {
+    "foreground": "#B39DDB",
+    "token": "number"
+  }
 ]

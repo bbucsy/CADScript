@@ -25,7 +25,7 @@ const createDescription = (node: AstNode, name: string): EntityDescription => {
   };
 };
 
-export class CadLanguageNextReferenceResolver {
+export class CadScriptReferenceResolver {
   private _sketchRef: Map<string, SketchDefinition>;
 
   constructor(model: Model) {

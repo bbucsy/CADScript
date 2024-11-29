@@ -39,7 +39,7 @@ import {
 
 import { CadScriptContext } from "./utils/cad-script-context.js";
 import {
-  CadLanguageNextReferenceResolver,
+  CadScriptReferenceResolver,
   EntityDescription,
 } from "./utils/cad-script-reference-resolver.js";
 import { isPresent, popFirstFromSet } from "@cadscript/shared";
@@ -116,7 +116,7 @@ export class CadScriptValidator {
   }
 
   checkEntityNamesUnique(sketch: SketchDefinition, accept: ValidationAcceptor) {
-    const refResolver = new CadLanguageNextReferenceResolver(sketch.$container);
+    const refResolver = new CadScriptReferenceResolver(sketch.$container);
 
     const entities = refResolver.getSketchNamedEntites(
       sketch,
@@ -192,7 +192,7 @@ export class CadScriptValidator {
 
   checkDynamicReferences(model: Model, accept: ValidationAcceptor): void {
     const rootCtx = CadScriptContext.getContainer(model);
-    const refResolver = new CadLanguageNextReferenceResolver(model);
+    const refResolver = new CadScriptReferenceResolver(model);
 
     for (const sketch of model.sketches) {
       const scope = refResolver.getSketchNamedEntites(

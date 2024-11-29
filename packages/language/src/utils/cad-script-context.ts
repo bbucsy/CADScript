@@ -19,7 +19,7 @@ import {
   LengthMeasurement,
   LinearDimension,
 } from "../generated/ast.js";
-import { MeasurementCompuitation } from "./cad-language-measurement.js";
+import { MeasurementCompuitation } from "./cad-script-measurement.js";
 
 export type CadScriptArgList = Map<string, number>;
 

@@ -1,6 +1,6 @@
 import { SimpleGeometryDescription } from "@cadscript/shared";
 import { Model } from "../generated/ast.js";
-import { SimpleGeometryDescriptionBuilder } from "../utils/cad-language-model-builder.js";
+import { SimpleGeometryDescriptionBuilder } from "../utils/cad-script-model-builder.js";
 
 export class SGDBuilderService {
   constructor() {}
